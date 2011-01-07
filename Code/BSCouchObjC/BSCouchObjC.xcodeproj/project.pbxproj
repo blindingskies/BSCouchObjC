@@ -1,0 +1,245 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		65D37EE912D771F800496EE1 /* BSCouchDBDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D37EE512D771F800496EE1 /* BSCouchDBDatabase.h */; };
+		65D37EEA12D771F800496EE1 /* BSCouchDBDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D37EE612D771F800496EE1 /* BSCouchDBDatabase.m */; };
+		65D37EEB12D771F800496EE1 /* BSCouchDBServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D37EE712D771F800496EE1 /* BSCouchDBServer.h */; };
+		65D37EEC12D771F800496EE1 /* BSCouchDBServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D37EE812D771F800496EE1 /* BSCouchDBServer.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		65D37EC512D7712300496EE1 /* BSCouchObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BSCouchObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		65D37EC712D7712300496EE1 /* BSCouchObjC-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BSCouchObjC-Info.plist"; sourceTree = "<group>"; };
+		65D37EE512D771F800496EE1 /* BSCouchDBDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCouchDBDatabase.h; sourceTree = "<group>"; };
+		65D37EE612D771F800496EE1 /* BSCouchDBDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCouchDBDatabase.m; sourceTree = "<group>"; };
+		65D37EE712D771F800496EE1 /* BSCouchDBServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCouchDBServer.h; sourceTree = "<group>"; };
+		65D37EE812D771F800496EE1 /* BSCouchDBServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCouchDBServer.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		65D37EC312D7712300496EE1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		65D37EAF12D7709100496EE1 = {
+			isa = PBXGroup;
+			children = (
+				65D37EE412D771F800496EE1 /* src */,
+				65D37EDB12D7718A00496EE1 /* Resources */,
+				65D37EC612D7712300496EE1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		65D37EC612D7712300496EE1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				65D37EC512D7712300496EE1 /* BSCouchObjC.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		65D37EDB12D7718A00496EE1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				65D37EC712D7712300496EE1 /* BSCouchObjC-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		65D37EE412D771F800496EE1 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				65D37EE712D771F800496EE1 /* BSCouchDBServer.h */,
+				65D37EE812D771F800496EE1 /* BSCouchDBServer.m */,
+				65D37EE512D771F800496EE1 /* BSCouchDBDatabase.h */,
+				65D37EE612D771F800496EE1 /* BSCouchDBDatabase.m */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		65D37EC012D7712300496EE1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65D37EE912D771F800496EE1 /* BSCouchDBDatabase.h in Headers */,
+				65D37EEB12D771F800496EE1 /* BSCouchDBServer.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		65D37EC412D7712300496EE1 /* BSCouchObjC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65D37ECA12D7712300496EE1 /* Build configuration list for PBXNativeTarget "BSCouchObjC" */;
+			buildPhases = (
+				65D37EC012D7712300496EE1 /* Headers */,
+				65D37EC112D7712300496EE1 /* Resources */,
+				65D37EC212D7712300496EE1 /* Sources */,
+				65D37EC312D7712300496EE1 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BSCouchObjC;
+			productName = BSCouchObjC;
+			productReference = 65D37EC512D7712300496EE1 /* BSCouchObjC.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		65D37EB112D7709100496EE1 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 65D37EB412D7709100496EE1 /* Build configuration list for PBXProject "BSCouchObjC" */;
+			compatibilityVersion = "Xcode 2.4";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 65D37EAF12D7709100496EE1;
+			productRefGroup = 65D37EC612D7712300496EE1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				65D37EC412D7712300496EE1 /* BSCouchObjC */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		65D37EC112D7712300496EE1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		65D37EC212D7712300496EE1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65D37EEA12D771F800496EE1 /* BSCouchDBDatabase.m in Sources */,
+				65D37EEC12D771F800496EE1 /* BSCouchDBServer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		65D37EB212D7709100496EE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		65D37EB312D7709100496EE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+			};
+			name = Release;
+		};
+		65D37EC812D7712300496EE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "BSCouchObjC-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = BSCouchObjC;
+			};
+			name = Debug;
+		};
+		65D37EC912D7712300496EE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "BSCouchObjC-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = BSCouchObjC;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		65D37EB412D7709100496EE1 /* Build configuration list for PBXProject "BSCouchObjC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65D37EB212D7709100496EE1 /* Debug */,
+				65D37EB312D7709100496EE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		65D37ECA12D7712300496EE1 /* Build configuration list for PBXNativeTarget "BSCouchObjC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65D37EC812D7712300496EE1 /* Debug */,
+				65D37EC912D7712300496EE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 65D37EB112D7709100496EE1 /* Project object */;
+}
