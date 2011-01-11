@@ -9,3 +9,5 @@
 
 #import "BSCouchDBServer.h"
 #import "BSCouchDBDatabase.h"
+#import "BSCouchDBDocument.h"
+#import "BSCouchDBResponse.h"
