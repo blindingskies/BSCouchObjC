@@ -179,8 +179,7 @@ NSString *percentEscape(NSString *str) {
 	[request setHTTPBody:[NSData dataWithBytes:@"" length:0]];
 	[request setCachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData];
     NSHTTPURLResponse *response;
-    NSString *str = [self sendSynchronousRequest:request returningResponse:&response];
-	NSLog(@"result string: %@", str);
+    [self sendSynchronousRequest:request returningResponse:&response];
     return 201 == [response statusCode];
 }
 
