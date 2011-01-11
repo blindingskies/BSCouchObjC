@@ -9,6 +9,8 @@
 #import "BSCouchDBDatabase.h"
 #import "BSCouchDBServer.h"
 #import "BSCouchDBDocument.h"
+#import "BSCouchDBResponse.h"
+
 #import "JSON.h"
 
 #pragma mark Functions
@@ -88,19 +90,21 @@
  Get a specific (named) document, with either all revision strings, or a specific revision (or the latest) or both.
  */
 - (BSCouchDBDocument *)getDocument:(NSString *)documentId withRevisions:(BOOL)withRevs revision:(NSString *)revisionOrNil {
-	
+	NSParameterAssert(documentId);
+    
 	// Construct the URL argument depending on the options 
-	NSMutableString *arg = [NSMutableString stringWithString:percentEscape(documentId)];
+	NSString *arg = percentEscape(documentId);
 	
 	if(withRevs) {
-		[arg appendString:@"?revs=true&revs_info=true"];
+		arg = [arg stringByAppendingString:@"?revs=true&revs_info=true"];
 	}
 	
 	if(revisionOrNil != nil) {
-		[arg appendFormat:@"&rev=%@", revisionOrNil];
+		arg = [arg stringByAppendingFormat:@"&rev=%@", revisionOrNil];
 	}
-	
-	return [BSCouchDBDocument documentWithDictionary:[self get:arg] database:self];
+    NSLog(@"Getting arg: %@", arg);
+	NSDictionary *dic = [self get:arg];
+	return [BSCouchDBDocument documentWithDictionary:dic database:self];
 }
 
 
@@ -113,8 +117,9 @@
 - (BSCouchDBResponse *)post:(NSString *)argument data:(NSData *)data {
 	
 	// Create a request
-	NSURLRequest *aRequest = [self requestWithPath:percentEscape(argument)];
+	NSMutableURLRequest *aRequest = [self requestWithPath:percentEscape(argument)];
 	[aRequest setHTTPMethod:@"POST"];
+    [aRequest setValue:@"application/json; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
 	[aRequest setHTTPBody:data];
 	
 	NSHTTPURLResponse *response = nil;
