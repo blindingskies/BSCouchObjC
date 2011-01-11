@@ -8,15 +8,22 @@
 
 @class BSCouchDBDatabase;
 
-@interface BSCouchDBDocument : NSMutableDictionary {
+@interface BSCouchDBDocument : NSObject {
 @private
+    NSMutableDictionary *dictionary;
 	BSCouchDBDatabase *database;
 }
 
+@property (nonatomic, readwrite, retain) NSMutableDictionary *dictionary;
 @property (nonatomic, readwrite, retain) BSCouchDBDatabase *database;
 
 + (BSCouchDBDocument *)documentWithDictionary:(NSDictionary *)otherDictionary database:(BSCouchDBDatabase *)aDatabase;
 - (id)initWithDictionary:(NSDictionary *)otherDictionary database:(BSCouchDBDatabase *)aDatabase;
+
+#pragma mark Dictionary methods
+
+- (void)setObject:(id)anObject forKey:(id)aKey;
+- (id)objectForKey:(id)aKey;
 
 #pragma mark Revision Information
 

@@ -11,6 +11,7 @@
 
 @implementation BSCouchDBDocument
 
+@synthesize dictionary;
 @synthesize database;
 
 + (BSCouchDBDocument *)documentWithDictionary:(NSDictionary *)otherDictionary database:(BSCouchDBDatabase *)aDatabase {
@@ -18,8 +19,9 @@
 }
 
 - (id)initWithDictionary:(NSDictionary *)otherDictionary database:(BSCouchDBDatabase *)aDatabase {
-	self = [super initWithDictionary:otherDictionary];
+	self = [super init];
 	if (self) {
+        self.dictionary = [NSMutableDictionary dictionaryWithDictionary:otherDictionary];
 		self.database = aDatabase;
 	}
 	return self;
@@ -30,12 +32,30 @@
 	[super dealloc];	
 }
 
+#pragma mark Dictionary methods
+
+- (void)setObject:(id)anObject forKey:(id)aKey {
+    [self willChangeValueForKey:aKey];
+    [self.dictionary setObject:anObject forKey:aKey];
+    [self didChangeValueForKey:aKey];
+}
+
+- (id)objectForKey:(id)aKey {
+    return [self.dictionary objectForKey:aKey];
+}
+
+- (void)forwardInvocation:(NSInvocation *)invocation {
+    [invocation setTarget:self.dictionary];
+    [invocation invoke];
+}
+
+
 #pragma mark -
 #pragma mark Revision Information
 
 // Returns this revision identifier
 - (NSString *)revision {
-	return [self objectForKey:@"_rev"];
+	return [self.dictionary objectForKey:@"_rev"];
 }
 
 // Returns an array of NSString objects for each revision
