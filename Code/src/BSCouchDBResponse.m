@@ -19,8 +19,8 @@
 	self = [super init];
 	if (self) {
 		ok = [[dic objectForKey:@"ok"] boolValue];
-		_id = [[dic objectForKey:@"_id"] copy];
-		_rev = [[dic objectForKey:@"_rev"] copy];
+		_id = [[dic objectForKey:@"id"] copy];
+		_rev = [[dic objectForKey:@"rev"] copy];
 	}
 	return self;
 }
@@ -28,7 +28,7 @@
 - (void)dealloc {
 	[_id release];
 	[_rev release];
-	[super release];
+	[super dealloc];
 }
 
 - (NSString *)description {
