@@ -32,6 +32,8 @@ NSString *percentEscape(NSString *str) {
 @synthesize port;
 @synthesize path;
 @synthesize cookie;
+@synthesize login;
+@synthesize password;
 @synthesize url;
 @synthesize isSSL;
 
@@ -96,6 +98,8 @@ NSString *percentEscape(NSString *str) {
 	NSHTTPURLResponse *responseBuffer;
 	if(!response) response = &responseBuffer;
 	
+	NSLog(@"requesting: %@ %@", [request HTTPMethod], [[request URL] absoluteString]);
+	
 	// Use NSURLConnection's class method
 	NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:response error:&error];
 	
@@ -124,7 +128,6 @@ NSString *percentEscape(NSString *str) {
 }
 
 
-
 #pragma mark -
 #pragma mark Server Infomation
 
@@ -142,6 +145,11 @@ NSString *percentEscape(NSString *str) {
 }
 
 - (NSString *)serverURLAsString {
+	if(self.login && self.password) {
+		if(!self.path)
+			return [NSString stringWithFormat:@"%@://%@:%@@%@:%u", self.isSSL ? @"https" : @"http", self.login, self.password, self.hostname, self.port];  
+		return [NSString stringWithFormat:@"%@://%@:%@@%@:%u/%@/", self.isSSL ? @"https" : @"http", self.login, self.password,  self.hostname, self.port, self.path];  		
+	}	
 	if(!self.path)
 		return [NSString stringWithFormat:@"%@://%@:%u/", self.isSSL ? @"https" : @"http", self.hostname, self.port];  
 	return [NSString stringWithFormat:@"%@://%@:%u/%@/", self.isSSL ? @"https" : @"http", self.hostname, self.port, self.path];  		
@@ -151,9 +159,10 @@ NSString *percentEscape(NSString *str) {
 #pragma mark Databases
 
 // Returns a list of the databases on the server
-- (NSArray *)allDatabases {
+- (NSArray *)allDatabases {	
 	// Use the special CouchDB request
     NSMutableURLRequest *request = [self requestWithPath:@"_all_dbs"];
+	
     NSHTTPURLResponse *response;
     NSString *json = [self sendSynchronousRequest:request returningResponse:&response];
     if (200 == [response statusCode]) {
@@ -167,9 +176,11 @@ NSString *percentEscape(NSString *str) {
 	// Just call PUT databasename
     NSMutableURLRequest *request = [self requestWithPath:percentEscape(databaseName)];
     [request setHTTPMethod:@"PUT"];
-	[request setHTTPBody:[NSData dataWithBytes:NULL length:0]];
+	[request setHTTPBody:[NSData dataWithBytes:@"" length:0]];
+	[request setCachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData];
     NSHTTPURLResponse *response;
-    (void)[self sendSynchronousRequest:request returningResponse:&response];
+    NSString *str = [self sendSynchronousRequest:request returningResponse:&response];
+	NSLog(@"result string: %@", str);
     return 201 == [response statusCode];
 }
 
@@ -188,5 +199,71 @@ NSString *percentEscape(NSString *str) {
 	return [[[BSCouchDBDatabase alloc] initWithServer:self name:databaseName] autorelease];
 }
 
+#pragma mark -
+#pragma mark Users & Authentication
+
+- (BOOL)loginUsingName:(NSString *)_username andPassword:(NSString *)_password {
+	
+	// We're going to login using the credential and the store the cookie that we get back
+	NSString *post = [NSString stringWithFormat:@"name=%@&password=%@", _username, _password];
+	NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
+	
+	// Create a request
+	NSMutableURLRequest *request = [self requestWithPath:@"_session"];
+	[request setHTTPMethod:@"POST"];
+    [request setValue:@"application/x-www-form-urlencoded; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:postData];
+	
+	NSHTTPURLResponse *response;
+    NSString *json = [self sendSynchronousRequest:request returningResponse:&response];
+	
+    if (200 == [response statusCode]) {
+		// We need to get the Set-Cookie response header
+		self.cookie = [[response allHeaderFields] objectForKey:@"Set-Cookie"];
+		return [[[json JSONValue] objectForKey:@"ok"] boolValue];
+    }
+    return NO;    
+}
+
+
+#pragma mark -
+#pragma mark NSURLConnectionDelegate methods
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+	// We've got enough information to create a NSURLResponse
+	// Because it can be called multiple times, such as for a redirect,
+	// we reset the data each time.
+	NSLog(@"connection did receive response.");
+//	[self.receivedData setLength:0];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+	// We received some data
+	NSLog(@"connection did receive %d bytes of data.", [data length]);
+//	[self.receivedData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+	// We encountered an error
+	
+	// Release the retained connection and the data received so far
+//	self.currentConnection = nil; [currentConnection release];
+//	self.receivedData = nil; [receivedData release];
+
+	// Log the error
+    NSLog(@"Connection failed! Error - %@ %@", [error localizedDescription], [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
+	
+//	failureCallback(error);
+	
+	// Unblock the connection
+//	self.blockConnection = NO;
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+	// We received all the data without errors
+	// Unblock the connection
+	NSLog(@"connection did finish.");	
+//	self.blockConnection = NO;	
+}
 
 @end

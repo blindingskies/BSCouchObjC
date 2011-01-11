@@ -7,6 +7,8 @@
 //
 
 @class BSCouchDBServer;
+@class BSCouchDBDocument;
+@class BSCouchDBResponse;
 
 @interface BSCouchDBDatabase : NSObject {
 @private
@@ -23,7 +25,18 @@
 
 #pragma mark Get Methods
 
+// General purpose get function.
 - (NSDictionary *)get:(NSString *)argument;
 
+// Get a specific (named) document, with either all revision strings, or a specific revision (or the latest) or both.
+- (BSCouchDBDocument *)getDocument:(NSString *)documentId withRevisions:(BOOL)withRevs revision:(NSString *)revisionOrNil;
+
+#pragma mark PUT & POST Methods
+
+// General purpose post function
+- (BSCouchDBResponse *)post:(NSString *)argument data:(NSData *)data;
+
+// Post a new document from a dictionary
+- (BSCouchDBResponse *)postDictionary:(NSDictionary *)aDictionary;
 
 @end

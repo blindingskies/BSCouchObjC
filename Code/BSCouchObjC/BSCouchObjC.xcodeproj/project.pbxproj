@@ -7,9 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		65D37EE912D771F800496EE1 /* BSCouchDBDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D37EE512D771F800496EE1 /* BSCouchDBDatabase.h */; };
+		6558467412DC8A2D005A81CA /* BSCouchDBDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 6558467212DC8A2D005A81CA /* BSCouchDBDocument.h */; };
+		6558467512DC8A2D005A81CA /* BSCouchDBDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 6558467312DC8A2D005A81CA /* BSCouchDBDocument.m */; };
+		6558467612DC8A2D005A81CA /* BSCouchDBDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 6558467212DC8A2D005A81CA /* BSCouchDBDocument.h */; };
+		6558467712DC8A2D005A81CA /* BSCouchDBDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 6558467312DC8A2D005A81CA /* BSCouchDBDocument.m */; };
+		6558468712DC9204005A81CA /* BSCouchDBResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6558468512DC9204005A81CA /* BSCouchDBResponse.h */; };
+		6558468812DC9204005A81CA /* BSCouchDBResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6558468612DC9204005A81CA /* BSCouchDBResponse.m */; };
+		6558468912DC9204005A81CA /* BSCouchDBResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6558468512DC9204005A81CA /* BSCouchDBResponse.h */; };
+		6558468A12DC9204005A81CA /* BSCouchDBResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6558468612DC9204005A81CA /* BSCouchDBResponse.m */; };
+		65D37EE912D771F800496EE1 /* BSCouchDBDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D37EE512D771F800496EE1 /* BSCouchDBDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65D37EEA12D771F800496EE1 /* BSCouchDBDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D37EE612D771F800496EE1 /* BSCouchDBDatabase.m */; };
-		65D37EEB12D771F800496EE1 /* BSCouchDBServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D37EE712D771F800496EE1 /* BSCouchDBServer.h */; };
+		65D37EEB12D771F800496EE1 /* BSCouchDBServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D37EE712D771F800496EE1 /* BSCouchDBServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65D37EEC12D771F800496EE1 /* BSCouchDBServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D37EE812D771F800496EE1 /* BSCouchDBServer.m */; };
 		65D37F1312D7776A00496EE1 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D37F0012D7776A00496EE1 /* SBJsonWriter.m */; };
 		65D37F1412D7776A00496EE1 /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D37F0112D7776A00496EE1 /* SBJsonWriter.h */; };
@@ -31,7 +39,7 @@
 		65D37F2412D7776A00496EE1 /* NSObject+JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D37F1112D7776A00496EE1 /* NSObject+JSON.h */; };
 		65D37F2512D7776A00496EE1 /* JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D37F1212D7776A00496EE1 /* JSON.h */; };
 		65D37F7D12D784AE00496EE1 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D37F7B12D784AE00496EE1 /* Reachability.m */; };
-		65D37F7E12D784AE00496EE1 /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D37F7C12D784AE00496EE1 /* Reachability.h */; };
+		65D37F7E12D784AE00496EE1 /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D37F7C12D784AE00496EE1 /* Reachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65D37F8612D7852D00496EE1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D37F8512D7852D00496EE1 /* Foundation.framework */; };
 		65D37F8812D7852D00496EE1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D37F8712D7852D00496EE1 /* SystemConfiguration.framework */; };
 		65D37FA912D7864500496EE1 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D37F7B12D784AE00496EE1 /* Reachability.m */; };
@@ -42,6 +50,9 @@
 		65D37FF812D7911900496EE1 /* BSCouchObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D37EC512D7712300496EE1 /* BSCouchObjC.framework */; };
 		65D3800312D791B100496EE1 /* GHUnitTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D3800212D791B100496EE1 /* GHUnitTestMain.m */; };
 		65D3808C12D7A0AE00496EE1 /* GHUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D3807712D79FC600496EE1 /* GHUnit.framework */; };
+		65D3809D12D7A77300496EE1 /* ServerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D3809C12D7A77300496EE1 /* ServerTest.m */; };
+		65D3809F12D7A7AF00496EE1 /* BSCouchObjC.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D3809E12D7A7AF00496EE1 /* BSCouchObjC.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		65D380A012D7A7AF00496EE1 /* BSCouchObjC.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D3809E12D7A7AF00496EE1 /* BSCouchObjC.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,12 +60,16 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 65D37EB112D7709100496EE1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 65D37EC412D7712300496EE1 /* BSCouchObjC */;
+			remoteGlobalIDString = 65D37EC412D7712300496EE1;
 			remoteInfo = BSCouchObjC;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6558467212DC8A2D005A81CA /* BSCouchDBDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCouchDBDocument.h; sourceTree = "<group>"; };
+		6558467312DC8A2D005A81CA /* BSCouchDBDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCouchDBDocument.m; sourceTree = "<group>"; };
+		6558468512DC9204005A81CA /* BSCouchDBResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCouchDBResponse.h; sourceTree = "<group>"; };
+		6558468612DC9204005A81CA /* BSCouchDBResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCouchDBResponse.m; sourceTree = "<group>"; };
 		65D37EC512D7712300496EE1 /* BSCouchObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BSCouchObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65D37EC712D7712300496EE1 /* BSCouchObjC-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BSCouchObjC-Info.plist"; sourceTree = "<group>"; };
 		65D37EE512D771F800496EE1 /* BSCouchDBDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCouchDBDatabase.h; sourceTree = "<group>"; };
@@ -90,6 +105,8 @@
 		65D37FE312D790A000496EE1 /* Mac OS X Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Mac OS X Tests-Info.plist"; sourceTree = "<group>"; };
 		65D3800212D791B100496EE1 /* GHUnitTestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHUnitTestMain.m; path = /Users/daniel/Documents/Development/GHUnitTestMain.m; sourceTree = "<absolute>"; };
 		65D3807712D79FC600496EE1 /* GHUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnit.framework; path = /Library/Frameworks/GHUnit.framework; sourceTree = "<absolute>"; };
+		65D3809C12D7A77300496EE1 /* ServerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServerTest.m; path = "Unit Tests/ServerTest.m"; sourceTree = "<group>"; };
+		65D3809E12D7A7AF00496EE1 /* BSCouchObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSCouchObjC.h; path = src/BSCouchObjC.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +179,10 @@
 				65D37EE812D771F800496EE1 /* BSCouchDBServer.m */,
 				65D37EE512D771F800496EE1 /* BSCouchDBDatabase.h */,
 				65D37EE612D771F800496EE1 /* BSCouchDBDatabase.m */,
+				6558467212DC8A2D005A81CA /* BSCouchDBDocument.h */,
+				6558467312DC8A2D005A81CA /* BSCouchDBDocument.m */,
+				6558468512DC9204005A81CA /* BSCouchDBResponse.h */,
+				6558468612DC9204005A81CA /* BSCouchDBResponse.m */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -206,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				65D37FB712D786BF00496EE1 /* BSCouchObjC_prefix.h */,
+				65D3809E12D7A7AF00496EE1 /* BSCouchObjC.h */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -222,6 +244,7 @@
 		65D3800412D791BE00496EE1 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				65D3809C12D7A77300496EE1 /* ServerTest.m */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -247,6 +270,9 @@
 				65D37F2512D7776A00496EE1 /* JSON.h in Headers */,
 				65D37F7E12D784AE00496EE1 /* Reachability.h in Headers */,
 				65D37FB812D786BF00496EE1 /* BSCouchObjC_prefix.h in Headers */,
+				65D3809F12D7A7AF00496EE1 /* BSCouchObjC.h in Headers */,
+				6558467412DC8A2D005A81CA /* BSCouchDBDocument.h in Headers */,
+				6558468712DC9204005A81CA /* BSCouchDBResponse.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +281,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				65D37FB912D786BF00496EE1 /* BSCouchObjC_prefix.h in Headers */,
+				65D380A012D7A7AF00496EE1 /* BSCouchObjC.h in Headers */,
+				6558467612DC8A2D005A81CA /* BSCouchDBDocument.h in Headers */,
+				6558468912DC9204005A81CA /* BSCouchDBResponse.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +408,8 @@
 				65D37F2112D7776A00496EE1 /* SBJsonParser.m in Sources */,
 				65D37F2312D7776A00496EE1 /* NSObject+JSON.m in Sources */,
 				65D37F7D12D784AE00496EE1 /* Reachability.m in Sources */,
+				6558467512DC8A2D005A81CA /* BSCouchDBDocument.m in Sources */,
+				6558468812DC9204005A81CA /* BSCouchDBResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,6 +420,8 @@
 				65D37FA912D7864500496EE1 /* Reachability.m in Sources */,
 				65D37FAA12D7864500496EE1 /* BSCouchDBServer.m in Sources */,
 				65D37FAB12D7864500496EE1 /* BSCouchDBDatabase.m in Sources */,
+				6558467712DC8A2D005A81CA /* BSCouchDBDocument.m in Sources */,
+				6558468A12DC9204005A81CA /* BSCouchDBResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,6 +430,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65D3800312D791B100496EE1 /* GHUnitTestMain.m in Sources */,
+				65D3809D12D7A77300496EE1 /* ServerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
