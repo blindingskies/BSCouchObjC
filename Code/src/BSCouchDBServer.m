@@ -7,8 +7,7 @@
 //
 
 #import "BSCouchDBServer.h"
-#import "BSCouchDBDatabase.h"
-#import "JSON.h"
+#import "BSCouchObjC.h"
 
 #pragma mark Functions
 
@@ -98,7 +97,7 @@ NSString *percentEscape(NSString *str) {
 	NSHTTPURLResponse *responseBuffer;
 	if(!response) response = &responseBuffer;
 	
-	NSLog(@"requesting: %@ %@", [request HTTPMethod], [[request URL] absoluteString]);
+//	NSLog(@"requesting: %@ %@", [request HTTPMethod], [[request URL] absoluteString]);
 	
 	// Use NSURLConnection's class method
 	NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:response error:&error];
