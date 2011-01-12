@@ -1,4 +1,6 @@
 *.DS_Store
 *.pbxuser
 *.mode*v*
-/Code/BSCouchObjC/build
+/Code/build
+/Code/BSCouchObjC.xcodeproj/xcuserdata/
+/Code/BSCouchObjC.xcodeproj/project.xcworkspace/xcuserdata/
