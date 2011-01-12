@@ -6,7 +6,6 @@
 //  Copyright 2011 Blinding Skies Limited. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
 #import <GHUnit/GHUnit.h>
 #import <BSCouchObjC/BSCouchObjC.h>
 
