@@ -1,3 +1,6 @@
 [submodule "Code/vendor/json-framework"]
 	path = Code/vendor/json-framework
 	url = git://github.com/stig/json-framework.git
+[submodule "Code/vendor/GHUnit"]
+	path = Code/vendor/GHUnit
+	url = git://github.com/gabriel/gh-unit.git
