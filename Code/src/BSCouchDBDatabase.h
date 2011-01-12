@@ -36,7 +36,13 @@
 // General purpose post function
 - (BSCouchDBResponse *)post:(NSString *)argument data:(NSData *)data;
 
+// General purpose put function
+- (BSCouchDBResponse *)put:(NSString *)argument data:(NSData *)data;
+
 // Post a new document from a dictionary
 - (BSCouchDBResponse *)postDictionary:(NSDictionary *)aDictionary;
+
+// Put a document (dictionary) with a particular identifier
+- (BSCouchDBResponse *)putDocument:(NSDictionary *)aDictionary named:(NSString *)aName;
 
 @end

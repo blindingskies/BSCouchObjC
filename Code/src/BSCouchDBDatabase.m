@@ -7,11 +7,7 @@
 //
 
 #import "BSCouchDBDatabase.h"
-#import "BSCouchDBServer.h"
-#import "BSCouchDBDocument.h"
-#import "BSCouchDBResponse.h"
-
-#import "JSON.h"
+#import "BSCouchObjC.h"
 
 #pragma mark Functions
 
@@ -102,7 +98,7 @@
 	if(revisionOrNil != nil) {
 		arg = [arg stringByAppendingFormat:@"&rev=%@", revisionOrNil];
 	}
-    NSLog(@"Getting arg: %@", arg);
+ //   NSLog(@"Getting arg: %@", arg);
 	NSDictionary *dic = [self get:arg];
 	return [BSCouchDBDocument documentWithDictionary:dic database:self];
 }
@@ -132,6 +128,26 @@
 	return nil;
 }
 
+/**
+ General purpose put function
+ */
+- (BSCouchDBResponse *)put:(NSString *)argument data:(NSData *)data {
+    
+	// Create a request
+	NSMutableURLRequest *aRequest = [self requestWithPath:percentEscape(argument)];
+	[aRequest setHTTPMethod:@"PUT"];
+    [aRequest setValue:@"application/json; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+	[aRequest setHTTPBody:data];
+	
+	NSHTTPURLResponse *response = nil;
+	NSString *str = [self.server sendSynchronousRequest:aRequest returningResponse:&response];
+	
+	// Check the response
+	if (201 == [response statusCode]) {
+		return [[[BSCouchDBResponse alloc] initWithDictionary:[str JSONValue]] autorelease];
+	}
+	return nil;
+}
 
 /**
  Post a new document from a dictionary
@@ -143,6 +159,19 @@
 	
 	// Post it
 	return [self post:nil data:data];
+}
+
+/**
+ Put a document (dictionary) with a particular identifier
+ */
+- (BSCouchDBResponse *)putDocument:(NSDictionary *)aDictionary named:(NSString *)aName {
+    
+	// Encode the dictionary
+	NSData *data = [[aDictionary JSONRepresentation] dataUsingEncoding:NSUTF8StringEncoding];
+	
+	// Put it
+	return [self put:aName data:data];
+    
 }
 
 
