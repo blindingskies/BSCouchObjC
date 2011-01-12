@@ -7,6 +7,7 @@
 //
 
 @class BSCouchDBDatabase;
+@class BSCouchDBResponse;
 
 @interface BSCouchDBDocument : NSObject {
 @private
@@ -16,6 +17,9 @@
 
 @property (nonatomic, readwrite, retain) NSMutableDictionary *dictionary;
 @property (nonatomic, readwrite, retain) BSCouchDBDatabase *database;
+
+@property (nonatomic, readonly) NSString *_id;
+@property (nonatomic, readonly) NSString *_rev;
 
 + (BSCouchDBDocument *)documentWithDictionary:(NSDictionary *)otherDictionary database:(BSCouchDBDatabase *)aDatabase;
 - (id)initWithDictionary:(NSDictionary *)otherDictionary database:(BSCouchDBDatabase *)aDatabase;
@@ -27,9 +31,6 @@
 
 #pragma mark Revision Information
 
-// Returns this revision identifier
-- (NSString *)revision;
-
 // Returns an array of NSString objects for each revision
 - (NSArray *)revisions;
 
@@ -38,5 +39,11 @@
 
 // Returns the index of this revision of the document
 - (NSInteger)revisionIndex;
+
+#pragma mark Document updates
+
+// Updates the document using the objects in the dictionary, which replace or are added
+// to the original contents.
+- (BSCouchDBResponse *)updateDocumentWithDictionary:(NSDictionary *)dic;
 
 @end
