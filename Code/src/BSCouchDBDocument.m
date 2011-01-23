@@ -69,6 +69,14 @@
 #pragma mark -
 #pragma mark Revision Information
 
+// Update the revision
+- (void)setRevision:(NSString *)newRev {
+    // Update the revision(s)
+    [self setObject:newRev forKey:COUCH_KEY_REV];
+    // Delete the revisions as it's now out of date, but we're not going to automatically refresh it
+    [self.dictionary removeObjectForKey:COUCH_KEY_REVISIONS];	
+}
+
 // Returns an array of NSString objects for each revision
 - (NSArray *)revisions {
 	return [[self.dictionary objectForKey:COUCH_KEY_REVISIONS] objectForKey:@"ids"];
@@ -98,11 +106,8 @@
     BSCouchDBResponse *response = [self.database putDocument:self.dictionary named:self._id];
     
     // Update the revision(s)
-    [self setObject:response._rev forKey:COUCH_KEY_REV];
-    
-    // Delete the revisions as it's now out of data, but we're not going to automatically refresh it
-    [self.dictionary removeObjectForKey:COUCH_KEY_REVISIONS];
-    
+	[self setRevision:response._rev];
+        
     // Return the response
     return response;
 }

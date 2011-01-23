@@ -31,6 +31,9 @@
 
 #pragma mark Revision Information
 
+// Update the revision
+- (void)setRevision:(NSString *)newRev;
+
 // Returns an array of NSString objects for each revision
 - (NSArray *)revisions;
 
@@ -45,5 +48,8 @@
 // Updates the document using the objects in the dictionary, which replace or are added
 // to the original contents.
 - (BSCouchDBResponse *)updateDocumentWithDictionary:(NSDictionary *)dic;
+
+
+
 
 @end
