@@ -9,6 +9,8 @@
 #import "Reachability.h"
 
 @class BSCouchDBDatabase;
+@class BSCouchDBResponse;
+@class BSCouchDBReplicationResponse;
 
 NSString *percentEscape(NSString *str);
 
@@ -23,7 +25,6 @@ NSString *percentEscape(NSString *str);
 	NSUInteger port;	
 	BOOL isSSL;	
 	NSURL *url;
-	
 	
 }
 
@@ -47,13 +48,17 @@ NSString *percentEscape(NSString *str);
 #pragma mark Server Infomation
 
 // Check whether the server is online/reachable
-- (NetworkStatus)reachable;
+- (BOOL)isReachableWithError:(NSError *)error;
 
 // Returns the CouchDB version string of the server
 - (NSString *)version;
 
 // Returns the server's url as a string
-- (NSString *)serverURLAsString;
+- (NSString *)serverURLAsString:(BOOL)authenticateIfPossible;
+
+// Return the url with the option of authentication details or not
+- (NSURL *)urlWithAuthentication:(BOOL)authenticateIfPossible;
+
 
 #pragma mark HTTP Requests
 
@@ -80,7 +85,15 @@ NSString *percentEscape(NSString *str);
 
 #pragma mark Users & Authentication
 
+// Create a database reader (non admin user)
+- (BSCouchDBResponse *)createUser:(NSString *)_name password:(NSString *)_password;
+
+// Login to the server
 - (BOOL)loginUsingName:(NSString *)_username andPassword:(NSString *)_password;
 
 
+#pragma mark Replication
+
+// Replicate databases
+- (BSCouchDBReplicationResponse *)replicateFrom:(NSString *)source to:(NSString *)target docs:(NSArray *)doc_ids filter:(NSString *)filter params:(NSDictionary *)queryParams;
 @end

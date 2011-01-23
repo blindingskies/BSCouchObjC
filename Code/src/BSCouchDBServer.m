@@ -8,11 +8,15 @@
 
 #import "BSCouchDBServer.h"
 #import "BSCouchObjC.h"
+#import "NSStringAdditions.h"
 
 #pragma mark Functions
 
 NSString *percentEscape(NSString *str) {
-	return [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	if (![str hasPrefix:@"org.couchdb.user%3A"]) {
+		return [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	}
+	return str;
 }
 
 #pragma mark PrivateMethods
@@ -71,9 +75,7 @@ NSString *percentEscape(NSString *str) {
 
 - (NSURL *)url {
 	if (!url) {
-		NSURL *aURL = [[NSURL alloc] initWithString:[self serverURLAsString]];
-		self.url = aURL;
-		[aURL release];
+		self.url = [self urlWithAuthentication:YES];
 	}
 	return url;
 }
@@ -96,15 +98,13 @@ NSString *percentEscape(NSString *str) {
 	// Create a pointer to a response buffer if we don't have one already
 	NSHTTPURLResponse *responseBuffer;
 	if(!response) response = &responseBuffer;
-	
-//	NSLog(@"requesting: %@ %@", [request HTTPMethod], [[request URL] absoluteString]);
-	
+		
 	// Use NSURLConnection's class method
 	NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:response error:&error];
 	
 	// Get the data as a UTF8 string
 	NSString *str = data ? [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] : nil;
-
+	
 	// Check for errors response code
 	if (!data || (*response).statusCode >= 300) {
 		NSString *body = [[NSString alloc] initWithData:[request HTTPBody] encoding:NSUTF8StringEncoding];
@@ -131,9 +131,8 @@ NSString *percentEscape(NSString *str) {
 #pragma mark Server Infomation
 
 // Check whether the server is online/reachable
-- (NetworkStatus)reachable {
-	Reachability *reachability = [Reachability reachabilityWithHostName:self.hostname];
-	return [reachability currentReachabilityStatus];
+- (BOOL)isReachableWithError:(NSError *)error {
+	return [self.url checkResourceIsReachableAndReturnError:&error];
 }
 
 // Returns the CouchDB version string of the server
@@ -143,8 +142,8 @@ NSString *percentEscape(NSString *str) {
     return [[json JSONValue] valueForKey:@"version"];
 }
 
-- (NSString *)serverURLAsString {
-	if(self.login && self.password) {
+- (NSString *)serverURLAsString:(BOOL)authenticateIfPossible {
+	if(authenticateIfPossible && self.login && self.password) {
 		if(!self.path)
 			return [NSString stringWithFormat:@"%@://%@:%@@%@:%u", self.isSSL ? @"https" : @"http", self.login, self.password, self.hostname, self.port];  
 		return [NSString stringWithFormat:@"%@://%@:%@@%@:%u/%@/", self.isSSL ? @"https" : @"http", self.login, self.password,  self.hostname, self.port, self.path];  		
@@ -153,6 +152,12 @@ NSString *percentEscape(NSString *str) {
 		return [NSString stringWithFormat:@"%@://%@:%u/", self.isSSL ? @"https" : @"http", self.hostname, self.port];  
 	return [NSString stringWithFormat:@"%@://%@:%u/%@/", self.isSSL ? @"https" : @"http", self.hostname, self.port, self.path];  		
 }
+
+// Return the url with the option of authentication details or not
+- (NSURL *)urlWithAuthentication:(BOOL)authenticateIfPossible {
+	return [NSURL URLWithString:[self serverURLAsString:authenticateIfPossible]];
+}
+
 
 #pragma mark -
 #pragma mark Databases
@@ -197,9 +202,62 @@ NSString *percentEscape(NSString *str) {
 	return [[[BSCouchDBDatabase alloc] initWithServer:self name:databaseName] autorelease];
 }
 
+
+
+
 #pragma mark -
 #pragma mark Users & Authentication
 
+// Create a database reader (non admin user)
+- (BSCouchDBResponse *)createUser:(NSString *)_name password:(NSString *)_password {
+	
+	NSParameterAssert(_name);
+	NSParameterAssert(_password);	
+	NSAssert(self.login != nil, @"The server need's an administrator login name");
+	NSAssert(self.password != nil, @"The server need's an administrator login password");
+	
+	// Create a salt
+	NSString *salt = [[NSString stringWithFormat:@"%lf", [[NSDate date] timeIntervalSince1970]] sha1];
+	
+	// Hash the password and salt
+	NSString *digest = [[NSString stringWithFormat:@"%@%@", _password, salt] sha1];
+	
+	// Create the document id
+	NSString *docid = [NSString stringWithFormat:@"org.couchdb.user%%3A%@", _name];
+	
+	// Create a dictionary
+	NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithCapacity:6];
+	
+	// Create an empty roles array
+	NSArray *roles = [[NSArray alloc] init];	
+	
+	// Set the properties of the dictionary
+	[dic setObject:salt forKey:@"salt"];
+	[dic setObject:digest forKey:@"password_sha"];
+	[dic setObject:_name forKey:@"name"];
+	[dic setObject:@"user" forKey:@"type"];
+	[dic setObject:roles forKey:@"roles"];
+	[dic setObject:docid forKey:@"_id"];
+	
+	// Release memory
+	[roles release];
+	
+	// Now we push the dictionary to the authentication db
+	NSString *authenticationDB = @"_users";
+		
+	// Create a SBCouchDatabase instance
+	BSCouchDBDatabase *db = [self database:authenticationDB];
+	
+	// Put the document on the server
+	BSCouchDBResponse *response = [db putDocument:dic named:docid];
+	
+	// Release memory
+	[dic release];
+		
+	return response;	
+}
+
+// Login using a name / password
 - (BOOL)loginUsingName:(NSString *)_username andPassword:(NSString *)_password {
 	
 	// We're going to login using the credential and the store the cookie that we get back
@@ -212,9 +270,9 @@ NSString *percentEscape(NSString *str) {
     [request setValue:@"application/x-www-form-urlencoded; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:postData];
 	
-	NSHTTPURLResponse *response;
+	NSHTTPURLResponse *response = nil;
     NSString *json = [self sendSynchronousRequest:request returningResponse:&response];
-	
+	NSLog(@"result: %@", json);
     if (200 == [response statusCode]) {
 		// We need to get the Set-Cookie response header
 		self.cookie = [[response allHeaderFields] objectForKey:@"Set-Cookie"];
@@ -222,6 +280,59 @@ NSString *percentEscape(NSString *str) {
     }
     return NO;    
 }
+
+
+
+
+#pragma mark -
+#pragma mark Replication
+
+// Replicate databases
+- (BSCouchDBReplicationResponse *)replicateFrom:(NSString *)source to:(NSString *)target docs:(NSArray *)doc_ids filter:(NSString *)filter params:(NSDictionary *)queryParams {
+	
+	NSParameterAssert(source);
+	NSParameterAssert(target);	
+	NSAssert(self.login, @"We require admin privileges to the target database");
+	NSAssert(self.password, @"We require admin privileges to the target database");
+	
+	// Get the source and target databases (this function assumes the databases are on the same server)
+	BSCouchDBDatabase *sourceDB = [self database:source];
+	BSCouchDBDatabase *targetDB = [self database:target];
+	
+	// Work out the payload
+	NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:3];
+	[dic setValue:[sourceDB.url absoluteString] forKey:@"source"];
+	[dic setValue:[targetDB.url absoluteString] forKey:@"target"];
+	
+	if(doc_ids) {
+		[dic setValue:doc_ids forKey:@"doc_ids"];
+	}
+	if(filter) {
+		[dic setValue:filter forKey:@"filter"];
+	}
+	if(queryParams) {
+		[dic setValue:queryParams forKey:@"query_params"];
+	}
+	
+	// Get the JSON representation of this (this is the post data)
+	NSString *json = [dic JSONRepresentation];
+		
+	// Create a request
+	NSMutableURLRequest *request = [self requestWithPath:@"_replicate"];
+	NSData *body = [json dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
+	[request setValue:@"application/json; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:body];
+    [request setHTTPMethod:@"POST"];
+	
+	NSHTTPURLResponse *response;
+    json = [self sendSynchronousRequest:request returningResponse:&response];
+	
+    if (200 == [response statusCode]) {
+        return [[[BSCouchDBReplicationResponse alloc] initWithDictionary:[json JSONValue]] autorelease];
+    }
+    return nil;
+}
+
 
 
 #pragma mark -
