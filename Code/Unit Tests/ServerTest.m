@@ -57,7 +57,65 @@
 	// Try and delete the database
 	GHAssertTrue([server deleteDatabase:databaseName], @"Tried to delete the created database");	
 	server.login = nil;
+	server.login = nil;	
+}
+
+- (void)testUserCreation {
+	NSLog(@"Testing Server : create user");
+	
+	// Authenticate the user
+	server.login = @"administrator";
+	server.password = @"password";
+
+	// Create a username and password
+	NSString *username = [NSString stringWithFormat:@"user%u", arc4random()];
+	NSString *password = @"mypassword";
+	
+	// Create a new user
+	BSCouchDBResponse *response = [server createUser:username password:password];
+	GHAssertTrue(response.ok, @"Failed to create a user.");
+	
+	// Try to login with the user
+	BOOL ok = [server loginUsingName:username andPassword:password];
+	GHAssertTrue(ok, @"Failed to login as the newly created user.");
+	
 	server.login = nil;
+	server.password = nil;
+}
+
+- (void)testReplication {
+	NSLog(@"Testing Server : replication");
+
+	// Authenticate the server
+	server.login = @"administrator";
+	server.password = @"password";
+		
+	// Create a new database
+	// Get a random name
+	NSString *sourceName = [NSString stringWithFormat:@"testdb%u", arc4random()];
+	GHAssertTrue([server createDatabase:sourceName], @"Call failed to create source database. [%@]", sourceName);
+	
+	// Add a document to the source database
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"Hello World", @"name", nil];
+    
+    // Post the document
+	BSCouchDBDatabase *db = [server database:sourceName];
+    BSCouchDBResponse *response = [db postDictionary:dic];
+    GHAssertNotNil(response, @"Failed to receive a valid HTTP response when posting a new document.");
+    GHAssertTrue(response.ok, @"Failed to post a new document despite getting valid HTTP Response.");
+    GHAssertNotNil(response._id, @"BSCouchDBResponse does not contain an identifier");
+    GHAssertNotNil(response._rev, @"BSCouchDBResponse does not contain an revision");
+	
+	// Create a target database
+	NSString *targetName = [NSString stringWithFormat:@"testdb%u", arc4random()];
+	
+	GHAssertTrue([server createDatabase:targetName], @"Call failed to create target database. [%@]", targetName);
+		
+	// Replicate the database
+	BSCouchDBReplicationResponse *replicationResponse = [server replicateFrom:sourceName to:targetName docs:nil filter:nil params:nil];
+	GHAssertTrue(replicationResponse.ok, @"Failed to replicate %@ to %@.", sourceName, targetName);
+	GHAssertNotNil(replicationResponse.session_id, @"Failed to provide a session id.");
+	GHAssertNotNil(replicationResponse.history, @"Failed to provide a history.");
 	
 }
 
