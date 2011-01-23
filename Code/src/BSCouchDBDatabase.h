@@ -14,19 +14,26 @@
 @private
 	BSCouchDBServer *server;
 	NSString *name;
-	NSURL *url;	
 }
 
 @property (nonatomic, readwrite, retain) BSCouchDBServer *server;
 @property (nonatomic, readwrite, retain) NSString *name;
-@property (nonatomic, readwrite, retain) NSURL *url;
+@property (nonatomic, readonly, assign) NSURL *url;
 
 - (id)initWithServer:(BSCouchDBServer *)_server name:(NSString *)_name;
 
-#pragma mark Get Methods
+#pragma mark URLs and paths
+
+// Return the url with the option of authentication details or not
+- (NSURL *)urlWithAuthentication:(BOOL)authenticateIfPossible;
+
+#pragma mark GET Methods
 
 // General purpose get function.
 - (NSDictionary *)get:(NSString *)argument;
+
+// Get all the documents
+- (NSArray *)allDocs;
 
 // Get a specific (named) document, with either all revision strings, or a specific revision (or the latest) or both.
 - (BSCouchDBDocument *)getDocument:(NSString *)documentId withRevisions:(BOOL)withRevs revision:(NSString *)revisionOrNil;
@@ -44,5 +51,20 @@
 
 // Put a document (dictionary) with a particular identifier
 - (BSCouchDBResponse *)putDocument:(NSDictionary *)aDictionary named:(NSString *)aName;
+
+// Put a document (dictionary) using the same
+- (BSCouchDBResponse *)putDocument:(BSCouchDBDocument *)aDocument;
+
+#pragma mark DELETE Methods
+
+// Delete a document.
+- (BSCouchDBResponse *)deleteDocument:(BSCouchDBDocument *)aDocument;
+
+#pragma mark CouchDB _changes api
+
+// Returns an array of BSCouchDBChange objects of the databases changes since the last sequence
+// that pass the given filter, which is a string such as
+// "{design document name}/{filter name}[&{query key}={query value}]"
+- (NSArray *)changesSince:(NSUInteger)lastSequence filter:(NSString *)filter;
 
 @end

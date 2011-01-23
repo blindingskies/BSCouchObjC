@@ -26,7 +26,7 @@
 
 @synthesize server;
 @synthesize name;
-@synthesize url;
+@dynamic url;
 
 - (id)initWithServer:(BSCouchDBServer *)_server name:(NSString *)_name {	
 	self = [super init];
@@ -40,7 +40,6 @@
 - (void)dealloc {
 	self.server = nil; [server release];
 	self.name = nil; [name release];
-	self.url = nil; [url release];	
 	[super dealloc];
 }
 
@@ -52,6 +51,17 @@
 	// after this method was first called.
 	return [NSURL URLWithString:[percentEscape(self.name) stringByAppendingString:@"/"] relativeToURL:self.server.url];
 }
+
+#pragma mark URLs and paths
+
+/**
+ Return the url with the option of authentication details or not
+ */
+- (NSURL *)urlWithAuthentication:(BOOL)authenticateIfPossible {
+	return [NSURL URLWithString:[percentEscape(self.name) stringByAppendingString:@"/"] 
+				relativeToURL:[self.server urlWithAuthentication:authenticateIfPossible]];
+}
+
 
 #pragma mark -
 #pragma mark Private methods
@@ -65,6 +75,7 @@
 
 #pragma mark -
 #pragma mark GET Methods
+
 
 /**
  Use this method to query the database however you want
@@ -81,6 +92,19 @@
 	}
 	return nil;
 }
+
+
+/**
+ Get all the documents
+ */
+- (NSArray *)allDocs {
+	// Get the list of documents
+	NSDictionary *list = [self get:COUCH_VIEW_ALL];
+
+	// Return the rows
+	return [list objectForKey:@"rows"];
+}
+
 
 /**
  Get a specific (named) document, with either all revision strings, or a specific revision (or the latest) or both.
@@ -100,12 +124,13 @@
 	}
  //   NSLog(@"Getting arg: %@", arg);
 	NSDictionary *dic = [self get:arg];
-	return [BSCouchDBDocument documentWithDictionary:dic database:self];
+	return !dic ? nil : [BSCouchDBDocument documentWithDictionary:dic database:self];
 }
 
 
 #pragma mark -
 #pragma mark PUT & POST Methods
+
 
 /**
  General purpose post function.
@@ -128,6 +153,7 @@
 	return nil;
 }
 
+
 /**
  General purpose put function
  */
@@ -149,6 +175,7 @@
 	return nil;
 }
 
+
 /**
  Post a new document from a dictionary
  */
@@ -161,6 +188,7 @@
 	return [self post:nil data:data];
 }
 
+
 /**
  Put a document (dictionary) with a particular identifier
  */
@@ -172,6 +200,81 @@
 	// Put it
 	return [self put:aName data:data];
     
+}
+
+
+/**
+ Put a document using it's own identifier.
+ */
+- (BSCouchDBResponse *)putDocument:(BSCouchDBDocument *)aDocument {
+
+	// Call the general method
+	BSCouchDBResponse *response = [self putDocument:aDocument.dictionary named:aDocument._id];
+	
+	// Check to see if we've got a proper response
+	if (response && response.ok) {
+		// Update the revision
+		[aDocument setRevision:response._rev];
+	}
+	
+	return response;
+}
+
+
+#pragma mark DELETE Methods
+
+/**
+ Delete a document.
+ */
+- (BSCouchDBResponse *)deleteDocument:(BSCouchDBDocument *)aDocument {
+	NSParameterAssert(aDocument);
+	
+	// Generate a request
+	NSMutableURLRequest *aRequest = [self requestWithPath:[NSString stringWithFormat:@"%@?rev=%@", percentEscape(aDocument._id), aDocument._rev]];
+	
+	// Set the method
+	[aRequest setHTTPMethod:@"DELETE"];
+	
+	// Define a response
+	NSHTTPURLResponse *aResponse = nil;
+	NSString *str = [self.server sendSynchronousRequest:aRequest returningResponse:&aResponse];
+	
+	if (200 == [aResponse statusCode]) {
+		return [[[BSCouchDBResponse alloc] initWithDictionary:[str JSONValue]] autorelease];
+	}
+	return nil;
+}
+
+
+#pragma mark -
+#pragma mark CouchDB _changes api
+
+// Returns an array of BSCouchDBChange objects of the databases changes since the last sequence
+// that pass the given filter, which is a string of the path such as
+// "{design document name}/{filter name}[&{query key}={query value}]"
+- (NSArray *)changesSince:(NSUInteger)lastSequence filter:(NSString *)filter {
+	
+	// Create a query string
+	NSString *query = @"_changes";
+	if (filter) {
+		query = [query stringByAppendingFormat:@"?filter=%@&since=%d", filter, lastSequence];
+	} else {
+		query = [query stringByAppendingFormat:@"?since=%d", lastSequence];
+	}
+
+	// GET the result from the changes api
+	NSDictionary *changesResult = [self get:query];
+	
+	// Make BSCouchDBChange objects
+	NSArray *changesResults = [changesResult objectForKey:@"results"];
+	NSUInteger numberOfResults = [changesResults count];
+	
+	NSMutableArray *results = [NSMutableArray arrayWithCapacity:numberOfResults];
+	for (NSDictionary *dic in changesResults) {
+		BSCouchDBChange *change = [BSCouchDBChange changeWithDictionary:dic];
+		[results addObject:change];
+	}
+	return results;
 }
 
 
