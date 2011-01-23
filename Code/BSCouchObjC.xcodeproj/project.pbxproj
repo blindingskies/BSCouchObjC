@@ -9,14 +9,22 @@
 /* Begin PBXBuildFile section */
 		6508D70B12DCB2A80017FCE6 /* DatabaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6508D70A12DCB2A80017FCE6 /* DatabaseTest.m */; };
 		6508D71012DCBCF10017FCE6 /* DocumentTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6508D70F12DCBCF10017FCE6 /* DocumentTest.m */; };
-		6558467412DC8A2D005A81CA /* BSCouchDBDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 6558467212DC8A2D005A81CA /* BSCouchDBDocument.h */; };
+		652141C212E32FC100AF1837 /* BSCouchDBChange.h in Headers */ = {isa = PBXBuildFile; fileRef = 652141C012E32FC100AF1837 /* BSCouchDBChange.h */; };
+		652141C312E32FC100AF1837 /* BSCouchDBChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 652141C112E32FC100AF1837 /* BSCouchDBChange.m */; };
+		652141C412E32FC100AF1837 /* BSCouchDBChange.h in Headers */ = {isa = PBXBuildFile; fileRef = 652141C012E32FC100AF1837 /* BSCouchDBChange.h */; };
+		652141C512E32FC100AF1837 /* BSCouchDBChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 652141C112E32FC100AF1837 /* BSCouchDBChange.m */; };
+		6558467412DC8A2D005A81CA /* BSCouchDBDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 6558467212DC8A2D005A81CA /* BSCouchDBDocument.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6558467512DC8A2D005A81CA /* BSCouchDBDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 6558467312DC8A2D005A81CA /* BSCouchDBDocument.m */; };
 		6558467612DC8A2D005A81CA /* BSCouchDBDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 6558467212DC8A2D005A81CA /* BSCouchDBDocument.h */; };
 		6558467712DC8A2D005A81CA /* BSCouchDBDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 6558467312DC8A2D005A81CA /* BSCouchDBDocument.m */; };
-		6558468712DC9204005A81CA /* BSCouchDBResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6558468512DC9204005A81CA /* BSCouchDBResponse.h */; };
+		6558468712DC9204005A81CA /* BSCouchDBResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6558468512DC9204005A81CA /* BSCouchDBResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6558468812DC9204005A81CA /* BSCouchDBResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6558468612DC9204005A81CA /* BSCouchDBResponse.m */; };
 		6558468912DC9204005A81CA /* BSCouchDBResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6558468512DC9204005A81CA /* BSCouchDBResponse.h */; };
 		6558468A12DC9204005A81CA /* BSCouchDBResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6558468612DC9204005A81CA /* BSCouchDBResponse.m */; };
+		65992BC512EC6E6200D96EB1 /* BSURLConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 65992BC312EC6E6200D96EB1 /* BSURLConnection.h */; };
+		65992BC612EC6E6200D96EB1 /* BSURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 65992BC412EC6E6200D96EB1 /* BSURLConnection.m */; };
+		65992BC712EC6E6200D96EB1 /* BSURLConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 65992BC312EC6E6200D96EB1 /* BSURLConnection.h */; };
+		65992BC812EC6E6200D96EB1 /* BSURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 65992BC412EC6E6200D96EB1 /* BSURLConnection.m */; };
 		65AEB3E312DCF9120074F47A /* JSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6508D75112DCF2B70017FCE6 /* JSON.framework */; };
 		65AEB3F512DCF9F80074F47A /* JSON.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6508D75112DCF2B70017FCE6 /* JSON.framework */; };
 		65AEB53C12DDC2F80074F47A /* JSON.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6508D75112DCF2B70017FCE6 /* JSON.framework */; };
@@ -29,9 +37,19 @@
 		65AEB58712DDCAA40074F47A /* ServerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D3809C12D7A77300496EE1 /* ServerTest.m */; };
 		65AEB58812DDCAA40074F47A /* DatabaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6508D70A12DCB2A80017FCE6 /* DatabaseTest.m */; };
 		65AEB5C512DDCC030074F47A /* libBSCouchObjC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D37FA612D7862F00496EE1 /* libBSCouchObjC.a */; };
-		65AEB5C712DDCC270074F47A /* libjson.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AEB5C612DDCC270074F47A /* libjson.a */; };
-		65AEB5E212DDCECD0074F47A /* BSCouchObjC in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D37EC512D7712300496EE1 /* BSCouchObjC */; };
+		65AEB5E212DDCECD0074F47A /* BSCouchObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D37EC512D7712300496EE1 /* BSCouchObjC.framework */; };
 		65AEB61212DDCF960074F47A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AEB61112DDCF960074F47A /* SystemConfiguration.framework */; };
+		65AEB82512DDF19F0074F47A /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D37F7C12D784AE00496EE1 /* Reachability.h */; };
+		65AEB82612DDF19F0074F47A /* BSCouchDBServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D37EE712D771F800496EE1 /* BSCouchDBServer.h */; };
+		65AEB82712DDF19F0074F47A /* BSCouchDBDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D37EE512D771F800496EE1 /* BSCouchDBDatabase.h */; };
+		65AEB8EC12DE02210074F47A /* NSStringAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 65AEB8EA12DE02210074F47A /* NSStringAdditions.h */; };
+		65AEB8ED12DE02210074F47A /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AEB8EB12DE02210074F47A /* NSStringAdditions.m */; };
+		65AEB8EE12DE02210074F47A /* NSStringAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 65AEB8EA12DE02210074F47A /* NSStringAdditions.h */; };
+		65AEB8EF12DE02210074F47A /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AEB8EB12DE02210074F47A /* NSStringAdditions.m */; };
+		65AEB97012DE0B890074F47A /* BSCouchDBReplicationResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 65AEB96E12DE0B890074F47A /* BSCouchDBReplicationResponse.h */; };
+		65AEB97112DE0B890074F47A /* BSCouchDBReplicationResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AEB96F12DE0B890074F47A /* BSCouchDBReplicationResponse.m */; };
+		65AEB97212DE0B890074F47A /* BSCouchDBReplicationResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 65AEB96E12DE0B890074F47A /* BSCouchDBReplicationResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		65AEB97312DE0B890074F47A /* BSCouchDBReplicationResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AEB96F12DE0B890074F47A /* BSCouchDBReplicationResponse.m */; };
 		65D37EE912D771F800496EE1 /* BSCouchDBDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D37EE512D771F800496EE1 /* BSCouchDBDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65D37EEA12D771F800496EE1 /* BSCouchDBDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D37EE612D771F800496EE1 /* BSCouchDBDatabase.m */; };
 		65D37EEB12D771F800496EE1 /* BSCouchDBServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D37EE712D771F800496EE1 /* BSCouchDBServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -49,6 +67,7 @@
 		65D3809D12D7A77300496EE1 /* ServerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D3809C12D7A77300496EE1 /* ServerTest.m */; };
 		65D3809F12D7A7AF00496EE1 /* BSCouchObjC.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D3809E12D7A7AF00496EE1 /* BSCouchObjC.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65D380A012D7A7AF00496EE1 /* BSCouchObjC.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D3809E12D7A7AF00496EE1 /* BSCouchObjC.h */; };
+		65E1A8FF12DE2D74007B3219 /* libjson.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6508D75512DCF2B70017FCE6 /* libjson.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,7 +117,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 65D37EB112D7709100496EE1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 65D37FA512D7862F00496EE1 /* libBSCouchObjC */;
+			remoteGlobalIDString = 65D37FA512D7862F00496EE1;
 			remoteInfo = libBSCouchObjC;
 		};
 		65D37FF912D7912100496EE1 /* PBXContainerItemProxy */ = {
@@ -137,10 +156,14 @@
 		6508D70A12DCB2A80017FCE6 /* DatabaseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DatabaseTest.m; path = "Unit Tests/DatabaseTest.m"; sourceTree = "<group>"; };
 		6508D70F12DCBCF10017FCE6 /* DocumentTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocumentTest.m; path = "Unit Tests/DocumentTest.m"; sourceTree = "<group>"; };
 		6508D74512DCF2B70017FCE6 /* JSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JSON.xcodeproj; path = "vendor/json-framework/JSON.xcodeproj"; sourceTree = "<group>"; };
+		652141C012E32FC100AF1837 /* BSCouchDBChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCouchDBChange.h; sourceTree = "<group>"; };
+		652141C112E32FC100AF1837 /* BSCouchDBChange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCouchDBChange.m; sourceTree = "<group>"; };
 		6558467212DC8A2D005A81CA /* BSCouchDBDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCouchDBDocument.h; sourceTree = "<group>"; };
 		6558467312DC8A2D005A81CA /* BSCouchDBDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCouchDBDocument.m; sourceTree = "<group>"; };
 		6558468512DC9204005A81CA /* BSCouchDBResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCouchDBResponse.h; sourceTree = "<group>"; };
 		6558468612DC9204005A81CA /* BSCouchDBResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCouchDBResponse.m; sourceTree = "<group>"; };
+		65992BC312EC6E6200D96EB1 /* BSURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSURLConnection.h; sourceTree = "<group>"; };
+		65992BC412EC6E6200D96EB1 /* BSURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSURLConnection.m; sourceTree = "<group>"; };
 		65AEB55E12DDC5870074F47A /* iOS Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65AEB56012DDC5870074F47A /* iOS Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iOS Tests-Info.plist"; sourceTree = "<group>"; };
 		65AEB56412DDC61E0074F47A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -150,7 +173,11 @@
 		65AEB57A12DDC9E90074F47A /* GHUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnit.framework; path = "vendor/GHUnit/Project-IPhone/build/Framework/GHUnit.framework"; sourceTree = "<group>"; };
 		65AEB5C612DDCC270074F47A /* libjson.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjson.a; path = "vendor/json-framework/build/Debug-iphonesimulator/libjson.a"; sourceTree = "<group>"; };
 		65AEB61112DDCF960074F47A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		65D37EC512D7712300496EE1 /* BSCouchObjC */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.framework; path = BSCouchObjC; sourceTree = BUILT_PRODUCTS_DIR; };
+		65AEB8EA12DE02210074F47A /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
+		65AEB8EB12DE02210074F47A /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
+		65AEB96E12DE0B890074F47A /* BSCouchDBReplicationResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCouchDBReplicationResponse.h; sourceTree = "<group>"; };
+		65AEB96F12DE0B890074F47A /* BSCouchDBReplicationResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCouchDBReplicationResponse.m; sourceTree = "<group>"; };
+		65D37EC512D7712300496EE1 /* BSCouchObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BSCouchObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65D37EC712D7712300496EE1 /* BSCouchObjC-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BSCouchObjC-Info.plist"; sourceTree = "<group>"; };
 		65D37EE512D771F800496EE1 /* BSCouchDBDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCouchDBDatabase.h; sourceTree = "<group>"; };
 		65D37EE612D771F800496EE1 /* BSCouchDBDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCouchDBDatabase.m; sourceTree = "<group>"; };
@@ -174,12 +201,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65E1A8FF12DE2D74007B3219 /* libjson.a in Frameworks */,
 				65AEB56512DDC61E0074F47A /* CoreGraphics.framework in Frameworks */,
 				65AEB56712DDC61E0074F47A /* Foundation.framework in Frameworks */,
 				65AEB56912DDC61E0074F47A /* UIKit.framework in Frameworks */,
 				65AEB57B12DDC9E90074F47A /* GHUnit.framework in Frameworks */,
 				65AEB5C512DDCC030074F47A /* libBSCouchObjC.a in Frameworks */,
-				65AEB5C712DDCC270074F47A /* libjson.a in Frameworks */,
 				65AEB61212DDCF960074F47A /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -205,7 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65D3808C12D7A0AE00496EE1 /* GHUnit.framework in Frameworks */,
-				65AEB5E212DDCECD0074F47A /* BSCouchObjC in Frameworks */,
+				65AEB5E212DDCECD0074F47A /* BSCouchObjC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,7 +288,7 @@
 		65D37EC612D7712300496EE1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				65D37EC512D7712300496EE1 /* BSCouchObjC */,
+				65D37EC512D7712300496EE1 /* BSCouchObjC.framework */,
 				65D37FA612D7862F00496EE1 /* libBSCouchObjC.a */,
 				65D37FE112D790A000496EE1 /* Mac OS X Tests.app */,
 				65AEB55E12DDC5870074F47A /* iOS Tests.app */,
@@ -282,6 +309,8 @@
 		65D37EE412D771F800496EE1 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				65AEB8EA12DE02210074F47A /* NSStringAdditions.h */,
+				65AEB8EB12DE02210074F47A /* NSStringAdditions.m */,
 				65D37F7C12D784AE00496EE1 /* Reachability.h */,
 				65D37F7B12D784AE00496EE1 /* Reachability.m */,
 				65D37EE712D771F800496EE1 /* BSCouchDBServer.h */,
@@ -292,6 +321,12 @@
 				6558467312DC8A2D005A81CA /* BSCouchDBDocument.m */,
 				6558468512DC9204005A81CA /* BSCouchDBResponse.h */,
 				6558468612DC9204005A81CA /* BSCouchDBResponse.m */,
+				65AEB96E12DE0B890074F47A /* BSCouchDBReplicationResponse.h */,
+				65AEB96F12DE0B890074F47A /* BSCouchDBReplicationResponse.m */,
+				652141C012E32FC100AF1837 /* BSCouchDBChange.h */,
+				652141C112E32FC100AF1837 /* BSCouchDBChange.m */,
+				65992BC312EC6E6200D96EB1 /* BSURLConnection.h */,
+				65992BC412EC6E6200D96EB1 /* BSURLConnection.m */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -348,6 +383,10 @@
 				65D3809F12D7A7AF00496EE1 /* BSCouchObjC.h in Headers */,
 				6558467412DC8A2D005A81CA /* BSCouchDBDocument.h in Headers */,
 				6558468712DC9204005A81CA /* BSCouchDBResponse.h in Headers */,
+				65AEB8EE12DE02210074F47A /* NSStringAdditions.h in Headers */,
+				65AEB97212DE0B890074F47A /* BSCouchDBReplicationResponse.h in Headers */,
+				652141C412E32FC100AF1837 /* BSCouchDBChange.h in Headers */,
+				65992BC512EC6E6200D96EB1 /* BSURLConnection.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +398,13 @@
 				65D380A012D7A7AF00496EE1 /* BSCouchObjC.h in Headers */,
 				6558467612DC8A2D005A81CA /* BSCouchDBDocument.h in Headers */,
 				6558468912DC9204005A81CA /* BSCouchDBResponse.h in Headers */,
+				65AEB82512DDF19F0074F47A /* Reachability.h in Headers */,
+				65AEB82612DDF19F0074F47A /* BSCouchDBServer.h in Headers */,
+				65AEB82712DDF19F0074F47A /* BSCouchDBDatabase.h in Headers */,
+				65AEB8EC12DE02210074F47A /* NSStringAdditions.h in Headers */,
+				65AEB97012DE0B890074F47A /* BSCouchDBReplicationResponse.h in Headers */,
+				652141C212E32FC100AF1837 /* BSCouchDBChange.h in Headers */,
+				65992BC712EC6E6200D96EB1 /* BSURLConnection.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,7 +446,7 @@
 			);
 			name = BSCouchObjC;
 			productName = BSCouchObjC;
-			productReference = 65D37EC512D7712300496EE1 /* BSCouchObjC */;
+			productReference = 65D37EC512D7712300496EE1 /* BSCouchObjC.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		65D37FA512D7862F00496EE1 /* libBSCouchObjC */ = {
@@ -554,6 +600,10 @@
 				65D37F7D12D784AE00496EE1 /* Reachability.m in Sources */,
 				6558467512DC8A2D005A81CA /* BSCouchDBDocument.m in Sources */,
 				6558468812DC9204005A81CA /* BSCouchDBResponse.m in Sources */,
+				65AEB8EF12DE02210074F47A /* NSStringAdditions.m in Sources */,
+				65AEB97312DE0B890074F47A /* BSCouchDBReplicationResponse.m in Sources */,
+				652141C512E32FC100AF1837 /* BSCouchDBChange.m in Sources */,
+				65992BC612EC6E6200D96EB1 /* BSURLConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,6 +616,10 @@
 				65D37FAB12D7864500496EE1 /* BSCouchDBDatabase.m in Sources */,
 				6558467712DC8A2D005A81CA /* BSCouchDBDocument.m in Sources */,
 				6558468A12DC9204005A81CA /* BSCouchDBResponse.m in Sources */,
+				65AEB8ED12DE02210074F47A /* NSStringAdditions.m in Sources */,
+				65AEB97112DE0B890074F47A /* BSCouchDBReplicationResponse.m in Sources */,
+				652141C312E32FC100AF1837 /* BSCouchDBChange.m in Sources */,
+				65992BC812EC6E6200D96EB1 /* BSURLConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -609,7 +663,6 @@
 		65AEB56112DDC5870074F47A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -621,13 +674,8 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/vendor/json-framework/Classes\"";
 				INFOPLIST_FILE = "iOS Tests-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/vendor/json-framework/build/Debug-iphonesimulator\"",
-				);
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -645,7 +693,6 @@
 		65AEB56212DDC5870074F47A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -657,13 +704,8 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/vendor/json-framework/Classes\"";
 				INFOPLIST_FILE = "iOS Tests-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/vendor/json-framework/build/Debug-iphonesimulator\"",
-				);
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -690,6 +732,7 @@
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/vendor/json-framework/Classes\"";
 			};
 			name = Debug;
 		};
@@ -699,12 +742,12 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PREFIX_HEADER = src/BSCouchObjC_prefix.h;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/vendor/json-framework/Classes\"";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/vendor/json-framework/Classes\"";
 			};
 			name = Release;
 		};
@@ -722,10 +765,6 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				HEADER_SEARCH_PATHS = (
-					"\"$(SRCROOT)/vendor/json-framework/build/$(BUILD_STYLE)/Headers\"",
-					"\"$(SRCROOT)/vendor/json-framework/Classes\"",
-				);
 				INFOPLIST_FILE = "BSCouchObjC-Info.plist";
 				INSTALL_PATH = "@rpath";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @loader_path/../Frameworks";
@@ -754,10 +793,6 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				HEADER_SEARCH_PATHS = (
-					"\"$(SRCROOT)/vendor/json-framework/build/$(BUILD_STYLE)/Headers\"",
-					"\"$(SRCROOT)/vendor/json-framework/Classes\"",
-				);
 				INFOPLIST_FILE = "BSCouchObjC-Info.plist";
 				INSTALL_PATH = "@rpath";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @loader_path/../Frameworks";
@@ -782,11 +817,7 @@
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/vendor/json-framework/build/$(BUILD_STYLE)-$(PLATFORM_NAME)\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/vendor/json-framework/Classes\"";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/vendor/json-framework/build/$(BUILD_STYLE)-$(PLATFORM_NAME)\"",
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
 				PRODUCT_NAME = BSCouchObjC;
 				SDKROOT = iphoneos;
@@ -801,13 +832,9 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/vendor/json-framework/build/$(BUILD_STYLE)-$(PLATFORM_NAME)\"";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/vendor/json-framework/Classes\"";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/vendor/json-framework/build/$(BUILD_STYLE)-$(PLATFORM_NAME)\"",
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
-				PRODUCT_NAME = libBSCouchObjC;
+				PRODUCT_NAME = BSCouchObjC;
 				SDKROOT = iphoneos;
 				ZERO_LINK = NO;
 			};

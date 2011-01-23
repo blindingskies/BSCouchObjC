@@ -21,7 +21,7 @@
 #define COUCH_VIEW_SLOW            @"_slow_view"
 #define COUCH_VIEW_ALL             @"_all_docs"
 
-#if TARGET_OS_MAC && !(TARGET_OS_EMBEDDED || TARGET_OS_IPHONE)
+#if !TARGET_OS_IPHONE
 
 // OS X only headers
 #import <JSON/JSON.h>
@@ -38,9 +38,13 @@
 
 #endif
 
-
+#import "BSURLConnection.h"
 #import "BSCouchDBServer.h"
 #import "BSCouchDBDatabase.h"
+#import "BSCouchDBChange.h"
 #import "BSCouchDBDocument.h"
 #import "BSCouchDBResponse.h"
+#import "BSCouchDBReplicationResponse.h"
+
+
 
