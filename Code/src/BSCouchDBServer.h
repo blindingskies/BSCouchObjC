@@ -11,6 +11,7 @@
 @class BSCouchDBDatabase;
 @class BSCouchDBResponse;
 @class BSCouchDBReplicationResponse;
+@class ASIHTTPRequest;
 
 NSString *percentEscape(NSString *str);
 
@@ -62,11 +63,14 @@ NSString *percentEscape(NSString *str);
 
 #pragma mark HTTP Requests
 
-// Send a request to the server and return the results as a UTF8 encoded string
-- (NSString *)sendSynchronousRequest:(NSURLRequest *)request returningResponse:(NSHTTPURLResponse **)response;
-
-// Send a request to the server without needing a response
-- (NSString *)sendSynchronousRequest:(NSURLRequest *)request;
+/**
+ This does starts the request going synchronously.
+ We perform all requests synchronously so that the function returns
+ with the answer. The calling method should ideally not be run in 
+ the main thread (to avoid locking the interface), although we don't
+ enforce or check this. 
+ */
+- (NSString *)sendSynchronousRequest:(ASIHTTPRequest *)request;
 
 #pragma mark Databases
 

@@ -8,6 +8,7 @@
 
 #import "BSCouchDBDatabase.h"
 #import "BSCouchObjC.h"
+#import "ASIHTTPRequest.h"
 
 #pragma mark Functions
 
@@ -15,7 +16,7 @@
 
 @interface BSCouchDBDatabase ()
 
-- (NSMutableURLRequest *)requestWithPath:(NSString *)aPath;
+- (ASIHTTPRequest *)requestWithPath:(NSString *)aPath;
 
 @end
 
@@ -66,11 +67,11 @@
 #pragma mark -
 #pragma mark Private methods
 
-- (NSMutableURLRequest *)requestWithPath:(NSString *)aPath {
+- (ASIHTTPRequest *)requestWithPath:(NSString *)aPath {
     NSURL *aUrl = self.url;
     if (aPath && ![aPath isEqualToString:@"/"])
         aUrl = [NSURL URLWithString:aPath relativeToURL:self.url];
-    return [NSMutableURLRequest requestWithURL:aUrl];	
+    return [ASIHTTPRequest requestWithURL:aUrl];	
 }
 
 #pragma mark -
@@ -82,13 +83,11 @@
  */
 - (NSDictionary *)get:(NSString *)argument {
 	// Create a request
-	NSURLRequest *aRequest = [self requestWithPath:percentEscape(argument)];
-	// Make a pointer to a response
-	NSHTTPURLResponse *aResponse = nil;
+	ASIHTTPRequest *aRequest = [self requestWithPath:percentEscape(argument)];
 	// Send the request to the server	
-	NSString *str = [self.server sendSynchronousRequest:aRequest returningResponse:&aResponse];
-	if (200 == [aResponse statusCode]) {
-		return [str JSONValue];
+	NSString *json = [self.server sendSynchronousRequest:aRequest];
+	if (200 == [aRequest responseStatusCode]) {
+		return [json JSONValue];
 	}
 	return nil;
 }
@@ -122,7 +121,6 @@
 	if(revisionOrNil != nil) {
 		arg = [arg stringByAppendingFormat:@"&rev=%@", revisionOrNil];
 	}
- //   NSLog(@"Getting arg: %@", arg);
 	NSDictionary *dic = [self get:arg];
 	return !dic ? nil : [BSCouchDBDocument documentWithDictionary:dic database:self];
 }
@@ -138,17 +136,16 @@
 - (BSCouchDBResponse *)post:(NSString *)argument data:(NSData *)data {
 	
 	// Create a request
-	NSMutableURLRequest *aRequest = [self requestWithPath:percentEscape(argument)];
-	[aRequest setHTTPMethod:@"POST"];
-    [aRequest setValue:@"application/json; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
-	[aRequest setHTTPBody:data];
+	ASIHTTPRequest *aRequest = [self requestWithPath:percentEscape(argument)];
+	[aRequest setRequestMethod:@"POST"];
+	[aRequest addRequestHeader:@"Content-Type" value:@"application/json; charset=UTF-8"];
+	[aRequest setPostBody:[NSMutableData dataWithData:data]];
 	
-	NSHTTPURLResponse *response = nil;
-	NSString *str = [self.server sendSynchronousRequest:aRequest returningResponse:&response];
+	NSString *json = [self.server sendSynchronousRequest:aRequest];
 	
 	// Check the response
-	if (201 == [response statusCode]) {
-		return [[[BSCouchDBResponse alloc] initWithDictionary:[str JSONValue]] autorelease];
+	if (201 == [aRequest responseStatusCode]) {
+		return [BSCouchDBResponse responseWithJSON:json];
 	}
 	return nil;
 }
@@ -160,17 +157,16 @@
 - (BSCouchDBResponse *)put:(NSString *)argument data:(NSData *)data {
     
 	// Create a request
-	NSMutableURLRequest *aRequest = [self requestWithPath:percentEscape(argument)];
-	[aRequest setHTTPMethod:@"PUT"];
-    [aRequest setValue:@"application/json; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
-	[aRequest setHTTPBody:data];
+	ASIHTTPRequest *aRequest = [self requestWithPath:percentEscape(argument)];
+	[aRequest setRequestMethod:@"PUT"];
+	[aRequest addRequestHeader:@"Content-Type" value:@"application/json; charset=UTF-8"];
+	[aRequest setPostBody:[NSMutableData dataWithData:data]];
 	
-	NSHTTPURLResponse *response = nil;
-	NSString *str = [self.server sendSynchronousRequest:aRequest returningResponse:&response];
+	NSString *json = [self.server sendSynchronousRequest:aRequest];
 	
 	// Check the response
-	if (201 == [response statusCode]) {
-		return [[[BSCouchDBResponse alloc] initWithDictionary:[str JSONValue]] autorelease];
+	if (201 == [aRequest responseStatusCode]) {
+		return [BSCouchDBResponse responseWithJSON:json];
 	}
 	return nil;
 }
@@ -230,17 +226,17 @@
 	NSParameterAssert(aDocument);
 	
 	// Generate a request
-	NSMutableURLRequest *aRequest = [self requestWithPath:[NSString stringWithFormat:@"%@?rev=%@", percentEscape(aDocument._id), aDocument._rev]];
+	ASIHTTPRequest *aRequest = [self requestWithPath:[NSString stringWithFormat:@"%@?rev=%@", percentEscape(aDocument._id), aDocument._rev]];
 	
 	// Set the method
-	[aRequest setHTTPMethod:@"DELETE"];
+	[aRequest setRequestMethod:@"DELETE"];
 	
-	// Define a response
-	NSHTTPURLResponse *aResponse = nil;
-	NSString *str = [self.server sendSynchronousRequest:aRequest returningResponse:&aResponse];
+	// Execute the request
+	NSString *json = [self.server sendSynchronousRequest:aRequest];
 	
-	if (200 == [aResponse statusCode]) {
-		return [[[BSCouchDBResponse alloc] initWithDictionary:[str JSONValue]] autorelease];
+	// Check the response
+	if (200 == [aRequest responseStatusCode]) {
+		return [BSCouchDBResponse responseWithJSON:json];
 	}
 	return nil;
 }

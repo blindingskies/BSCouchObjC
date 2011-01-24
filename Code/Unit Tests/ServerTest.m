@@ -20,6 +20,8 @@
 
 - (void)setUp {
 	server = [[BSCouchDBServer alloc] init];
+	server.login = @"administrator";
+	server.password = @"password";
 }
 
 - (void)tearDown {
@@ -34,7 +36,9 @@
 }
 
 - (void)testAllDatabases {
-    NSLog(@"Testing Server : all databases");    
+    NSLog(@"Testing Server : all databases");  
+	server.login = @"administrator";
+	server.password = @"password";
 	NSArray *allDatabases = [server allDatabases];
 	NSLog(@"allDatabases: %@", [allDatabases description]);
 }

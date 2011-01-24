@@ -10,6 +10,9 @@
 #import "BSCouchObjC.h"
 #import "NSStringAdditions.h"
 
+#import "ASIHTTPRequest.h"
+#import "ASIDownloadCache.h"
+
 #pragma mark Functions
 
 NSString *percentEscape(NSString *str) {
@@ -23,7 +26,7 @@ NSString *percentEscape(NSString *str) {
 
 @interface BSCouchDBServer ()
 
-- (NSMutableURLRequest *)requestWithPath:(NSString *)aPath;
+- (ASIHTTPRequest *)requestWithPath:(NSString *)aPath;
 
 @end
 
@@ -42,6 +45,12 @@ NSString *percentEscape(NSString *str) {
 
 #pragma mark -
 #pragma mark Initialization
+
++ (void)initialize {
+	[super initialize];
+	// Turn on the ASIHTTPRequest response cache
+	[ASIHTTPRequest setDefaultCache:[ASIDownloadCache sharedCache]];
+}
 
 - (id)initWithHost:(NSString *)_hostname port:(NSUInteger)_port path:(NSString *)_path ssl:(BOOL)_isSSL {
 	self = [super init];
@@ -83,47 +92,44 @@ NSString *percentEscape(NSString *str) {
 #pragma mark -
 #pragma mark HTTP Requests
 
-- (NSMutableURLRequest *)requestWithPath:(NSString *)aPath {
-    NSURL *aUrl = self.url;
-    if (aPath && ![aPath isEqualToString:@"/"])
-        aUrl = [NSURL URLWithString:aPath relativeToURL:self.url];
-    return [NSMutableURLRequest requestWithURL:aUrl];
-}
+/**
+ This does starts the request going synchronously.
+ We perform all requests synchronously so that the function returns
+ with the answer. The calling method should ideally not be run in 
+ the main thread (to avoid locking the interface), although we don't
+ enforce or check this. 
+ */
+- (NSString *)sendSynchronousRequest:(ASIHTTPRequest *)request {
 
-// Send a request to the server and return the results as a UTF8 encoded string
-- (NSString *)sendSynchronousRequest:(NSURLRequest *)request returningResponse:(NSHTTPURLResponse **)response {
+	// Set credentials
+	[request setValidatesSecureCertificate:NO];
+	if (self.login && self.password) {
+		request.username = self.login;
+		request.password = self.password;
+	}
 	
-	NSError *error = nil;
+	[request startSynchronous];
+	NSError *error = [request error];
+	if (error) {
+		NSLog(@"Error: %@", [error userInfo]);
+		NSLog(@"response string: %@",[request responseString]); 
+		return nil;
+	}
 	
-	// Create a pointer to a response buffer if we don't have one already
-	NSHTTPURLResponse *responseBuffer;
-	if(!response) response = &responseBuffer;
-		
-	// Use NSURLConnection's class method
-	NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:response error:&error];
+	NSData *data = [request responseData];
 	
 	// Get the data as a UTF8 string
 	NSString *str = data ? [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] : nil;
 	
-	// Check for errors response code
-	if (!data || (*response).statusCode >= 300) {
-		NSString *body = [[NSString alloc] initWithData:[request HTTPBody] encoding:NSUTF8StringEncoding];
-		NSLog(@"CouchDB error.\n\tURL: %@\n\tError: %@\n\tResponse: %d %@\n\tBody: (%u bytes) %@\n\t", 
-			  [request URL], 
-			  error, 
-			  (*response).statusCode, 
-			  str, 
-			  [[request HTTPBody] length], 
-			  body);
-		[str release];
-		[body release];
-		return nil;
-	}
-	return [str autorelease];
+	return [str autorelease];	
 }
 
-- (NSString *)sendSynchronousRequest:(NSURLRequest *)request {
-	return [self sendSynchronousRequest:request returningResponse:nil];
+
+- (ASIHTTPRequest *)requestWithPath:(NSString *)aPath {
+    NSURL *aUrl = self.url;
+    if (aPath && ![aPath isEqualToString:@"/"])
+        aUrl = [NSURL URLWithString:aPath relativeToURL:self.url];
+    return [ASIHTTPRequest requestWithURL:aUrl];
 }
 
 
@@ -137,7 +143,7 @@ NSString *percentEscape(NSString *str) {
 
 // Returns the CouchDB version string of the server
 - (NSString *)version {
-    NSMutableURLRequest *request = [self requestWithPath:nil];
+    ASIHTTPRequest *request = [self requestWithPath:nil];
     NSString *json = [self sendSynchronousRequest:request];
     return [[json JSONValue] valueForKey:@"version"];
 }
@@ -164,37 +170,36 @@ NSString *percentEscape(NSString *str) {
 
 // Returns a list of the databases on the server
 - (NSArray *)allDatabases {	
-	// Use the special CouchDB request
-    NSMutableURLRequest *request = [self requestWithPath:@"_all_dbs"];
-	
-    NSHTTPURLResponse *response;
-    NSString *json = [self sendSynchronousRequest:request returningResponse:&response];
-    if (200 == [response statusCode]) {
-        return [json JSONValue];
-    }
+	// Use the special CouchDB request	
+    ASIHTTPRequest *request = [self requestWithPath:@"_all_dbs"];	
+	NSString *json = [self sendSynchronousRequest:request];
+	if (json) {
+		return [json JSONValue];
+	}
     return nil;
 }
 
 // Creates a database
 - (BOOL)createDatabase:(NSString *)databaseName {
 	// Just call PUT databasename
-    NSMutableURLRequest *request = [self requestWithPath:percentEscape(databaseName)];
-    [request setHTTPMethod:@"PUT"];
-	[request setHTTPBody:[NSData dataWithBytes:@"" length:0]];
-	[request setCachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData];
-    NSHTTPURLResponse *response;
-    [self sendSynchronousRequest:request returningResponse:&response];
-    return 201 == [response statusCode];
+    ASIHTTPRequest *request = [self requestWithPath:percentEscape(databaseName)];
+    request.requestMethod = @"PUT";
+	request.postBody = [NSData dataWithBytes:@"" length:0];
+	NSString *json = [self sendSynchronousRequest:request];
+	BSCouchDBResponse *response = [BSCouchDBResponse responseWithJSON:json];	
+	return response.ok;
 }
 
 // Deletes a database
 - (BOOL)deleteDatabase:(NSString *)databaseName {
 	// Just call DELETE databaseName
-    NSMutableURLRequest *request = [self requestWithPath:percentEscape(databaseName)];
-    [request setHTTPMethod:@"DELETE"];
-    NSHTTPURLResponse *response;
-    (void)[self sendSynchronousRequest:request returningResponse:&response];
-    return 200 == [response statusCode];	
+    ASIHTTPRequest *request = [self requestWithPath:percentEscape(databaseName)];
+    request.requestMethod = @"DELETE";
+	// Make the request
+	NSString *json = [self sendSynchronousRequest:request];
+	// Get the CouchDB response
+	BSCouchDBResponse *response = [BSCouchDBResponse responseWithJSON:json];	
+	return response.ok;
 }
 
 // Gets a database
@@ -262,23 +267,23 @@ NSString *percentEscape(NSString *str) {
 	
 	// We're going to login using the credential and the store the cookie that we get back
 	NSString *post = [NSString stringWithFormat:@"name=%@&password=%@", _username, _password];
-	NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
+	NSMutableData *postData = [NSMutableData dataWithData:[post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES]];
 	
 	// Create a request
-	NSMutableURLRequest *request = [self requestWithPath:@"_session"];
-	[request setHTTPMethod:@"POST"];
-    [request setValue:@"application/x-www-form-urlencoded; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPBody:postData];
+	ASIHTTPRequest *request = [self requestWithPath:@"_session"];
+	[request setRequestMethod:@"POST"];
+	[request addRequestHeader:@"Content-Type" value:@"application/x-www-form-urlencoded; charset=UTF-8"];
+	[request setPostBody:postData];
 	
-	NSHTTPURLResponse *response = nil;
-    NSString *json = [self sendSynchronousRequest:request returningResponse:&response];
-	NSLog(@"result: %@", json);
-    if (200 == [response statusCode]) {
+    NSString *json = [self sendSynchronousRequest:request];
+	NSLog(@"result: %@", json);	
+	BSCouchDBResponse *response = [BSCouchDBResponse responseWithJSON:json];	
+
+    if (response.ok) {
 		// We need to get the Set-Cookie response header
-		self.cookie = [[response allHeaderFields] objectForKey:@"Set-Cookie"];
-		return [[[json JSONValue] objectForKey:@"ok"] boolValue];
+		self.cookie = [[request responseHeaders] objectForKey:@"Set-Cookie"];
     }
-    return NO;    
+	return response.ok;
 }
 
 
@@ -318,17 +323,16 @@ NSString *percentEscape(NSString *str) {
 	NSString *json = [dic JSONRepresentation];
 		
 	// Create a request
-	NSMutableURLRequest *request = [self requestWithPath:@"_replicate"];
-	NSData *body = [json dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
-	[request setValue:@"application/json; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPBody:body];
-    [request setHTTPMethod:@"POST"];
+	ASIHTTPRequest *request = [self requestWithPath:@"_replicate"];
+	NSMutableData *body = [NSMutableData dataWithData:[json dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO]];
+	[request setRequestMethod:@"POST"];
+	[request addRequestHeader:@"Content-Type" value:@"application/json; charset=UTF-8"];
+	[request setPostBody:body];
 	
-	NSHTTPURLResponse *response;
-    json = [self sendSynchronousRequest:request returningResponse:&response];
+    json = [self sendSynchronousRequest:request];
 	
-    if (200 == [response statusCode]) {
-        return [[[BSCouchDBReplicationResponse alloc] initWithDictionary:[json JSONValue]] autorelease];
+    if (200 == [request responseStatusCode	]) {
+        return [BSCouchDBReplicationResponse responseWithJSON:json];
     }
     return nil;
 }
