@@ -38,7 +38,6 @@
 
 #endif
 
-#import "BSURLConnection.h"
 #import "BSCouchDBServer.h"
 #import "BSCouchDBDatabase.h"
 #import "BSCouchDBChange.h"
