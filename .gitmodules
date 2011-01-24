@@ -4,3 +4,6 @@
 [submodule "Code/vendor/GHUnit"]
 	path = Code/vendor/GHUnit
 	url = git://github.com/gabriel/gh-unit.git
+[submodule "Code/vendor/asi-http-request"]
+	path = Code/vendor/asi-http-request
+	url = git://github.com/pokeb/asi-http-request.git
