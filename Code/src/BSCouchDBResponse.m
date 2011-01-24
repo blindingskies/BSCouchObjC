@@ -7,7 +7,7 @@
 //
 
 #import "BSCouchDBResponse.h"
-
+#import "JSON.h"
 
 @implementation BSCouchDBResponse
 
@@ -23,6 +23,12 @@
 		_rev = [[dic objectForKey:@"rev"] copy];
 	}
 	return self;
+}
+
+// Convienience
++ (BSCouchDBResponse *)responseWithJSON:(NSString *)json {
+	BSCouchDBResponse *response = [[BSCouchDBResponse alloc] initWithDictionary:[json JSONValue]];
+	return [response autorelease];
 }
 
 - (void)dealloc {

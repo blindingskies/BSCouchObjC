@@ -20,5 +20,10 @@
 @property (nonatomic, readonly) NSString *_id;
 @property (nonatomic, readonly) NSString *_rev;
 
+// Initializer
+- (id)initWithDictionary:(NSDictionary *)dic;
+
+// Convienience
++ (BSCouchDBResponse *)responseWithJSON:(NSString *)json;
 
 @end

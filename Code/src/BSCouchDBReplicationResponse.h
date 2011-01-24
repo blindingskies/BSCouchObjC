@@ -18,6 +18,10 @@
 @property (nonatomic, readonly) NSString *session_id;
 @property (nonatomic, readonly) NSArray *history;
 
+// Initializer
 - (id)initWithDictionary:(NSDictionary *)otherDictionary;
+
+// Convienience
++ (BSCouchDBReplicationResponse *)responseWithJSON:(NSString *)json;
 
 @end
