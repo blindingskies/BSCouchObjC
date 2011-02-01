@@ -15,11 +15,11 @@ These instructions can be followed to include any 3rd party software library in 
 5.	Updated the User Header Paths in the project build settings.
 	*	Select the project and Get Info.
 	*	Under Build settings, select All Configurations and All Settings, then search for "Header"
-	*	Add the following path to your User Header Search Paths (including the quotation marks): "/path/to/clone/of/BSCouchObjC/Code/src"
+	*	Add the following path to your User Header Search Paths (including the quotation marks): "/path/to/clone/of/BSCouchObjC/Code/Framework Classes"
 	*	Optionally, if you require the JSON project elsewhere also add: "/path/to/clone/of/BSCouchObjC/Code/vendor/json-framework/Classes"	
 6.	Update the Framework Search Paths:
-*	Select the project and Get Info.
-*	Under Build settings, select All Configurations and All Settings, then search for "Header"
+	*	Select the project and Get Info.
+	*	Under Build settings, select All Configurations and All Settings, then search for "Header"
 	*	Add the following path to your Framework Search Paths (including the quotation marks): "/path/to/clone/of/BSCouchObjC/build/$(BUILD_STYLE)-$(PLATFORM_NAME)"
 	*	Add the following path to your Framework Search Paths (including the quotation marks): "/path/to/clone/of/BSCouchObjC/Code/vendor/json-framework/build/$(BUILD_STYLE)-$(PLATFORM_NAME)"
 7.	Add the libBSCouchObjC target as a dependency of your application target. To do this, select your application's target, and Get Info. Then under General, Dependencies click the + button, and select libCouchObjC from the BSCouchObjC Xcode project. This will make sure that the library get's build before your application.
