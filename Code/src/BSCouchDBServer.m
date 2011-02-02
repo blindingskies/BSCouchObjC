@@ -25,6 +25,8 @@
 
 - (id)initWithSuccessBlock:(void (^)(ASIHTTPRequest *))successBlock 
 			  failureBlock:(void (^)(ASIHTTPRequest *))failureBlock;
+- (void)requestFinished:(ASIHTTPRequest *)request;
+- (void)requestFailed:(ASIHTTPRequest *)request;
 
 @end
 
@@ -41,6 +43,15 @@
 	return self;
 }
 
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+	sBlock(request);
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+	fBlock(request);
+}
 
 @end
 
