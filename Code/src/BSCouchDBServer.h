@@ -72,6 +72,13 @@ NSString *percentEscape(NSString *str);
  */
 - (NSString *)sendSynchronousRequest:(ASIHTTPRequest *)request;
 
+- (void)sendAsynchronousRequest:(ASIHTTPRequest *)request 
+				  usingDelegate:(id<ASIHTTPRequestDelegate>)delegate;
+
+- (void)sendAsynchronousRequest:(ASIHTTPRequest *)request 
+			  usingSuccessBlock:(void (^)(ASIHTTPRequest *))successBlock
+			  usingFailureBlock:(void (^)(ASIHTTPRequest *))failureBlock
+
 #pragma mark Databases
 
 // Returns a list of the databases on the server

@@ -12,8 +12,39 @@
 
 #import "ASIHTTPRequest.h"
 #import "ASIDownloadCache.h"
+#import "ASIHTTPRequestDelegate.h"
 
 #pragma mark Functions
+
+@interface RequestDelegate : NSObject <ASIHTTPRequestDelegate> {
+@private
+	void (^sBlock)(ASIHTTPRequest *);
+	void (^fBlock)(ASIHTTPRequest *);
+}
+
+
+- (id)initWithSuccessBlock:(void (^)(ASIHTTPRequest *))successBlock 
+			  failureBlock:(void (^)(ASIHTTPRequest *))failureBlock;
+
+@end
+
+@implementation RequestDelegate
+
+- (id)initWithSuccessBlock:(void (^)(ASIHTTPRequest *))successBlock 
+			  failureBlock:(void (^)(ASIHTTPRequest *))failureBlock
+{
+	self = [super init];
+	if (self) {
+		sBlock = successBlock;
+		fBlock = failureBlock;
+	}
+	return self;
+}
+
+
+@end
+
+
 
 NSString *percentEscape(NSString *str) {
 	if (![str hasPrefix:@"org.couchdb.user%3A"]) {
@@ -100,7 +131,7 @@ NSString *percentEscape(NSString *str) {
  enforce or check this. 
  */
 - (NSString *)sendSynchronousRequest:(ASIHTTPRequest *)request {
-
+	
 	// Set credentials
 	[request setValidatesSecureCertificate:NO];
 	if (self.login && self.password) {
@@ -123,6 +154,42 @@ NSString *percentEscape(NSString *str) {
 	
 	return [str autorelease];	
 }
+
+
+/**
+ This does starts the request going asynchronously
+ */
+- (void)sendAsynchronousRequest:(ASIHTTPRequest *)request 
+				  usingDelegate:(id<ASIHTTPRequestDelegate>)delegate
+
+{
+	// Set credentials
+	[request setValidatesSecureCertificate:NO];
+	if (self.login && self.password) {
+		request.username = self.login;
+		request.password = self.password;
+	}
+	
+	request.delegate = delegate;
+	[request startAsynchronous];
+}
+
+- (void)sendAsynchronousRequest:(ASIHTTPRequest *)request 
+			  usingSuccessBlock:(void (^)(ASIHTTPRequest *))successBlock
+			  usingFailureBlock:(void (^)(ASIHTTPRequest *))failureBlock
+
+{
+	// Set credentials
+	[request setValidatesSecureCertificate:NO];
+	if (self.login && self.password) {
+		request.username = self.login;
+		request.password = self.password;
+	}
+	
+	request.delegate = [[[RequestDelegate alloc] initWithSuccessBlock:successBlock failureBlock:failureBlock] autorelease];
+	[request startAsynchronous];
+}
+
 
 
 - (ASIHTTPRequest *)requestWithPath:(NSString *)aPath {
@@ -249,7 +316,7 @@ NSString *percentEscape(NSString *str) {
 	
 	// Now we push the dictionary to the authentication db
 	NSString *authenticationDB = @"_users";
-		
+	
 	// Create a SBCouchDatabase instance
 	BSCouchDBDatabase *db = [self database:authenticationDB];
 	
@@ -258,7 +325,7 @@ NSString *percentEscape(NSString *str) {
 	
 	// Release memory
 	[dic release];
-		
+	
 	return response;	
 }
 
@@ -278,7 +345,7 @@ NSString *percentEscape(NSString *str) {
     NSString *json = [self sendSynchronousRequest:request];
 	NSLog(@"result: %@", json);	
 	BSCouchDBResponse *response = [BSCouchDBResponse responseWithJSON:json];	
-
+	
     if (response.ok) {
 		// We need to get the Set-Cookie response header
 		self.cookie = [[request responseHeaders] objectForKey:@"Set-Cookie"];
@@ -321,7 +388,7 @@ NSString *percentEscape(NSString *str) {
 	
 	// Get the JSON representation of this (this is the post data)
 	NSString *json = [dic JSONRepresentation];
-		
+	
 	// Create a request
 	ASIHTTPRequest *request = [self requestWithPath:@"_replicate"];
 	NSMutableData *body = [NSMutableData dataWithData:[json dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO]];
@@ -347,36 +414,36 @@ NSString *percentEscape(NSString *str) {
 	// Because it can be called multiple times, such as for a redirect,
 	// we reset the data each time.
 	NSLog(@"connection did receive response.");
-//	[self.receivedData setLength:0];
+	//	[self.receivedData setLength:0];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
 	// We received some data
 	NSLog(@"connection did receive %d bytes of data.", [data length]);
-//	[self.receivedData appendData:data];
+	//	[self.receivedData appendData:data];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
 	// We encountered an error
 	
 	// Release the retained connection and the data received so far
-//	self.currentConnection = nil; [currentConnection release];
-//	self.receivedData = nil; [receivedData release];
-
+	//	self.currentConnection = nil; [currentConnection release];
+	//	self.receivedData = nil; [receivedData release];
+	
 	// Log the error
     NSLog(@"Connection failed! Error - %@ %@", [error localizedDescription], [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
 	
-//	failureCallback(error);
+	//	failureCallback(error);
 	
 	// Unblock the connection
-//	self.blockConnection = NO;
+	//	self.blockConnection = NO;
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
 	// We received all the data without errors
 	// Unblock the connection
 	NSLog(@"connection did finish.");	
-//	self.blockConnection = NO;	
+	//	self.blockConnection = NO;	
 }
 
 @end
