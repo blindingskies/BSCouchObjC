@@ -39,8 +39,9 @@
     NSLog(@"Testing Server : all databases");  
 	server.login = @"administrator";
 	server.password = @"password";
-	NSArray *allDatabases = [server allDatabases];
-	NSLog(@"allDatabases: %@", [allDatabases description]);
+	NSArray *allDatabasesNames = [server databaseNames];
+	NSArray *databases = [server databases];
+	GHAssertTrue([allDatabasesNames isEqual:[databases valueForKeyPath:@"name"]], @"The names of the databases doesn't match those returned by CouchDB directly");
 }
 
 - (void)testLogin {
@@ -56,7 +57,7 @@
 	server.password = @"password";
 	GHAssertTrue([server createDatabase:databaseName], @"Call failed to create databases. [%@]", databaseName);
 	// List all the databases
-	NSArray *listOfDatabases = [server allDatabases];
+	NSArray *listOfDatabases = [server databaseNames];
 	GHAssertTrue([listOfDatabases containsObject:databaseName], @"Couldn't find the created database");
 	// Try and delete the database
 	GHAssertTrue([server deleteDatabase:databaseName], @"Tried to delete the created database");	
@@ -111,16 +112,43 @@
     GHAssertNotNil(response._rev, @"BSCouchDBResponse does not contain an revision");
 	
 	// Create a target database
-	NSString *targetName = [NSString stringWithFormat:@"testdb%u", arc4random()];
-	
+	NSString *targetName = [NSString stringWithFormat:@"testdb%u", arc4random()];	
 	GHAssertTrue([server createDatabase:targetName], @"Call failed to create target database. [%@]", targetName);
-		
+	
 	// Replicate the database
-	BSCouchDBReplicationResponse *replicationResponse = [server replicateFrom:sourceName to:targetName docs:nil filter:nil params:nil];
+	BSCouchDBReplicationResponse *replicationResponse = [server replicateFrom:[server database:sourceName] 
+																		   to:[server database:targetName] 
+																		 docs:nil 
+																	   filter:nil 
+																	   params:nil];
 	GHAssertTrue(replicationResponse.ok, @"Failed to replicate %@ to %@.", sourceName, targetName);
 	GHAssertNotNil(replicationResponse.session_id, @"Failed to provide a session id.");
 	GHAssertNotNil(replicationResponse.history, @"Failed to provide a history.");
 	
+	
+	// Create another document
+	dic = [NSDictionary dictionaryWithObjectsAndKeys:@"This is another document", @"name", nil];
+    // Post the document
+    response = [db postDictionary:dic];
+    GHAssertNotNil(response, @"Failed to receive a valid HTTP response when posting a new document.");
+    GHAssertTrue(response.ok, @"Failed to post a new document despite getting valid HTTP Response.");
+    GHAssertNotNil(response._id, @"BSCouchDBResponse does not contain an identifier");
+    GHAssertNotNil(response._rev, @"BSCouchDBResponse does not contain an revision");
+	
+	// Now replicate the specific document to the target
+	replicationResponse = [server replicateFrom:[server database:sourceName] to:[server database:targetName] docs:[NSArray arrayWithObject:response._id] filter:nil params:nil];
+	GHAssertTrue(replicationResponse.ok, @"Failed to replicate %@ to %@.", sourceName, targetName);
+//	GHAssertNotNil(replicationResponse.session_id, @"Failed to provide a session id.");
+//	GHAssertNotNil(replicationResponse.history, @"Failed to provide a history.");
+	
+	// Check that we've got the second document
+	db = [server database:targetName];
+	NSArray *allDocs = [db allDocs];
+	GHAssertTrue([[allDocs valueForKeyPath:@"id"] containsObject:response._id], @"Failed to replicate a specific document");
+	
+	// Delete the databases
+	[server deleteDatabase:sourceName];
+	[server deleteDatabase:targetName];
 }
 
 @end
