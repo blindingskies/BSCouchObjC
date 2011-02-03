@@ -39,7 +39,6 @@ NSString *percentEscape(NSString *str);
 @property (nonatomic, readwrite) BOOL isSSL;
 
 
-
 // Initialise a CouchDB server object with a host, port, path, ssl flag
 - (id)initWithHost:(NSString *)_hostname port:(NSUInteger)_port path:(NSString *)_path ssl:(BOOL)_isSSL;
 
@@ -55,11 +54,10 @@ NSString *percentEscape(NSString *str);
 - (NSString *)version;
 
 // Returns the server's url as a string
-- (NSString *)serverURLAsString:(BOOL)authenticateIfPossible;
+- (NSString *)serverURLAsString;
 
-// Return the url with the option of authentication details or not
-- (NSURL *)urlWithAuthentication:(BOOL)authenticateIfPossible;
-
+// Returns the server's authenticated url as a string
+- (NSString *)serverAuthenticatedURLAsString;
 
 #pragma mark HTTP Requests
 
@@ -74,8 +72,13 @@ NSString *percentEscape(NSString *str);
 
 #pragma mark Databases
 
-// Returns a list of the databases on the server
-- (NSArray *)allDatabases;
+// Returns an array of NSString instances of the database names on the server
+// This queries the server every time, there is no caching, so be careful not
+// hammer the server too much.
+- (NSArray *)databaseNames;
+
+// Returns an array of BSCouchDBDatabase instances of the database on the server
+- (NSArray *)databases;
 
 // Creates a database
 - (BOOL)createDatabase:(NSString *)databaseName;
@@ -98,6 +101,8 @@ NSString *percentEscape(NSString *str);
 
 #pragma mark Replication
 
-// Replicate databases
-- (BSCouchDBReplicationResponse *)replicateFrom:(NSString *)source to:(NSString *)target docs:(NSArray *)doc_ids filter:(NSString *)filter params:(NSDictionary *)queryParams;
+// Replicate databases on potentially different servers
+- (BSCouchDBReplicationResponse *)replicateFrom:(BSCouchDBDatabase *)source to:(BSCouchDBDatabase *)target docs:(NSArray *)doc_ids filter:(NSString *)filter params:(NSDictionary *)queryParams;
+
+
 @end

@@ -22,10 +22,15 @@
 
 - (id)initWithServer:(BSCouchDBServer *)_server name:(NSString *)_name;
 
+#pragma mark Information
+
+// Information
+- (NSDictionary *)info;
+
 #pragma mark URLs and paths
 
-// Return the url with the option of authentication details or not
-- (NSURL *)urlWithAuthentication:(BOOL)authenticateIfPossible;
+// Return an authenticated URL if the Server has the credentials
+- (NSURL *)authenticatedURL;
 
 #pragma mark GET Methods
 

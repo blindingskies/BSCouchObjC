@@ -84,7 +84,7 @@ NSString *percentEscape(NSString *str) {
 
 - (NSURL *)url {
 	if (!url) {
-		self.url = [self urlWithAuthentication:YES];
+		self.url = [NSURL URLWithString:[self serverAuthenticatedURLAsString]];
 	}
 	return url;
 }
@@ -100,9 +100,9 @@ NSString *percentEscape(NSString *str) {
  enforce or check this. 
  */
 - (NSString *)sendSynchronousRequest:(ASIHTTPRequest *)request {
-
+	
 	// Set credentials
-	[request setValidatesSecureCertificate:NO];
+//	[request setValidatesSecureCertificate:NO];	 
 	if (self.login && self.password) {
 		request.username = self.login;
 		request.password = self.password;
@@ -111,8 +111,10 @@ NSString *percentEscape(NSString *str) {
 	[request startSynchronous];
 	NSError *error = [request error];
 	if (error) {
-		NSLog(@"Error: %@", [error userInfo]);
-		NSLog(@"response string: %@",[request responseString]); 
+		NSLog(@"url: %@",[request.url absoluteString]);		
+		NSLog(@"response string: %@",[request responseString]);		
+		NSLog(@"Error: %@", [error userInfo]); 
+		NSLog(@"There is totally an error here");
 		return nil;
 	}
 	
@@ -148,20 +150,36 @@ NSString *percentEscape(NSString *str) {
     return [[json JSONValue] valueForKey:@"version"];
 }
 
-- (NSString *)serverURLAsString:(BOOL)authenticateIfPossible {
-	if(authenticateIfPossible && self.login && self.password) {
-		if(!self.path)
-			return [NSString stringWithFormat:@"%@://%@:%@@%@:%u", self.isSSL ? @"https" : @"http", self.login, self.password, self.hostname, self.port];  
-		return [NSString stringWithFormat:@"%@://%@:%@@%@:%u/%@/", self.isSSL ? @"https" : @"http", self.login, self.password,  self.hostname, self.port, self.path];  		
-	}	
-	if(!self.path)
-		return [NSString stringWithFormat:@"%@://%@:%u/", self.isSSL ? @"https" : @"http", self.hostname, self.port];  
-	return [NSString stringWithFormat:@"%@://%@:%u/%@/", self.isSSL ? @"https" : @"http", self.hostname, self.port, self.path];  		
+- (NSString *)serverURLAsString {
+	
+	NSString *str = [NSString stringWithFormat:@"%@://%@", self.isSSL ? @"https" : @"http", self.hostname];
+	
+	if (self.port != 80) {
+		str = [str stringByAppendingFormat:@":%u", self.port];
+	}
+	
+	if(self.path) {
+		str = [str stringByAppendingFormat:@"/%@/", self.path];
+	}
+	return str;
 }
 
-// Return the url with the option of authentication details or not
-- (NSURL *)urlWithAuthentication:(BOOL)authenticateIfPossible {
-	return [NSURL URLWithString:[self serverURLAsString:authenticateIfPossible]];
+// Returns the server's authenticated url as a string
+- (NSString *)serverAuthenticatedURLAsString {
+	if (!self.login || !self.password) {
+		return [self serverURLAsString];
+	}
+	
+	NSString *str = [NSString stringWithFormat:@"%@://%@:%@@%@", self.isSSL ? @"https" : @"http", self.login, self.password, self.hostname];
+	
+	if (self.port != 80) {
+		str = [str stringByAppendingFormat:@":%u", self.port];
+	}
+	
+	if(self.path) {
+		str = [str stringByAppendingFormat:@"/%@/", self.path];
+	}
+	return str;	
 }
 
 
@@ -169,15 +187,35 @@ NSString *percentEscape(NSString *str) {
 #pragma mark Databases
 
 // Returns a list of the databases on the server
-- (NSArray *)allDatabases {	
+- (NSArray *)databaseNames {	
+
 	// Use the special CouchDB request	
-    ASIHTTPRequest *request = [self requestWithPath:@"_all_dbs"];	
+	ASIHTTPRequest *request = [self requestWithPath:@"_all_dbs"];	
 	NSString *json = [self sendSynchronousRequest:request];
 	if (json) {
 		return [json JSONValue];
 	}
-    return nil;
+	
+	return nil;
 }
+
+// Returns an array of BSCouchDBDatabase instances of the database on the server
+- (NSArray *)databases {
+	
+	// Get the database names
+	NSArray *tmp = [self databaseNames];
+	if (!tmp) return nil;
+	// Iterate through the database names and create a BSCouchDBDatabase object for each one.
+	// this doesn't query the server for anything.
+	NSMutableArray *result = [NSMutableArray arrayWithCapacity:[tmp count]];
+	for (NSString *name in tmp) {
+		BSCouchDBDatabase *db = [[BSCouchDBDatabase alloc] initWithServer:self name:name];
+		[result addObject:db];
+		[db release];
+	}
+	return [NSArray arrayWithArray:result];	
+}
+
 
 // Creates a database
 - (BOOL)createDatabase:(NSString *)databaseName {
@@ -204,7 +242,11 @@ NSString *percentEscape(NSString *str) {
 
 // Gets a database
 - (BSCouchDBDatabase *)database:(NSString *)databaseName {
-	return [[[BSCouchDBDatabase alloc] initWithServer:self name:databaseName] autorelease];
+	if ([[self databaseNames] containsObject:databaseName]) {
+		return [[[BSCouchDBDatabase alloc] initWithServer:self name:databaseName] autorelease];
+	} else {
+		return nil;
+	}
 }
 
 
@@ -292,22 +334,18 @@ NSString *percentEscape(NSString *str) {
 #pragma mark -
 #pragma mark Replication
 
-// Replicate databases
-- (BSCouchDBReplicationResponse *)replicateFrom:(NSString *)source to:(NSString *)target docs:(NSArray *)doc_ids filter:(NSString *)filter params:(NSDictionary *)queryParams {
+- (BSCouchDBReplicationResponse *)replicateFrom:(BSCouchDBDatabase *)source to:(BSCouchDBDatabase *)target docs:(NSArray *)doc_ids filter:(NSString *)filter params:(NSDictionary *)queryParams {
 	
 	NSParameterAssert(source);
 	NSParameterAssert(target);	
-	NSAssert(self.login, @"We require admin privileges to the target database");
-	NSAssert(self.password, @"We require admin privileges to the target database");
-	
-	// Get the source and target databases (this function assumes the databases are on the same server)
-	BSCouchDBDatabase *sourceDB = [self database:source];
-	BSCouchDBDatabase *targetDB = [self database:target];
+	NSAssert([self isEqual:target.server], @"We make the call from the target");
+	NSAssert(target.server.login, @"We require admin privileges to the target database");	
+	NSAssert(target.server.password, @"We require admin privileges to the target database");
 	
 	// Work out the payload
 	NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:3];
-	[dic setValue:[sourceDB.url absoluteString] forKey:@"source"];
-	[dic setValue:[targetDB.url absoluteString] forKey:@"target"];
+	[dic setValue:[[source authenticatedURL] absoluteString] forKey:@"source"];
+	[dic setValue:[[target authenticatedURL] absoluteString] forKey:@"target"];
 	
 	if(doc_ids) {
 		[dic setValue:doc_ids forKey:@"doc_ids"];
@@ -321,7 +359,7 @@ NSString *percentEscape(NSString *str) {
 	
 	// Get the JSON representation of this (this is the post data)
 	NSString *json = [dic JSONRepresentation];
-		
+	
 	// Create a request
 	ASIHTTPRequest *request = [self requestWithPath:@"_replicate"];
 	NSMutableData *body = [NSMutableData dataWithData:[json dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO]];
@@ -330,53 +368,13 @@ NSString *percentEscape(NSString *str) {
 	[request setPostBody:body];
 	
     json = [self sendSynchronousRequest:request];
-	
-    if (200 == [request responseStatusCode	]) {
+//	NSLog(@"json: %@", json);
+    if (200 == [request responseStatusCode] && json) {
         return [BSCouchDBReplicationResponse responseWithJSON:json];
     }
     return nil;
-}
-
-
-
-#pragma mark -
-#pragma mark NSURLConnectionDelegate methods
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-	// We've got enough information to create a NSURLResponse
-	// Because it can be called multiple times, such as for a redirect,
-	// we reset the data each time.
-	NSLog(@"connection did receive response.");
-//	[self.receivedData setLength:0];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-	// We received some data
-	NSLog(@"connection did receive %d bytes of data.", [data length]);
-//	[self.receivedData appendData:data];
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-	// We encountered an error
 	
-	// Release the retained connection and the data received so far
-//	self.currentConnection = nil; [currentConnection release];
-//	self.receivedData = nil; [receivedData release];
+} 
 
-	// Log the error
-    NSLog(@"Connection failed! Error - %@ %@", [error localizedDescription], [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
-	
-//	failureCallback(error);
-	
-	// Unblock the connection
-//	self.blockConnection = NO;
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-	// We received all the data without errors
-	// Unblock the connection
-	NSLog(@"connection did finish.");	
-//	self.blockConnection = NO;	
-}
 
 @end

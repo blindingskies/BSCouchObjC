@@ -27,9 +27,11 @@
 
 @synthesize server;
 @synthesize name;
+
 @dynamic url;
 
-- (id)initWithServer:(BSCouchDBServer *)_server name:(NSString *)_name {	
+- (id)initWithServer:(BSCouchDBServer *)_server name:(NSString *)_name {
+		
 	self = [super init];
 	if (self) {
 		self.server = _server;
@@ -45,6 +47,15 @@
 }
 
 #pragma mark -
+#pragma mark Information
+
+// Information
+- (NSDictionary *)info {
+	return [self get:nil];
+}
+
+
+#pragma mark -
 #pragma mark Dynamic methods
 
 - (NSURL *)url {
@@ -55,12 +66,13 @@
 
 #pragma mark URLs and paths
 
-/**
- Return the url with the option of authentication details or not
- */
-- (NSURL *)urlWithAuthentication:(BOOL)authenticateIfPossible {
-	return [NSURL URLWithString:[percentEscape(self.name) stringByAppendingString:@"/"] 
-				relativeToURL:[self.server urlWithAuthentication:authenticateIfPossible]];
+// Return an authenticated URL if the Server has the credentials
+- (NSURL *)authenticatedURL {
+	if (!self.server.login || !self.server.password) {
+		return [NSURL URLWithString:[percentEscape(self.name) stringByAppendingString:@"/"] relativeToURL:self.server.url];
+	}
+	NSURL *authenticatedServerURL = [NSURL URLWithString:[self.server serverAuthenticatedURLAsString]];
+	return [NSURL URLWithString:[percentEscape(self.name) stringByAppendingString:@"/"] relativeToURL:authenticatedServerURL];
 }
 
 
@@ -71,7 +83,7 @@
     NSURL *aUrl = self.url;
     if (aPath && ![aPath isEqualToString:@"/"])
         aUrl = [NSURL URLWithString:aPath relativeToURL:self.url];
-    return [ASIHTTPRequest requestWithURL:aUrl];	
+    return [ASIHTTPRequest requestWithURL:aUrl];		
 }
 
 #pragma mark -
