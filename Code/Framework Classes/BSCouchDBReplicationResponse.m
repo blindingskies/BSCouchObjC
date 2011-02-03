@@ -48,4 +48,8 @@
 	return [self.dic objectForKey:@"history"];
 }
 
+- (NSString *)description {
+	return [self.dic description];
+}
+
 @end
