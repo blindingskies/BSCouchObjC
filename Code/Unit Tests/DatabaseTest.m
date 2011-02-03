@@ -41,6 +41,12 @@
     [database release];
 }
 
+- (void)testInfo {
+	NSLog(@"Testing Database : database info");		
+	NSDictionary *info = [database info];
+	NSLog(@"info: %@", info);
+}
+
 - (void)testDocumentionCreateAndDelete {
     NSLog(@"Testing Database : document create & delete.\n");
     
@@ -73,6 +79,7 @@
 	
 	NSDictionary *dic = nil;
 	NSUInteger i, len = arc4random() % 10;
+	len += 3;
 	
 	for (i=0; i < len; i++) {
 		// Create a dictionary		
@@ -102,8 +109,8 @@
 	}
 	
 	// Make some changes
-	NSUInteger randLen = arc4random() % len;
-	for (i=0; i<randLen; i++) {
+	NSUInteger lenTwo = len - 2;
+	for (i=0; i<lenTwo; i++) {
 		// Get the document
 		BSCouchDBDocument *doc = [database getDocument:[[allDocs objectAtIndex:i] objectForKey:@"id"] withRevisions:NO revision:nil];
 		// Change it
