@@ -27,6 +27,12 @@
 // Information
 - (NSDictionary *)info;
 
+// Get all the documents
+- (NSArray *)allDocs;
+
+// Design documents
+- (NSArray *)designDocuments;
+
 #pragma mark URLs and paths
 
 // Return an authenticated URL if the Server has the credentials
@@ -36,9 +42,6 @@
 
 // General purpose get function.
 - (NSDictionary *)get:(NSString *)argument;
-
-// Get all the documents
-- (NSArray *)allDocs;
 
 // Get a specific (named) document, with either all revision strings, or a specific revision (or the latest) or both.
 - (BSCouchDBDocument *)getDocument:(NSString *)documentId withRevisions:(BOOL)withRevs revision:(NSString *)revisionOrNil;

@@ -55,6 +55,31 @@
 }
 
 
+/**
+ Get all the documents
+ */
+- (NSArray *)allDocs {
+	// Get the list of documents
+	NSDictionary *list = [self get:COUCH_VIEW_ALL];
+	
+	// Return the rows
+	return [list objectForKey:@"rows"];
+}
+
+
+// Design documents
+- (NSArray *)designDocuments {
+	// Until we add views and query options this is the best we can do at the moment
+	NSString *query = @"_all_docs?startkey=\"_design\"&endkey=\"_design0\"";
+	// Perform the get
+	NSDictionary *results = [self get:query];
+	if (results) {
+		return [[results objectForKey:@"rows"] valueForKey:@"id"];
+	}
+	return nil;
+}
+
+
 #pragma mark -
 #pragma mark Dynamic methods
 
@@ -102,18 +127,6 @@
 		return [json JSONValue];
 	}
 	return nil;
-}
-
-
-/**
- Get all the documents
- */
-- (NSArray *)allDocs {
-	// Get the list of documents
-	NSDictionary *list = [self get:COUCH_VIEW_ALL];
-
-	// Return the rows
-	return [list objectForKey:@"rows"];
 }
 
 
