@@ -14,4 +14,12 @@
 
 + (BSCouchDBDesignDocument *)documentWithDictionary:(NSDictionary *)otherDictionary database:(BSCouchDBDatabase *)aDatabase;
 
+
+#pragma mark Retieve information
+
+// Return an array of strings of view names, these are in the form
+// <design document _id>/_view/<view name>, where the design document
+// _id is in the form _design/<design document domain>
+- (NSArray *)viewNames;
+
 @end
