@@ -451,11 +451,6 @@ NSString *percentEscape(NSString *str) {
         return [BSCouchDBReplicationResponse responseWithJSON:json];
     }
     return nil;
-<<<<<<< HEAD:Code/src/BSCouchDBServer.m
-	
-} 
-
-=======
 }
 
 
@@ -499,6 +494,5 @@ NSString *percentEscape(NSString *str) {
 	NSLog(@"connection did finish.");	
 	//	self.blockConnection = NO;	
 }
->>>>>>> mrloop:Code/src/BSCouchDBServer.m
 
 @end

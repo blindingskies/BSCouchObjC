@@ -7,13 +7,11 @@
 //
 
 #import "BSCouchDBDesignDocument.h"
-
+#import "BSCouchObjC.h"
 
 @implementation BSCouchDBDesignDocument
 
 - (void)dealloc {
-    [dictionary release];// self.dictionary = nil; 
-	[database release];// self.database = nil; 
 	[super dealloc];	
 }
 

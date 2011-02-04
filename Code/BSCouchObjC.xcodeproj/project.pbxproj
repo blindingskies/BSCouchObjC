@@ -635,6 +635,7 @@
 			};
 			buildConfigurationList = 65D37EB412D7709100496EE1 /* Build configuration list for PBXProject "BSCouchObjC" */;
 			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				English,
