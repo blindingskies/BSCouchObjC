@@ -12,6 +12,8 @@
 @class BSCouchDBResponse;
 @class BSCouchDBReplicationResponse;
 @class ASIHTTPRequest;
+@protocol ASIHTTPRequestDelegate;
+
 
 NSString *percentEscape(NSString *str);
 
@@ -69,6 +71,13 @@ NSString *percentEscape(NSString *str);
  enforce or check this. 
  */
 - (NSString *)sendSynchronousRequest:(ASIHTTPRequest *)request;
+
+- (void)sendAsynchronousRequest:(ASIHTTPRequest *)request 
+				  usingDelegate:(id<ASIHTTPRequestDelegate>)delegate;
+
+- (void)sendAsynchronousRequest:(ASIHTTPRequest *)request 
+			  usingSuccessBlock:(void (^)(ASIHTTPRequest *))successBlock
+			  usingFailureBlock:(void (^)(ASIHTTPRequest *))failureBlock;
 
 #pragma mark Databases
 
