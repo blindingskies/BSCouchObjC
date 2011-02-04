@@ -128,4 +128,31 @@
 }
 
 
+
+
+- (void)testDesignDocuments {
+	NSLog(@"Testing Database : design documents");
+	
+	// Create a fake design document
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[NSDictionary dictionary], @"views", nil];
+	
+	// PUT the fake design document on the db
+	NSString *designDocName = @"_design/test";
+	BSCouchDBResponse *response = [database putDocument:dic named:designDocName];
+    GHAssertNotNil(response, @"Failed to receive a valid HTTP response when posting a new document.");
+    GHAssertTrue(response.ok, @"Failed to post a new document despite getting valid HTTP Response.");
+    GHAssertNotNil(response._id, @"BSCouchDBResponse does not contain an identifier");
+    GHAssertNotNil(response._rev, @"BSCouchDBResponse does not contain an revision");
+	
+	// Now get the design documents that are on the database
+	NSArray *designDocuments = [database designDocuments];
+	GHAssertNotNil(designDocuments, @"Failed to get design document names.");
+	GHAssertTrue([designDocuments containsObject:designDocName], @"Design documents doesn't contain the design document we created");
+	
+}
+
+
+
+
+
 @end
