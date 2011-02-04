@@ -453,46 +453,4 @@ NSString *percentEscape(NSString *str) {
     return nil;
 }
 
-
-
-#pragma mark -
-#pragma mark NSURLConnectionDelegate methods
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-	// We've got enough information to create a NSURLResponse
-	// Because it can be called multiple times, such as for a redirect,
-	// we reset the data each time.
-	NSLog(@"connection did receive response.");
-	//	[self.receivedData setLength:0];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-	// We received some data
-	NSLog(@"connection did receive %d bytes of data.", [data length]);
-	//	[self.receivedData appendData:data];
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-	// We encountered an error
-	
-	// Release the retained connection and the data received so far
-	//	self.currentConnection = nil; [currentConnection release];
-	//	self.receivedData = nil; [receivedData release];
-	
-	// Log the error
-    NSLog(@"Connection failed! Error - %@ %@", [error localizedDescription], [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
-	
-	//	failureCallback(error);
-	
-	// Unblock the connection
-	//	self.blockConnection = NO;
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-	// We received all the data without errors
-	// Unblock the connection
-	NSLog(@"connection did finish.");	
-	//	self.blockConnection = NO;	
-}
-
 @end
