@@ -36,6 +36,10 @@
 	[super dealloc];	
 }
 
+- (NSString *)description {
+	return [self.dictionary description];
+}
+
 #pragma mark -
 #pragma mark Dictionary methods
 
