@@ -93,7 +93,7 @@ NSString *percentEscape(NSString *str) {
 #pragma mark HTTP Requests
 
 /**
- This does starts the request going synchronously.
+ This starts the request going synchronously.
  We perform all requests synchronously so that the function returns
  with the answer. The calling method should ideally not be run in 
  the main thread (to avoid locking the interface), although we don't

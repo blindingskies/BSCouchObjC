@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		6508D70B12DCB2A80017FCE6 /* DatabaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6508D70A12DCB2A80017FCE6 /* DatabaseTest.m */; };
 		6508D71012DCBCF10017FCE6 /* DocumentTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6508D70F12DCBCF10017FCE6 /* DocumentTest.m */; };
+		651E94C712FB701400ABA100 /* BSCouchDBDesignDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 651E94C512FB701400ABA100 /* BSCouchDBDesignDocument.h */; };
+		651E94C812FB701400ABA100 /* BSCouchDBDesignDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 651E94C612FB701400ABA100 /* BSCouchDBDesignDocument.m */; };
+		651E94C912FB701400ABA100 /* BSCouchDBDesignDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 651E94C512FB701400ABA100 /* BSCouchDBDesignDocument.h */; };
+		651E94CA12FB701400ABA100 /* BSCouchDBDesignDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 651E94C612FB701400ABA100 /* BSCouchDBDesignDocument.m */; };
 		652141C212E32FC100AF1837 /* BSCouchDBChange.h in Headers */ = {isa = PBXBuildFile; fileRef = 652141C012E32FC100AF1837 /* BSCouchDBChange.h */; };
 		652141C312E32FC100AF1837 /* BSCouchDBChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 652141C112E32FC100AF1837 /* BSCouchDBChange.m */; };
 		652141C412E32FC100AF1837 /* BSCouchDBChange.h in Headers */ = {isa = PBXBuildFile; fileRef = 652141C012E32FC100AF1837 /* BSCouchDBChange.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -199,6 +203,8 @@
 		6508D70A12DCB2A80017FCE6 /* DatabaseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DatabaseTest.m; path = "Unit Tests/DatabaseTest.m"; sourceTree = "<group>"; };
 		6508D70F12DCBCF10017FCE6 /* DocumentTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocumentTest.m; path = "Unit Tests/DocumentTest.m"; sourceTree = "<group>"; };
 		6508D74512DCF2B70017FCE6 /* JSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JSON.xcodeproj; path = "vendor/json-framework/JSON.xcodeproj"; sourceTree = "<group>"; };
+		651E94C512FB701400ABA100 /* BSCouchDBDesignDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCouchDBDesignDocument.h; sourceTree = "<group>"; };
+		651E94C612FB701400ABA100 /* BSCouchDBDesignDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCouchDBDesignDocument.m; sourceTree = "<group>"; };
 		652141C012E32FC100AF1837 /* BSCouchDBChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCouchDBChange.h; sourceTree = "<group>"; };
 		652141C112E32FC100AF1837 /* BSCouchDBChange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCouchDBChange.m; sourceTree = "<group>"; };
 		6558467212DC8A2D005A81CA /* BSCouchDBDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCouchDBDocument.h; sourceTree = "<group>"; };
@@ -349,6 +355,7 @@
 				65992CD212EC8F5B00D96EB1 /* ASIProgressDelegate.h */,
 			);
 			name = ASIHTTPRequest;
+			path = src;
 			sourceTree = "<group>";
 		};
 		65AEB60912DDCF4B0074F47A /* iOS */ = {
@@ -381,6 +388,7 @@
 			isa = PBXGroup;
 			children = (
 				6508D74512DCF2B70017FCE6 /* JSON.xcodeproj */,
+				65992CFB12EC8F6600D96EB1 /* ASIHTTPRequest */,
 				65D37FFE12D7913800496EE1 /* Testing */,
 				65D37EE412D771F800496EE1 /* src */,
 				65D37FB512D7867C00496EE1 /* Other Sources */,
@@ -415,7 +423,6 @@
 		65D37EE412D771F800496EE1 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				65992CFB12EC8F6600D96EB1 /* ASIHTTPRequest */,
 				65AEB8EA12DE02210074F47A /* NSStringAdditions.h */,
 				65AEB8EB12DE02210074F47A /* NSStringAdditions.m */,
 				65D37F7C12D784AE00496EE1 /* Reachability.h */,
@@ -432,6 +439,8 @@
 				65AEB96F12DE0B890074F47A /* BSCouchDBReplicationResponse.m */,
 				652141C012E32FC100AF1837 /* BSCouchDBChange.h */,
 				652141C112E32FC100AF1837 /* BSCouchDBChange.m */,
+				651E94C512FB701400ABA100 /* BSCouchDBDesignDocument.h */,
+				651E94C612FB701400ABA100 /* BSCouchDBDesignDocument.m */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -503,6 +512,7 @@
 				65992CE212EC8F5B00D96EB1 /* ASIInputStream.h in Headers */,
 				65992CE412EC8F5B00D96EB1 /* ASINetworkQueue.h in Headers */,
 				65992CE612EC8F5B00D96EB1 /* ASIProgressDelegate.h in Headers */,
+				651E94C912FB701400ABA100 /* BSCouchDBDesignDocument.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,6 +542,7 @@
 				65992CF612EC8F5B00D96EB1 /* ASIInputStream.h in Headers */,
 				65992CF812EC8F5B00D96EB1 /* ASINetworkQueue.h in Headers */,
 				65992CFA12EC8F5B00D96EB1 /* ASIProgressDelegate.h in Headers */,
+				651E94C712FB701400ABA100 /* BSCouchDBDesignDocument.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -737,6 +748,7 @@
 				65992CDF12EC8F5B00D96EB1 /* ASIHTTPRequest.m in Sources */,
 				65992CE312EC8F5B00D96EB1 /* ASIInputStream.m in Sources */,
 				65992CE512EC8F5B00D96EB1 /* ASINetworkQueue.m in Sources */,
+				651E94CA12FB701400ABA100 /* BSCouchDBDesignDocument.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -760,6 +772,7 @@
 				65992CF312EC8F5B00D96EB1 /* ASIHTTPRequest.m in Sources */,
 				65992CF712EC8F5B00D96EB1 /* ASIInputStream.m in Sources */,
 				65992CF912EC8F5B00D96EB1 /* ASINetworkQueue.m in Sources */,
+				651E94C812FB701400ABA100 /* BSCouchDBDesignDocument.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
