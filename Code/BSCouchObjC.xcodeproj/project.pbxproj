@@ -81,9 +81,9 @@
 		65D3809D12D7A77300496EE1 /* ServerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D3809C12D7A77300496EE1 /* ServerTest.m */; };
 		65D3809F12D7A7AF00496EE1 /* BSCouchObjC.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D3809E12D7A7AF00496EE1 /* BSCouchObjC.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65D380A012D7A7AF00496EE1 /* BSCouchObjC.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D3809E12D7A7AF00496EE1 /* BSCouchObjC.h */; };
-		65DF9866130ED786002D0C3A /* ASIHTTPRequest in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DF985F130ED743002D0C3A /* ASIHTTPRequest */; };
-		65DF986F130ED808002D0C3A /* ASIHTTPRequest in CopyFiles */ = {isa = PBXBuildFile; fileRef = 65DF985F130ED743002D0C3A /* ASIHTTPRequest */; };
-		65DF98B7130EDA40002D0C3A /* ASIHTTPRequest in CopyFiles */ = {isa = PBXBuildFile; fileRef = 65DF985F130ED743002D0C3A /* ASIHTTPRequest */; };
+		65DF9866130ED786002D0C3A /* ASIHTTPRequest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DF985F130ED743002D0C3A /* ASIHTTPRequest.framework */; };
+		65DF986F130ED808002D0C3A /* ASIHTTPRequest.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 65DF985F130ED743002D0C3A /* ASIHTTPRequest.framework */; };
+		65DF98B7130EDA40002D0C3A /* ASIHTTPRequest.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 65DF985F130ED743002D0C3A /* ASIHTTPRequest.framework */; };
 		65DF98CE130EDBDB002D0C3A /* libASIHTTPRequest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DF9861130ED743002D0C3A /* libASIHTTPRequest.a */; };
 		65E1A8FF12DE2D74007B3219 /* libjson.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6508D75512DCF2B70017FCE6 /* libjson.a */; };
 /* End PBXBuildFile section */
@@ -149,28 +149,28 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 65DF9859130ED743002D0C3A /* ASIHTTPRequest.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 65DF97D3130ECEAE002D0C3A /* ASIHTTPRequest */;
+			remoteGlobalIDString = 65DF97D3130ECEAE002D0C3A;
 			remoteInfo = ASIHTTPRequest;
 		};
 		65DF9860130ED743002D0C3A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 65DF9859130ED743002D0C3A /* ASIHTTPRequest.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 65DF97DF130ECEC9002D0C3A /* libASIHTTPRequest.a */;
+			remoteGlobalIDString = 65DF97DF130ECEC9002D0C3A;
 			remoteInfo = libASIHTTPRequest;
 		};
 		65DF9864130ED76C002D0C3A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 65DF9859130ED743002D0C3A /* ASIHTTPRequest.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 65DF97D2130ECEAE002D0C3A /* ASIHTTPRequest */;
+			remoteGlobalIDString = 65DF97D2130ECEAE002D0C3A;
 			remoteInfo = ASIHTTPRequest;
 		};
 		65DF9867130ED7A4002D0C3A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 65DF9859130ED743002D0C3A /* ASIHTTPRequest.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 65DF97DE130ECEC9002D0C3A /* libASIHTTPRequest */;
+			remoteGlobalIDString = 65DF97DE130ECEC9002D0C3A;
 			remoteInfo = libASIHTTPRequest;
 		};
 /* End PBXContainerItemProxy section */
@@ -182,7 +182,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				65DF986F130ED808002D0C3A /* ASIHTTPRequest in CopyFiles */,
+				65DF986F130ED808002D0C3A /* ASIHTTPRequest.framework in CopyFiles */,
 				65AEB3F512DCF9F80074F47A /* JSON.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -193,7 +193,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				65DF98B7130EDA40002D0C3A /* ASIHTTPRequest in CopyFiles */,
+				65DF98B7130EDA40002D0C3A /* ASIHTTPRequest.framework in CopyFiles */,
 				65AEB53C12DDC2F80074F47A /* JSON.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,7 +276,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65DF9866130ED786002D0C3A /* ASIHTTPRequest in Frameworks */,
+				65DF9866130ED786002D0C3A /* ASIHTTPRequest.framework in Frameworks */,
 				65AEB3E312DCF9120074F47A /* JSON.framework in Frameworks */,
 				65D37F8812D7852D00496EE1 /* SystemConfiguration.framework in Frameworks */,
 				65992D0F12EC904000D96EB1 /* CoreServices.framework in Frameworks */,
@@ -448,7 +448,7 @@
 		65DF985A130ED743002D0C3A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				65DF985F130ED743002D0C3A /* ASIHTTPRequest */,
+				65DF985F130ED743002D0C3A /* ASIHTTPRequest.framework */,
 				65DF9861130ED743002D0C3A /* libASIHTTPRequest.a */,
 			);
 			name = Products;
@@ -646,10 +646,10 @@
 			remoteRef = 6508D75612DCF2B70017FCE6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		65DF985F130ED743002D0C3A /* ASIHTTPRequest */ = {
+		65DF985F130ED743002D0C3A /* ASIHTTPRequest.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = ASIHTTPRequest;
+			path = ASIHTTPRequest.framework;
 			remoteRef = 65DF985E130ED743002D0C3A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -851,7 +851,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				RUN_CLANG_STATIC_ANALYZER = YES;
-				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/vendor/json-framework/Classes\" \"$(SRCROOT)/vendor/asi-http-request/Classes\" \"$(SRCROOT)/vendor/asi-http-request/External/Reachability/\"";
 			};
@@ -866,7 +865,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				RUN_CLANG_STATIC_ANALYZER = YES;
-				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/vendor/json-framework/Classes\" \"$(SRCROOT)/vendor/asi-http-request/Classes\" \"$(SRCROOT)/vendor/asi-http-request/External/Reachability/\"";
 			};
