@@ -10,10 +10,6 @@
 #import "BSCouchObjC.h"
 #import "NSStringAdditions.h"
 
-#import "ASIHTTPRequest.h"
-#import "ASIDownloadCache.h"
-#import "ASIHTTPRequestDelegate.h"
-
 #pragma mark Functions
 
 @interface RequestDelegate : NSObject <ASIHTTPRequestDelegate> {
