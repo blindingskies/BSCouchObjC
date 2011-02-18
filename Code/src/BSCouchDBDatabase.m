@@ -8,7 +8,6 @@
 
 #import "BSCouchDBDatabase.h"
 #import "BSCouchObjC.h"
-#import "ASIHTTPRequest.h"
 
 #pragma mark Functions
 

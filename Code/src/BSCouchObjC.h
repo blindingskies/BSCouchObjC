@@ -25,6 +25,7 @@
 
 // OS X only headers
 #import <JSON/JSON.h>
+#import <ASIHTTPRequest/ASIHTTPRequestFramework.h>
 
 #else
 
@@ -35,6 +36,22 @@
 #import "SBJsonStreamParser.h"
 #import "SBJsonStreamParserAdapter.h"
 #import "NSObject+JSON.h"
+
+#import "ASIHTTPRequestConfig.h"
+#import "ASIHTTPRequestDelegate.h"
+#import "ASIProgressDelegate.h"
+#import "ASICacheDelegate.h"
+#import "ASIHTTPRequest.h"
+#import "ASIDataCompressor.h"
+#import "ASIDataDecompressor.h"
+#import "ASIFormDataRequest.h"
+#import "ASIInputStream.h"
+#import "ASIFormDataRequest.h"
+#import "ASINetworkQueue.h"
+#import "ASIDownloadCache.h"
+#import "ASIAuthenticationDialog.h"
+#import "Reachability.h"
+
 
 #endif
 
