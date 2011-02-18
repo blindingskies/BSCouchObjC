@@ -42,6 +42,7 @@
 #import "BSCouchDBDatabase.h"
 #import "BSCouchDBChange.h"
 #import "BSCouchDBDocument.h"
+#import "BSCouchDBDesignDocument.h"
 #import "BSCouchDBResponse.h"
 #import "BSCouchDBReplicationResponse.h"
 

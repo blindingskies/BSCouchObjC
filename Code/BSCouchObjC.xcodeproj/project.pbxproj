@@ -11,8 +11,18 @@
 		6508D71012DCBCF10017FCE6 /* DocumentTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6508D70F12DCBCF10017FCE6 /* DocumentTest.m */; };
 		651E94C712FB701400ABA100 /* BSCouchDBDesignDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 651E94C512FB701400ABA100 /* BSCouchDBDesignDocument.h */; };
 		651E94C812FB701400ABA100 /* BSCouchDBDesignDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 651E94C612FB701400ABA100 /* BSCouchDBDesignDocument.m */; };
-		651E94C912FB701400ABA100 /* BSCouchDBDesignDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 651E94C512FB701400ABA100 /* BSCouchDBDesignDocument.h */; };
+		651E94C912FB701400ABA100 /* BSCouchDBDesignDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 651E94C512FB701400ABA100 /* BSCouchDBDesignDocument.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		651E94CA12FB701400ABA100 /* BSCouchDBDesignDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 651E94C612FB701400ABA100 /* BSCouchDBDesignDocument.m */; };
+		651E952412FC165B00ABA100 /* BSCouchDBView.h in Headers */ = {isa = PBXBuildFile; fileRef = 651E952212FC165B00ABA100 /* BSCouchDBView.h */; };
+		651E952512FC165B00ABA100 /* BSCouchDBView.m in Sources */ = {isa = PBXBuildFile; fileRef = 651E952312FC165B00ABA100 /* BSCouchDBView.m */; };
+		651E952612FC165B00ABA100 /* BSCouchDBView.h in Headers */ = {isa = PBXBuildFile; fileRef = 651E952212FC165B00ABA100 /* BSCouchDBView.h */; };
+		651E952712FC165B00ABA100 /* BSCouchDBView.m in Sources */ = {isa = PBXBuildFile; fileRef = 651E952312FC165B00ABA100 /* BSCouchDBView.m */; };
+		651E955C12FC1A9C00ABA100 /* BSCouchDBQueryOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 651E955A12FC1A9C00ABA100 /* BSCouchDBQueryOptions.h */; };
+		651E955D12FC1A9C00ABA100 /* BSCouchDBQueryOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 651E955B12FC1A9C00ABA100 /* BSCouchDBQueryOptions.m */; };
+		651E955E12FC1A9C00ABA100 /* BSCouchDBQueryOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 651E955A12FC1A9C00ABA100 /* BSCouchDBQueryOptions.h */; };
+		651E955F12FC1A9C00ABA100 /* BSCouchDBQueryOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 651E955B12FC1A9C00ABA100 /* BSCouchDBQueryOptions.m */; };
+		651E95B512FC225800ABA100 /* DesignDocumentTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 651E95B412FC225800ABA100 /* DesignDocumentTest.m */; };
+		651E95B612FC225800ABA100 /* DesignDocumentTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 651E95B412FC225800ABA100 /* DesignDocumentTest.m */; };
 		652141C212E32FC100AF1837 /* BSCouchDBChange.h in Headers */ = {isa = PBXBuildFile; fileRef = 652141C012E32FC100AF1837 /* BSCouchDBChange.h */; };
 		652141C312E32FC100AF1837 /* BSCouchDBChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 652141C112E32FC100AF1837 /* BSCouchDBChange.m */; };
 		652141C412E32FC100AF1837 /* BSCouchDBChange.h in Headers */ = {isa = PBXBuildFile; fileRef = 652141C012E32FC100AF1837 /* BSCouchDBChange.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -205,6 +215,11 @@
 		6508D74512DCF2B70017FCE6 /* JSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JSON.xcodeproj; path = "vendor/json-framework/JSON.xcodeproj"; sourceTree = "<group>"; };
 		651E94C512FB701400ABA100 /* BSCouchDBDesignDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCouchDBDesignDocument.h; sourceTree = "<group>"; };
 		651E94C612FB701400ABA100 /* BSCouchDBDesignDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCouchDBDesignDocument.m; sourceTree = "<group>"; };
+		651E952212FC165B00ABA100 /* BSCouchDBView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCouchDBView.h; sourceTree = "<group>"; };
+		651E952312FC165B00ABA100 /* BSCouchDBView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCouchDBView.m; sourceTree = "<group>"; };
+		651E955A12FC1A9C00ABA100 /* BSCouchDBQueryOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCouchDBQueryOptions.h; sourceTree = "<group>"; };
+		651E955B12FC1A9C00ABA100 /* BSCouchDBQueryOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCouchDBQueryOptions.m; sourceTree = "<group>"; };
+		651E95B412FC225800ABA100 /* DesignDocumentTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DesignDocumentTest.m; path = "Unit Tests/DesignDocumentTest.m"; sourceTree = "<group>"; };
 		652141C012E32FC100AF1837 /* BSCouchDBChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCouchDBChange.h; sourceTree = "<group>"; };
 		652141C112E32FC100AF1837 /* BSCouchDBChange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCouchDBChange.m; sourceTree = "<group>"; };
 		6558467212DC8A2D005A81CA /* BSCouchDBDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCouchDBDocument.h; sourceTree = "<group>"; };
@@ -441,6 +456,10 @@
 				652141C112E32FC100AF1837 /* BSCouchDBChange.m */,
 				651E94C512FB701400ABA100 /* BSCouchDBDesignDocument.h */,
 				651E94C612FB701400ABA100 /* BSCouchDBDesignDocument.m */,
+				651E952212FC165B00ABA100 /* BSCouchDBView.h */,
+				651E952312FC165B00ABA100 /* BSCouchDBView.m */,
+				651E955A12FC1A9C00ABA100 /* BSCouchDBQueryOptions.h */,
+				651E955B12FC1A9C00ABA100 /* BSCouchDBQueryOptions.m */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -479,6 +498,7 @@
 				6508D70F12DCBCF10017FCE6 /* DocumentTest.m */,
 				65D3809C12D7A77300496EE1 /* ServerTest.m */,
 				6508D70A12DCB2A80017FCE6 /* DatabaseTest.m */,
+				651E95B412FC225800ABA100 /* DesignDocumentTest.m */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -513,6 +533,8 @@
 				65992CE412EC8F5B00D96EB1 /* ASINetworkQueue.h in Headers */,
 				65992CE612EC8F5B00D96EB1 /* ASIProgressDelegate.h in Headers */,
 				651E94C912FB701400ABA100 /* BSCouchDBDesignDocument.h in Headers */,
+				651E952612FC165B00ABA100 /* BSCouchDBView.h in Headers */,
+				651E955E12FC1A9C00ABA100 /* BSCouchDBQueryOptions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,6 +565,8 @@
 				65992CF812EC8F5B00D96EB1 /* ASINetworkQueue.h in Headers */,
 				65992CFA12EC8F5B00D96EB1 /* ASIProgressDelegate.h in Headers */,
 				651E94C712FB701400ABA100 /* BSCouchDBDesignDocument.h in Headers */,
+				651E952412FC165B00ABA100 /* BSCouchDBView.h in Headers */,
+				651E955C12FC1A9C00ABA100 /* BSCouchDBQueryOptions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -726,6 +750,7 @@
 				65AEB58612DDCAA40074F47A /* DocumentTest.m in Sources */,
 				65AEB58712DDCAA40074F47A /* ServerTest.m in Sources */,
 				65AEB58812DDCAA40074F47A /* DatabaseTest.m in Sources */,
+				651E95B612FC225800ABA100 /* DesignDocumentTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -749,6 +774,8 @@
 				65992CE312EC8F5B00D96EB1 /* ASIInputStream.m in Sources */,
 				65992CE512EC8F5B00D96EB1 /* ASINetworkQueue.m in Sources */,
 				651E94CA12FB701400ABA100 /* BSCouchDBDesignDocument.m in Sources */,
+				651E952712FC165B00ABA100 /* BSCouchDBView.m in Sources */,
+				651E955F12FC1A9C00ABA100 /* BSCouchDBQueryOptions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -773,6 +800,8 @@
 				65992CF712EC8F5B00D96EB1 /* ASIInputStream.m in Sources */,
 				65992CF912EC8F5B00D96EB1 /* ASINetworkQueue.m in Sources */,
 				651E94C812FB701400ABA100 /* BSCouchDBDesignDocument.m in Sources */,
+				651E952512FC165B00ABA100 /* BSCouchDBView.m in Sources */,
+				651E955D12FC1A9C00ABA100 /* BSCouchDBQueryOptions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -784,6 +813,7 @@
 				65D3809D12D7A77300496EE1 /* ServerTest.m in Sources */,
 				6508D70B12DCB2A80017FCE6 /* DatabaseTest.m in Sources */,
 				6508D71012DCBCF10017FCE6 /* DocumentTest.m in Sources */,
+				651E95B512FC225800ABA100 /* DesignDocumentTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -907,6 +937,7 @@
 		65D37EC812D7712300496EE1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -917,7 +948,6 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				INFOPLIST_FILE = "BSCouchObjC-Info.plist";
 				INSTALL_PATH = "@rpath";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @loader_path/../Frameworks";
@@ -937,6 +967,7 @@
 		65D37EC912D7712300496EE1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -946,7 +977,6 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				INFOPLIST_FILE = "BSCouchObjC-Info.plist";
 				INSTALL_PATH = "@rpath";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @loader_path/../Frameworks";
