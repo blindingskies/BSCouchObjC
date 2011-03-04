@@ -56,7 +56,7 @@
 		65DF9847130ED4DA002D0C3A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DF9846130ED4DA002D0C3A /* MobileCoreServices.framework */; };
 		65DF9849130ED4DA002D0C3A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DF9848130ED4DA002D0C3A /* SystemConfiguration.framework */; };
 		65DF984B130ED4DA002D0C3A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DF984A130ED4DA002D0C3A /* UIKit.framework */; };
-		65DF9850130ED4FF002D0C3A /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 65DF984E130ED4FF002D0C3A /* Reachability.h */; };
+		65DF9850130ED4FF002D0C3A /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 65DF984E130ED4FF002D0C3A /* Reachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65DF9851130ED4FF002D0C3A /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DF984F130ED4FF002D0C3A /* Reachability.m */; };
 		65DF9876130ED863002D0C3A /* ASIHTTPRequestFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 65DF9875130ED863002D0C3A /* ASIHTTPRequestFramework.h */; };
 		65DF9877130ED863002D0C3A /* ASIHTTPRequestFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 65DF9875130ED863002D0C3A /* ASIHTTPRequestFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
