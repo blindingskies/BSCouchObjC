@@ -24,7 +24,11 @@
 - (id)initWithDictionary:(NSDictionary *)otherDictionary database:(BSCouchDBDatabase *)aDatabase {
 	self = [super init];
 	if (self) {
-        self.dictionary = [NSMutableDictionary dictionaryWithDictionary:otherDictionary];
+		if (otherDictionary) {
+			self.dictionary = [NSMutableDictionary dictionaryWithDictionary:otherDictionary];
+		} else {
+			self.dictionary = [NSMutableDictionary dictionary];
+		}
 		self.database = aDatabase;
 	}
 	return self;
@@ -51,6 +55,12 @@
 
 - (id)objectForKey:(id)aKey {
     return [self.dictionary objectForKey:aKey];
+}
+
+- (void)removeObjectForKey:(id)aKey {
+    [self willChangeValueForKey:aKey];
+    [self.dictionary removeObjectForKey:aKey];
+    [self didChangeValueForKey:aKey];	
 }
 
 - (void)forwardInvocation:(NSInvocation *)invocation {

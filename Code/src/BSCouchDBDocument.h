@@ -28,6 +28,7 @@
 
 - (void)setObject:(id)anObject forKey:(id)aKey;
 - (id)objectForKey:(id)aKey;
+- (void)removeObjectForKey:(id)aKey;
 
 #pragma mark Revision Information
 
