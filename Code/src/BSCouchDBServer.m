@@ -10,10 +10,6 @@
 #import "BSCouchObjC.h"
 #import "NSStringAdditions.h"
 
-#import "ASIHTTPRequest.h"
-#import "ASIDownloadCache.h"
-#import "ASIHTTPRequestDelegate.h"
-
 #pragma mark Functions
 
 @interface RequestDelegate : NSObject <ASIHTTPRequestDelegate> {
@@ -217,9 +213,23 @@ NSString *percentEscape(NSString *str) {
 #pragma mark Server Infomation
 
 // Check whether the server is online/reachable
+#if (TARGET_OS_MAC && !(TARGET_OS_EMBEDDED || TARGET_OS_IPHONE))
+
+// Mac OS X	
 - (BOOL)isReachableWithError:(NSError *)error {
 	return [self.url checkResourceIsReachableAndReturnError:&error];
 }
+
+#else		
+
+// iPhone, use this to test for WiFi, or cell reachability
+- (NetworkStatus)reachabilityStatus {
+	Reachability *reachability = [Reachability reachabilityWithHostName:self.hostname];
+	return [reachability currentReachabilityStatus];
+}
+
+#endif
+
 
 // Returns the CouchDB version string of the server
 - (NSString *)version {

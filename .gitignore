@@ -2,5 +2,6 @@
 *.pbxuser
 *.mode*v*
 /Code/build
+/Code/*/build
 /Code/BSCouchObjC.xcodeproj/xcuserdata/
 /Code/BSCouchObjC.xcodeproj/project.xcworkspace/xcuserdata/
