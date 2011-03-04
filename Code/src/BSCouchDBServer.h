@@ -50,7 +50,15 @@ NSString *percentEscape(NSString *str);
 #pragma mark Server Infomation
 
 // Check whether the server is online/reachable
+#if (TARGET_OS_MAC && !(TARGET_OS_EMBEDDED || TARGET_OS_IPHONE))
+// Mac OS X	
 - (BOOL)isReachableWithError:(NSError *)error;
+#else		
+// iPhone, use this to test for WiFi, or cell reachability
+- (NetworkStatus)reachabilityStatus;
+#endif
+
+
 
 // Returns the CouchDB version string of the server
 - (NSString *)version;
