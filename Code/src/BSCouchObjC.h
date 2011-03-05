@@ -29,7 +29,7 @@
 
 #else
 
-// iOS Headers
+// iOS only headers
 #import "SBJsonParser.h"
 #import "SBJsonWriter.h"
 #import "SBJsonStreamWriter.h"
