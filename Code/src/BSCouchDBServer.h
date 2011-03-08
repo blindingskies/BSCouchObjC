@@ -22,7 +22,7 @@ NSString *percentEscape(NSString *str);
 	
 	NSString *hostname;
 	NSString *path;
-	NSString *cookie;
+	NSMutableArray *cookies;
 	NSString *login;
 	NSString *password;	
 	NSUInteger port;	
@@ -33,7 +33,7 @@ NSString *percentEscape(NSString *str);
 
 @property (nonatomic, readwrite, retain) NSString *hostname;
 @property (nonatomic, readwrite, retain) NSString *path;
-@property (nonatomic, readwrite, retain) NSString *cookie;
+@property (nonatomic, readwrite, retain) NSMutableArray *cookies;
 @property (nonatomic, readwrite, retain) NSString *login;
 @property (nonatomic, readwrite, retain) NSString *password;
 @property (nonatomic, readwrite, retain) NSURL *url;
@@ -115,6 +115,8 @@ NSString *percentEscape(NSString *str);
 // Login to the server
 - (BOOL)loginUsingName:(NSString *)_username andPassword:(NSString *)_password;
 
+// Logout of the server
+- (BOOL)logoutUsingName:(NSString *)_username andPassword:(NSString *)_password;
 
 #pragma mark Replication
 
