@@ -14,6 +14,7 @@
 @synthesize ok;
 @synthesize _id;
 @synthesize _rev;
+@synthesize dictionary;
 
 - (id)initWithDictionary:(NSDictionary *)dic {
 	self = [super init];
@@ -21,6 +22,9 @@
 		ok = [[dic objectForKey:@"ok"] boolValue];
 		_id = [[dic objectForKey:@"id"] copy];
 		_rev = [[dic objectForKey:@"rev"] copy];
+		// You can send POST requests to CouchDB views, which means that the results will
+		// need to be accessed through here.
+		dictionary = [dic copy];
 	}
 	return self;
 }
@@ -34,6 +38,7 @@
 - (void)dealloc {
 	[_id release];
 	[_rev release];
+	[dictionary release];
 	[super dealloc];
 }
 

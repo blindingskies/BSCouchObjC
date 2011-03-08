@@ -14,11 +14,13 @@
 	BOOL ok;
 	NSString *_id;
 	NSString *_rev;
+	NSDictionary *dictionary;
 }
 
 @property (nonatomic, readonly) BOOL ok;
 @property (nonatomic, readonly) NSString *_id;
 @property (nonatomic, readonly) NSString *_rev;
+@property (nonatomic, readonly) NSDictionary *dictionary;
 
 // Initializer
 - (id)initWithDictionary:(NSDictionary *)dic;
