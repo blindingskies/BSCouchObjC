@@ -168,7 +168,7 @@
 	NSString *json = [self.server sendSynchronousRequest:aRequest];
 	
 	// Check the response
-	if (201 == [aRequest responseStatusCode]) {
+	if ([aRequest responseStatusCode] < 300) {
 		return [BSCouchDBResponse responseWithJSON:json];
 	}
 	return nil;
