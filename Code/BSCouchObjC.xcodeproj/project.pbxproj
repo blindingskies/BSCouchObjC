@@ -53,7 +53,7 @@
 		65AEB58712DDCAA40074F47A /* ServerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D3809C12D7A77300496EE1 /* ServerTest.m */; };
 		65AEB58812DDCAA40074F47A /* DatabaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6508D70A12DCB2A80017FCE6 /* DatabaseTest.m */; };
 		65AEB5C512DDCC030074F47A /* libBSCouchObjC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D37FA612D7862F00496EE1 /* libBSCouchObjC.a */; };
-		65AEB5E212DDCECD0074F47A /* BSCouchObjC in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D37EC512D7712300496EE1 /* BSCouchObjC */; };
+		65AEB5E212DDCECD0074F47A /* BSCouchObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D37EC512D7712300496EE1 /* BSCouchObjC.framework */; };
 		65AEB61212DDCF960074F47A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AEB61112DDCF960074F47A /* SystemConfiguration.framework */; };
 		65AEB82612DDF19F0074F47A /* BSCouchDBServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D37EE712D771F800496EE1 /* BSCouchDBServer.h */; };
 		65AEB82712DDF19F0074F47A /* BSCouchDBDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D37EE512D771F800496EE1 /* BSCouchDBDatabase.h */; };
@@ -90,42 +90,42 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 6593B560132262660097A63B /* JSON.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 53D229810C96121600276605 /* JSON.framework */;
+			remoteGlobalIDString = 53D229810C96121600276605;
 			remoteInfo = JSON;
 		};
 		6593B56E132262660097A63B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6593B560132262660097A63B /* JSON.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 53D2298D0C96122A00276605 /* Tests.octest */;
+			remoteGlobalIDString = 53D2298D0C96122A00276605;
 			remoteInfo = Tests;
 		};
 		6593B570132262660097A63B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6593B560132262660097A63B /* JSON.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = FE2BBD800D8B0D3900184787 /* libjson.a */;
+			remoteGlobalIDString = FE2BBD800D8B0D3900184787;
 			remoteInfo = libjson;
 		};
 		6593B572132262660097A63B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6593B560132262660097A63B /* JSON.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = FE2BBDAB0D8B0EE000184787 /* libjsontests.octest */;
+			remoteGlobalIDString = FE2BBDAB0D8B0EE000184787;
 			remoteInfo = libjsontests;
 		};
 		6593B576132262810097A63B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6593B560132262660097A63B /* JSON.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 53D229800C96121600276605 /* JSON */;
+			remoteGlobalIDString = 53D229800C96121600276605;
 			remoteInfo = JSON;
 		};
 		6593B578132262930097A63B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6593B560132262660097A63B /* JSON.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = FE2BBD7F0D8B0D3900184787 /* libjson */;
+			remoteGlobalIDString = FE2BBD7F0D8B0D3900184787;
 			remoteInfo = libjson;
 		};
 		65AEB56D12DDC9CD0074F47A /* PBXContainerItemProxy */ = {
@@ -230,7 +230,7 @@
 		65AEB8EB12DE02210074F47A /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
 		65AEB96E12DE0B890074F47A /* BSCouchDBReplicationResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCouchDBReplicationResponse.h; sourceTree = "<group>"; };
 		65AEB96F12DE0B890074F47A /* BSCouchDBReplicationResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCouchDBReplicationResponse.m; sourceTree = "<group>"; };
-		65D37EC512D7712300496EE1 /* BSCouchObjC */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.framework; path = BSCouchObjC; sourceTree = BUILT_PRODUCTS_DIR; };
+		65D37EC512D7712300496EE1 /* BSCouchObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BSCouchObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65D37EC712D7712300496EE1 /* BSCouchObjC-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BSCouchObjC-Info.plist"; sourceTree = "<group>"; };
 		65D37EE512D771F800496EE1 /* BSCouchDBDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCouchDBDatabase.h; sourceTree = "<group>"; };
 		65D37EE612D771F800496EE1 /* BSCouchDBDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCouchDBDatabase.m; sourceTree = "<group>"; };
@@ -293,7 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65D3808C12D7A0AE00496EE1 /* GHUnit.framework in Frameworks */,
-				65AEB5E212DDCECD0074F47A /* BSCouchObjC in Frameworks */,
+				65AEB5E212DDCECD0074F47A /* BSCouchObjC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,7 +355,7 @@
 		65D37EC612D7712300496EE1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				65D37EC512D7712300496EE1 /* BSCouchObjC */,
+				65D37EC512D7712300496EE1 /* BSCouchObjC.framework */,
 				65D37FA612D7862F00496EE1 /* libBSCouchObjC.a */,
 				65D37FE112D790A000496EE1 /* Mac OS X Tests.app */,
 				65AEB55E12DDC5870074F47A /* iOS Tests.app */,
@@ -528,7 +528,7 @@
 			);
 			name = BSCouchObjC;
 			productName = BSCouchObjC;
-			productReference = 65D37EC512D7712300496EE1 /* BSCouchObjC */;
+			productReference = 65D37EC512D7712300496EE1 /* BSCouchObjC.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		65D37FA512D7862F00496EE1 /* libBSCouchObjC */ = {
