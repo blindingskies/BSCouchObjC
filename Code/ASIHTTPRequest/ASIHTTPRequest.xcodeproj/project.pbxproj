@@ -63,7 +63,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		65DF97D3130ECEAE002D0C3A /* ASIHTTPRequest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ASIHTTPRequest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		65DF97D3130ECEAE002D0C3A /* ASIHTTPRequest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.framework; path = ASIHTTPRequest; sourceTree = BUILT_PRODUCTS_DIR; };
 		65DF97D5130ECEAE002D0C3A /* ASIHTTPRequest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ASIHTTPRequest-Info.plist"; sourceTree = "<group>"; };
 		65DF97DF130ECEC9002D0C3A /* libASIHTTPRequest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libASIHTTPRequest.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		65DF97E3130ECEE9002D0C3A /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIAuthenticationDialog.h; path = "../vendor/asi-http-request/Classes/ASIAuthenticationDialog.h"; sourceTree = SOURCE_ROOT; };
@@ -149,7 +149,7 @@
 		65DF97D4130ECEAE002D0C3A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				65DF97D3130ECEAE002D0C3A /* ASIHTTPRequest.framework */,
+				65DF97D3130ECEAE002D0C3A /* ASIHTTPRequest */,
 				65DF97DF130ECEC9002D0C3A /* libASIHTTPRequest.a */,
 			);
 			name = Products;
@@ -257,7 +257,7 @@
 			);
 			name = ASIHTTPRequest;
 			productName = ASIHTTPRequest;
-			productReference = 65DF97D3130ECEAE002D0C3A /* ASIHTTPRequest.framework */;
+			productReference = 65DF97D3130ECEAE002D0C3A /* ASIHTTPRequest */;
 			productType = "com.apple.product-type.framework";
 		};
 		65DF97DE130ECEC9002D0C3A /* libASIHTTPRequest */ = {
@@ -429,6 +429,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -442,6 +444,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;

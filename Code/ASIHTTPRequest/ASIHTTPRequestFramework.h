@@ -21,7 +21,7 @@
 #import "ASINetworkQueue.h"
 #import "ASIDownloadCache.h"
 
-#if (TARGET_OS_IPHONE || TARGET_OS_EMBEDDED)
+#ifdef (TARGET_OS_IPHONE || TARGET_OS_EMBEDDED)
 
 #import "ASIAuthenticationDialog.h"
 #import "Reachability.h"
