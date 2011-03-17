@@ -21,7 +21,7 @@
 #define COUCH_VIEW_SLOW            @"_slow_view"
 #define COUCH_VIEW_ALL             @"_all_docs"
 
-#if !TARGET_OS_IPHONE
+#if TARGET_OS_MAC && (!TARGET_OS_IPHONE || !TARGET_OS_EMBEDDED)
 
 // OS X only headers
 #import <JSON/JSON.h>

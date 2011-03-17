@@ -892,7 +892,6 @@
 				INFOPLIST_FILE = "BSCouchObjC-Info.plist";
 				INSTALL_PATH = "@rpath";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @loader_path/../Frameworks";
-				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -977,6 +976,7 @@
 		65D37FE412D790A000496EE1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SRCROOT)/vendor/json-framework/build/$(BUILD_STYLE)\"",
@@ -1000,13 +1000,14 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "Mac OS X Tests";
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx10.6;
 			};
 			name = Debug;
 		};
 		65D37FE512D790A000496EE1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1029,7 +1030,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "Mac OS X Tests";
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx10.6;
 				ZERO_LINK = NO;
 			};
 			name = Release;
