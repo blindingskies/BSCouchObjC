@@ -45,6 +45,9 @@
 		65992EDC12EDADD700D96EB1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65992D0412EC8FB800D96EB1 /* MobileCoreServices.framework */; };
 		65992EDD12EDADDD00D96EB1 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 65992D0612EC8FB800D96EB1 /* libz.dylib */; };
 		65992EE112EDAE3600D96EB1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65992EE012EDAE3600D96EB1 /* CoreGraphics.framework */; };
+		65AA2F9F13326AB80004DFEF /* ASIHTTPRequest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AA2F9E13326AB80004DFEF /* ASIHTTPRequest.framework */; };
+		65AA2FA213326ADF0004DFEF /* libASIHTTPRequest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AA2FA013326ADF0004DFEF /* libASIHTTPRequest.a */; };
+		65AA2FA313326ADF0004DFEF /* libjson.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AA2FA113326ADF0004DFEF /* libjson.a */; };
 		65AEB56712DDC61E0074F47A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AEB56612DDC61E0074F47A /* Foundation.framework */; };
 		65AEB56912DDC61E0074F47A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AEB56812DDC61E0074F47A /* UIKit.framework */; };
 		65AEB56C12DDC9360074F47A /* GHUnitIOSTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AEB56B12DDC9360074F47A /* GHUnitIOSTestMain.m */; };
@@ -79,10 +82,6 @@
 		65D3809D12D7A77300496EE1 /* ServerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D3809C12D7A77300496EE1 /* ServerTest.m */; };
 		65D3809F12D7A7AF00496EE1 /* BSCouchObjC.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D3809E12D7A7AF00496EE1 /* BSCouchObjC.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65D380A012D7A7AF00496EE1 /* BSCouchObjC.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D3809E12D7A7AF00496EE1 /* BSCouchObjC.h */; };
-		65DF9866130ED786002D0C3A /* ASIHTTPRequest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DF985F130ED743002D0C3A /* ASIHTTPRequest.framework */; };
-		65DF986F130ED808002D0C3A /* ASIHTTPRequest.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 65DF985F130ED743002D0C3A /* ASIHTTPRequest.framework */; };
-		65DF98B7130EDA40002D0C3A /* ASIHTTPRequest.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 65DF985F130ED743002D0C3A /* ASIHTTPRequest.framework */; };
-		65DF98CE130EDBDB002D0C3A /* libASIHTTPRequest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DF9861130ED743002D0C3A /* libASIHTTPRequest.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +127,34 @@
 			remoteGlobalIDString = FE2BBD7F0D8B0D3900184787;
 			remoteInfo = libjson;
 		};
+		65AA2F9613326A490004DFEF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 65AA2F8E13326A480004DFEF /* ASIHTTPRequest.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 65AA2E50133258FF0004DFEF;
+			remoteInfo = libASIHTTPRequest;
+		};
+		65AA2F9813326A490004DFEF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 65AA2F8E13326A480004DFEF /* ASIHTTPRequest.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 65AA2E611332594F0004DFEF;
+			remoteInfo = ASIHTTPRequest;
+		};
+		65AA2F9A13326A590004DFEF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 65AA2F8E13326A480004DFEF /* ASIHTTPRequest.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 65AA2E601332594F0004DFEF;
+			remoteInfo = ASIHTTPRequest;
+		};
+		65AA2F9C13326A640004DFEF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 65AA2F8E13326A480004DFEF /* ASIHTTPRequest.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 65AA2E4F133258FF0004DFEF;
+			remoteInfo = libASIHTTPRequest;
+		};
 		65AEB56D12DDC9CD0074F47A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 65D37EB112D7709100496EE1 /* Project object */;
@@ -142,34 +169,6 @@
 			remoteGlobalIDString = 65D37EC412D7712300496EE1;
 			remoteInfo = BSCouchObjC;
 		};
-		65DF985E130ED743002D0C3A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 65DF9859130ED743002D0C3A /* ASIHTTPRequest.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 65DF97D3130ECEAE002D0C3A;
-			remoteInfo = ASIHTTPRequest;
-		};
-		65DF9860130ED743002D0C3A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 65DF9859130ED743002D0C3A /* ASIHTTPRequest.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 65DF97DF130ECEC9002D0C3A;
-			remoteInfo = libASIHTTPRequest;
-		};
-		65DF9864130ED76C002D0C3A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 65DF9859130ED743002D0C3A /* ASIHTTPRequest.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 65DF97D2130ECEAE002D0C3A;
-			remoteInfo = ASIHTTPRequest;
-		};
-		65DF9867130ED7A4002D0C3A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 65DF9859130ED743002D0C3A /* ASIHTTPRequest.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 65DF97DE130ECEC9002D0C3A;
-			remoteInfo = libASIHTTPRequest;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -179,7 +178,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				65DF986F130ED808002D0C3A /* ASIHTTPRequest.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,7 +187,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				65DF98B7130EDA40002D0C3A /* ASIHTTPRequest.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,6 +215,10 @@
 		65992D0E12EC904000D96EB1 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		65992D1012EC904000D96EB1 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		65992EE012EDAE3600D96EB1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		65AA2F8E13326A480004DFEF /* ASIHTTPRequest.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ASIHTTPRequest.xcodeproj; path = "vendor/asi-http-request/ASIHTTPRequest.xcodeproj"; sourceTree = "<group>"; };
+		65AA2F9E13326AB80004DFEF /* ASIHTTPRequest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = ASIHTTPRequest.framework; path = "/Users/daniel/Library/Developer/Xcode/DerivedData/BSCouchObjC-etxuswbuucajwogkvcjljiwrehve/Build/Products/Debug/ASIHTTPRequest.framework"; sourceTree = "<absolute>"; };
+		65AA2FA013326ADF0004DFEF /* libASIHTTPRequest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libASIHTTPRequest.a; sourceTree = SOURCE_ROOT; };
+		65AA2FA113326ADF0004DFEF /* libjson.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libjson.a; sourceTree = SOURCE_ROOT; };
 		65AEB55E12DDC5870074F47A /* iOS Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65AEB56012DDC5870074F47A /* iOS Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iOS Tests-Info.plist"; sourceTree = "<group>"; };
 		65AEB56612DDC61E0074F47A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -245,7 +246,6 @@
 		65D3807712D79FC600496EE1 /* GHUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnit.framework; path = /Library/Frameworks/GHUnit.framework; sourceTree = "<absolute>"; };
 		65D3809C12D7A77300496EE1 /* ServerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServerTest.m; path = "Unit Tests/ServerTest.m"; sourceTree = "<group>"; };
 		65D3809E12D7A7AF00496EE1 /* BSCouchObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSCouchObjC.h; path = src/BSCouchObjC.h; sourceTree = "<group>"; };
-		65DF9859130ED743002D0C3A /* ASIHTTPRequest.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ASIHTTPRequest.xcodeproj; path = ASIHTTPRequest/ASIHTTPRequest.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,7 +253,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65DF98CE130EDBDB002D0C3A /* libASIHTTPRequest.a in Frameworks */,
+				65AA2FA213326ADF0004DFEF /* libASIHTTPRequest.a in Frameworks */,
+				65AA2FA313326ADF0004DFEF /* libjson.a in Frameworks */,
 				65AEB56712DDC61E0074F47A /* Foundation.framework in Frameworks */,
 				65AEB56912DDC61E0074F47A /* UIKit.framework in Frameworks */,
 				65AEB57B12DDC9E90074F47A /* GHUnit.framework in Frameworks */,
@@ -270,8 +271,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65AA2F9F13326AB80004DFEF /* ASIHTTPRequest.framework in Frameworks */,
 				6593B5751322627B0097A63B /* JSON.framework in Frameworks */,
-				65DF9866130ED786002D0C3A /* ASIHTTPRequest.framework in Frameworks */,
 				65D37F8812D7852D00496EE1 /* SystemConfiguration.framework in Frameworks */,
 				65992D0F12EC904000D96EB1 /* CoreServices.framework in Frameworks */,
 				65992D1112EC904000D96EB1 /* libz.dylib in Frameworks */,
@@ -311,6 +312,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		65AA2F8F13326A480004DFEF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				65AA2F9713326A490004DFEF /* libASIHTTPRequest.a */,
+				65AA2F9913326A490004DFEF /* ASIHTTPRequest.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		65AEB60912DDCF4B0074F47A /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -340,8 +350,8 @@
 		65D37EAF12D7709100496EE1 = {
 			isa = PBXGroup;
 			children = (
+				65AA2F8E13326A480004DFEF /* ASIHTTPRequest.xcodeproj */,
 				6593B560132262660097A63B /* JSON.xcodeproj */,
-				65DF9859130ED743002D0C3A /* ASIHTTPRequest.xcodeproj */,
 				65D37FFE12D7913800496EE1 /* Testing */,
 				65D37EE412D771F800496EE1 /* src */,
 				65D37FB512D7867C00496EE1 /* Other Sources */,
@@ -403,6 +413,9 @@
 		65D37F8412D7850700496EE1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				65AA2FA013326ADF0004DFEF /* libASIHTTPRequest.a */,
+				65AA2FA113326ADF0004DFEF /* libjson.a */,
+				65AA2F9E13326AB80004DFEF /* ASIHTTPRequest.framework */,
 				65AEB60A12DDCF510074F47A /* Mac */,
 				65AEB60912DDCF4B0074F47A /* iOS */,
 			);
@@ -437,15 +450,6 @@
 				651E95B412FC225800ABA100 /* DesignDocumentTest.m */,
 			);
 			name = Tests;
-			sourceTree = "<group>";
-		};
-		65DF985A130ED743002D0C3A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				65DF985F130ED743002D0C3A /* ASIHTTPRequest.framework */,
-				65DF9861130ED743002D0C3A /* libASIHTTPRequest.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -523,7 +527,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				65DF9865130ED76C002D0C3A /* PBXTargetDependency */,
+				65AA2F9B13326A590004DFEF /* PBXTargetDependency */,
 				6593B577132262810097A63B /* PBXTargetDependency */,
 			);
 			name = BSCouchObjC;
@@ -542,7 +546,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				65DF9868130ED7A4002D0C3A /* PBXTargetDependency */,
+				65AA2F9D13326A640004DFEF /* PBXTargetDependency */,
 				6593B579132262930097A63B /* PBXTargetDependency */,
 			);
 			name = libBSCouchObjC;
@@ -593,8 +597,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 65DF985A130ED743002D0C3A /* Products */;
-					ProjectRef = 65DF9859130ED743002D0C3A /* ASIHTTPRequest.xcodeproj */;
+					ProductGroup = 65AA2F8F13326A480004DFEF /* Products */;
+					ProjectRef = 65AA2F8E13326A480004DFEF /* ASIHTTPRequest.xcodeproj */;
 				},
 				{
 					ProductGroup = 6593B561132262660097A63B /* Products */;
@@ -640,18 +644,18 @@
 			remoteRef = 6593B572132262660097A63B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		65DF985F130ED743002D0C3A /* ASIHTTPRequest.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ASIHTTPRequest.framework;
-			remoteRef = 65DF985E130ED743002D0C3A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		65DF9861130ED743002D0C3A /* libASIHTTPRequest.a */ = {
+		65AA2F9713326A490004DFEF /* libASIHTTPRequest.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libASIHTTPRequest.a;
-			remoteRef = 65DF9860130ED743002D0C3A /* PBXContainerItemProxy */;
+			remoteRef = 65AA2F9613326A490004DFEF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		65AA2F9913326A490004DFEF /* ASIHTTPRequest.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ASIHTTPRequest.framework;
+			remoteRef = 65AA2F9813326A490004DFEF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -752,6 +756,16 @@
 			name = libjson;
 			targetProxy = 6593B578132262930097A63B /* PBXContainerItemProxy */;
 		};
+		65AA2F9B13326A590004DFEF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ASIHTTPRequest;
+			targetProxy = 65AA2F9A13326A590004DFEF /* PBXContainerItemProxy */;
+		};
+		65AA2F9D13326A640004DFEF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libASIHTTPRequest;
+			targetProxy = 65AA2F9C13326A640004DFEF /* PBXContainerItemProxy */;
+		};
 		65AEB56E12DDC9CD0074F47A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 65D37FA512D7862F00496EE1 /* libBSCouchObjC */;
@@ -761,16 +775,6 @@
 			isa = PBXTargetDependency;
 			target = 65D37EC412D7712300496EE1 /* BSCouchObjC */;
 			targetProxy = 65D37FF912D7912100496EE1 /* PBXContainerItemProxy */;
-		};
-		65DF9865130ED76C002D0C3A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ASIHTTPRequest;
-			targetProxy = 65DF9864130ED76C002D0C3A /* PBXContainerItemProxy */;
-		};
-		65DF9868130ED7A4002D0C3A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = libASIHTTPRequest;
-			targetProxy = 65DF9867130ED7A4002D0C3A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -791,6 +795,10 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
 				INFOPLIST_FILE = "iOS Tests-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -821,6 +829,10 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
 				INFOPLIST_FILE = "iOS Tests-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -876,6 +888,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SRCROOT)/vendor/json-framework/build/$(BUILD_STYLE)\"",
 					"\"$(SRCROOT)/ASIHTTPRequest/build/$(BUILD_STYLE)\"",
+					"\"$(SRCROOT)/../../../../../../Library/Developer/Xcode/DerivedData/BSCouchObjC-etxuswbuucajwogkvcjljiwrehve/Build/Products/Debug\"",
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -909,6 +922,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SRCROOT)/vendor/json-framework/build/$(BUILD_STYLE)\"",
 					"\"$(SRCROOT)/ASIHTTPRequest/build/$(BUILD_STYLE)\"",
+					"\"$(SRCROOT)/../../../../../../Library/Developer/Xcode/DerivedData/BSCouchObjC-etxuswbuucajwogkvcjljiwrehve/Build/Products/Debug\"",
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
