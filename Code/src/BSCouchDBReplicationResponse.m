@@ -7,7 +7,7 @@
 //
 
 #import "BSCouchDBReplicationResponse.h"
-#import "JSON.h"
+#import "BSCouchObjC.h"
 
 @implementation BSCouchDBReplicationResponse
 

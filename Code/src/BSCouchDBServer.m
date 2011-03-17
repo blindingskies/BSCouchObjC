@@ -75,7 +75,7 @@ NSString *percentEscape(NSString *str) {
 @synthesize hostname;
 @synthesize port;
 @synthesize path;
-@synthesize cookie;
+@synthesize cookies;
 @synthesize login;
 @synthesize password;
 @synthesize url;
@@ -110,10 +110,10 @@ NSString *percentEscape(NSString *str) {
 }
 
 - (void)dealloc {
-	self.hostname = nil; [hostname release];
-	self.path = nil; [path release];
-	self.cookie = nil; [cookie release];
-	self.url = nil; [url release];
+	[hostname release];
+	[path release];
+	[cookies release];
+	[url release];
 	[super dealloc];
 }
 
@@ -140,8 +140,9 @@ NSString *percentEscape(NSString *str) {
 - (NSString *)sendSynchronousRequest:(ASIHTTPRequest *)request {
 	
 	// Set credentials
-//	[request setValidatesSecureCertificate:NO];	 
-	if (self.login && self.password) {
+	if (NO && self.cookies) {
+		[request setRequestCookies:self.cookies];
+	} else if (self.login && self.password) {
 		request.username = self.login;
 		request.password = self.password;
 	}
@@ -311,6 +312,7 @@ NSString *percentEscape(NSString *str) {
     ASIHTTPRequest *request = [self requestWithPath:percentEscape(databaseName)];
     request.requestMethod = @"PUT";
 	request.postBody = [NSData dataWithBytes:@"" length:0];
+	request.contentLength = 0;
 	NSString *json = [self sendSynchronousRequest:request];
 	BSCouchDBResponse *response = [BSCouchDBResponse responseWithJSON:json];	
 	return response.ok;
@@ -400,20 +402,43 @@ NSString *percentEscape(NSString *str) {
 	NSMutableData *postData = [NSMutableData dataWithData:[post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES]];
 	
 	// Create a request
-	ASIHTTPRequest *request = [self requestWithPath:@"_session"];
+	NSURL *baseURL = [NSURL URLWithString:[self serverURLAsString]];
+	NSURL *sessionURL = [NSURL URLWithString:@"_session" relativeToURL:baseURL];
+	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:sessionURL];
 	[request setRequestMethod:@"POST"];
 	[request addRequestHeader:@"Content-Type" value:@"application/x-www-form-urlencoded; charset=UTF-8"];
 	[request setPostBody:postData];
 	
     NSString *json = [self sendSynchronousRequest:request];
-	NSLog(@"result: %@", json);	
 	BSCouchDBResponse *response = [BSCouchDBResponse responseWithJSON:json];	
 	
     if (response.ok) {
 		// We need to get the Set-Cookie response header
-		self.cookie = [[request responseHeaders] objectForKey:@"Set-Cookie"];
+		self.cookies = [NSMutableArray arrayWithArray:[NSHTTPCookie cookiesWithResponseHeaderFields:[request responseHeaders] forURL:[NSURL URLWithString:[self serverURLAsString]]]];
     }
 	return response.ok;
+}
+
+// Logout of the server
+- (BOOL)logoutUsingName:(NSString *)_username andPassword:(NSString *)_password {
+	// We're going to login using the credential and the store the cookie that we get back
+	NSString *post = [NSString stringWithFormat:@"name=%@&password=%@", _username, _password];
+	NSMutableData *postData = [NSMutableData dataWithData:[post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES]];
+	
+	// Create a request
+	ASIHTTPRequest *request = [self requestWithPath:@"_session"];
+	[request setRequestMethod:@"DELETE"];
+	[request addRequestHeader:@"Content-Type" value:@"application/x-www-form-urlencoded; charset=UTF-8"];
+	[request setPostBody:postData];
+	
+    NSString *json = [self sendSynchronousRequest:request];
+	BSCouchDBResponse *response = [BSCouchDBResponse responseWithJSON:json];	
+	
+    if (response.ok) {
+		// We need to remove the Set-Cookie response header
+		self.cookies = nil;
+    }
+	return response.ok;	
 }
 
 
