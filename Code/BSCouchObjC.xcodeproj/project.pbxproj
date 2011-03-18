@@ -35,7 +35,7 @@
 		6558468812DC9204005A81CA /* BSCouchDBResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6558468612DC9204005A81CA /* BSCouchDBResponse.m */; };
 		6558468912DC9204005A81CA /* BSCouchDBResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 6558468512DC9204005A81CA /* BSCouchDBResponse.h */; };
 		6558468A12DC9204005A81CA /* BSCouchDBResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6558468612DC9204005A81CA /* BSCouchDBResponse.m */; };
-		6593B5751322627B0097A63B /* JSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6593B56D132262660097A63B /* JSON.framework */; };
+		657955AB1333947D00B74BA9 /* JSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657955AA1333947D00B74BA9 /* JSON.framework */; };
 		65992D0212EC8FB800D96EB1 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65992D0112EC8FB800D96EB1 /* CFNetwork.framework */; };
 		65992D0512EC8FB800D96EB1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65992D0412EC8FB800D96EB1 /* MobileCoreServices.framework */; };
 		65992D0712EC8FB800D96EB1 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 65992D0612EC8FB800D96EB1 /* libz.dylib */; };
@@ -81,51 +81,37 @@
 		65D3808C12D7A0AE00496EE1 /* GHUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D3807712D79FC600496EE1 /* GHUnit.framework */; };
 		65D3809D12D7A77300496EE1 /* ServerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D3809C12D7A77300496EE1 /* ServerTest.m */; };
 		65D3809F12D7A7AF00496EE1 /* BSCouchObjC.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D3809E12D7A7AF00496EE1 /* BSCouchObjC.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		65D380A012D7A7AF00496EE1 /* BSCouchObjC.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D3809E12D7A7AF00496EE1 /* BSCouchObjC.h */; };
+		65D380A012D7A7AF00496EE1 /* BSCouchObjC.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D3809E12D7A7AF00496EE1 /* BSCouchObjC.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		6593B56C132262660097A63B /* PBXContainerItemProxy */ = {
+		657955A2133393FF00B74BA9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 6593B560132262660097A63B /* JSON.xcodeproj */;
+			containerPortal = 6579559A133393FE00B74BA9 /* JSON.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 53D229810C96121600276605;
+			remoteGlobalIDString = 6579553013338FFD00B74BA9;
 			remoteInfo = JSON;
 		};
-		6593B56E132262660097A63B /* PBXContainerItemProxy */ = {
+		657955A4133393FF00B74BA9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 6593B560132262660097A63B /* JSON.xcodeproj */;
+			containerPortal = 6579559A133393FE00B74BA9 /* JSON.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 53D2298D0C96122A00276605;
-			remoteInfo = Tests;
+			remoteGlobalIDString = 657955471333905B00B74BA9;
+			remoteInfo = libJSON;
 		};
-		6593B570132262660097A63B /* PBXContainerItemProxy */ = {
+		657955A61333941400B74BA9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 6593B560132262660097A63B /* JSON.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = FE2BBD800D8B0D3900184787;
-			remoteInfo = libjson;
-		};
-		6593B572132262660097A63B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6593B560132262660097A63B /* JSON.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = FE2BBDAB0D8B0EE000184787;
-			remoteInfo = libjsontests;
-		};
-		6593B576132262810097A63B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6593B560132262660097A63B /* JSON.xcodeproj */;
+			containerPortal = 6579559A133393FE00B74BA9 /* JSON.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 53D229800C96121600276605;
+			remoteGlobalIDString = 6579552F13338FFD00B74BA9;
 			remoteInfo = JSON;
 		};
-		6593B578132262930097A63B /* PBXContainerItemProxy */ = {
+		657955A81333941900B74BA9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 6593B560132262660097A63B /* JSON.xcodeproj */;
+			containerPortal = 6579559A133393FE00B74BA9 /* JSON.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = FE2BBD7F0D8B0D3900184787;
-			remoteInfo = libjson;
+			remoteGlobalIDString = 657955461333905B00B74BA9;
+			remoteInfo = libJSON;
 		};
 		65AA2F9613326A490004DFEF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -208,7 +194,8 @@
 		6558467312DC8A2D005A81CA /* BSCouchDBDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCouchDBDocument.m; sourceTree = "<group>"; };
 		6558468512DC9204005A81CA /* BSCouchDBResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCouchDBResponse.h; sourceTree = "<group>"; };
 		6558468612DC9204005A81CA /* BSCouchDBResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCouchDBResponse.m; sourceTree = "<group>"; };
-		6593B560132262660097A63B /* JSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JSON.xcodeproj; path = "vendor/json-framework/JSON.xcodeproj"; sourceTree = "<group>"; };
+		6579559A133393FE00B74BA9 /* JSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JSON.xcodeproj; path = "vendor/json-framework/JSON/JSON.xcodeproj"; sourceTree = "<group>"; };
+		657955AA1333947D00B74BA9 /* JSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = JSON.framework; path = "/Users/daniel/Library/Developer/Xcode/DerivedData/BSCouchObjC-etxuswbuucajwogkvcjljiwrehve/Build/Products/Debug/JSON.framework"; sourceTree = "<absolute>"; };
 		65992D0112EC8FB800D96EB1 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		65992D0412EC8FB800D96EB1 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		65992D0612EC8FB800D96EB1 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -271,8 +258,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				657955AB1333947D00B74BA9 /* JSON.framework in Frameworks */,
 				65AA2F9F13326AB80004DFEF /* ASIHTTPRequest.framework in Frameworks */,
-				6593B5751322627B0097A63B /* JSON.framework in Frameworks */,
 				65D37F8812D7852D00496EE1 /* SystemConfiguration.framework in Frameworks */,
 				65992D0F12EC904000D96EB1 /* CoreServices.framework in Frameworks */,
 				65992D1112EC904000D96EB1 /* libz.dylib in Frameworks */,
@@ -301,13 +288,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6593B561132262660097A63B /* Products */ = {
+		6579559B133393FE00B74BA9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6593B56D132262660097A63B /* JSON.framework */,
-				6593B56F132262660097A63B /* Tests.octest */,
-				6593B571132262660097A63B /* libjson.a */,
-				6593B573132262660097A63B /* libjsontests.octest */,
+				657955A3133393FF00B74BA9 /* JSON.framework */,
+				657955A5133393FF00B74BA9 /* libJSON.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -350,8 +335,8 @@
 		65D37EAF12D7709100496EE1 = {
 			isa = PBXGroup;
 			children = (
+				6579559A133393FE00B74BA9 /* JSON.xcodeproj */,
 				65AA2F8E13326A480004DFEF /* ASIHTTPRequest.xcodeproj */,
-				6593B560132262660097A63B /* JSON.xcodeproj */,
 				65D37FFE12D7913800496EE1 /* Testing */,
 				65D37EE412D771F800496EE1 /* src */,
 				65D37FB512D7867C00496EE1 /* Other Sources */,
@@ -415,6 +400,7 @@
 			children = (
 				65AA2FA013326ADF0004DFEF /* libASIHTTPRequest.a */,
 				65AA2FA113326ADF0004DFEF /* libjson.a */,
+				657955AA1333947D00B74BA9 /* JSON.framework */,
 				65AA2F9E13326AB80004DFEF /* ASIHTTPRequest.framework */,
 				65AEB60A12DDCF510074F47A /* Mac */,
 				65AEB60912DDCF4B0074F47A /* iOS */,
@@ -478,8 +464,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65D37FB912D786BF00496EE1 /* BSCouchObjC_prefix.h in Headers */,
 				65D380A012D7A7AF00496EE1 /* BSCouchObjC.h in Headers */,
+				65D37FB912D786BF00496EE1 /* BSCouchObjC_prefix.h in Headers */,
 				6558467612DC8A2D005A81CA /* BSCouchDBDocument.h in Headers */,
 				6558468912DC9204005A81CA /* BSCouchDBResponse.h in Headers */,
 				65AEB82612DDF19F0074F47A /* BSCouchDBServer.h in Headers */,
@@ -527,8 +513,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				657955A71333941400B74BA9 /* PBXTargetDependency */,
 				65AA2F9B13326A590004DFEF /* PBXTargetDependency */,
-				6593B577132262810097A63B /* PBXTargetDependency */,
 			);
 			name = BSCouchObjC;
 			productName = BSCouchObjC;
@@ -546,8 +532,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				657955A91333941900B74BA9 /* PBXTargetDependency */,
 				65AA2F9D13326A640004DFEF /* PBXTargetDependency */,
-				6593B579132262930097A63B /* PBXTargetDependency */,
 			);
 			name = libBSCouchObjC;
 			productName = libBSCouchObjC;
@@ -601,8 +587,8 @@
 					ProjectRef = 65AA2F8E13326A480004DFEF /* ASIHTTPRequest.xcodeproj */;
 				},
 				{
-					ProductGroup = 6593B561132262660097A63B /* Products */;
-					ProjectRef = 6593B560132262660097A63B /* JSON.xcodeproj */;
+					ProductGroup = 6579559B133393FE00B74BA9 /* Products */;
+					ProjectRef = 6579559A133393FE00B74BA9 /* JSON.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -616,32 +602,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		6593B56D132262660097A63B /* JSON.framework */ = {
+		657955A3133393FF00B74BA9 /* JSON.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = JSON.framework;
-			remoteRef = 6593B56C132262660097A63B /* PBXContainerItemProxy */;
+			remoteRef = 657955A2133393FF00B74BA9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6593B56F132262660097A63B /* Tests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = Tests.octest;
-			remoteRef = 6593B56E132262660097A63B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		6593B571132262660097A63B /* libjson.a */ = {
+		657955A5133393FF00B74BA9 /* libJSON.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libjson.a;
-			remoteRef = 6593B570132262660097A63B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		6593B573132262660097A63B /* libjsontests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = libjsontests.octest;
-			remoteRef = 6593B572132262660097A63B /* PBXContainerItemProxy */;
+			path = libJSON.a;
+			remoteRef = 657955A4133393FF00B74BA9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		65AA2F9713326A490004DFEF /* libASIHTTPRequest.a */ = {
@@ -746,15 +718,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		6593B577132262810097A63B /* PBXTargetDependency */ = {
+		657955A71333941400B74BA9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = JSON;
-			targetProxy = 6593B576132262810097A63B /* PBXContainerItemProxy */;
+			targetProxy = 657955A61333941400B74BA9 /* PBXContainerItemProxy */;
 		};
-		6593B579132262930097A63B /* PBXTargetDependency */ = {
+		657955A91333941900B74BA9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = libjson;
-			targetProxy = 6593B578132262930097A63B /* PBXContainerItemProxy */;
+			name = libJSON;
+			targetProxy = 657955A81333941900B74BA9 /* PBXContainerItemProxy */;
 		};
 		65AA2F9B13326A590004DFEF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
