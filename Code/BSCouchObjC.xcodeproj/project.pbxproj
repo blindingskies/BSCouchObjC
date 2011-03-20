@@ -343,7 +343,6 @@
 				65D37EDB12D7718A00496EE1 /* Resources */,
 				65D37F8412D7850700496EE1 /* Frameworks */,
 				65D37EC612D7712300496EE1 /* Products */,
-				65992EE012EDAE3600D96EB1 /* CoreGraphics.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -400,6 +399,7 @@
 			children = (
 				65AA2FA013326ADF0004DFEF /* libASIHTTPRequest.a */,
 				65AA2FA113326ADF0004DFEF /* libjson.a */,
+				65992EE012EDAE3600D96EB1 /* CoreGraphics.framework */,
 				657955AA1333947D00B74BA9 /* JSON.framework */,
 				65AA2F9E13326AB80004DFEF /* ASIHTTPRequest.framework */,
 				65AEB60A12DDCF510074F47A /* Mac */,
