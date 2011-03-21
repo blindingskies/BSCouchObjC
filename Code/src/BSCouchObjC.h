@@ -21,13 +21,6 @@
 #define COUCH_VIEW_SLOW            @"_slow_view"
 #define COUCH_VIEW_ALL             @"_all_docs"
 
-#if TARGET_OS_MAC && !(TARGET_OS_IPHONE || TARGET_OS_EMBEDDED)
-
-// OS X only headers
-#import "JSON.h"
-#import "ASIHTTPRequestFramework.h"
-
-#else
 
 // iOS only headers
 #import "SBJsonParser.h"
@@ -37,20 +30,23 @@
 #import "SBJsonStreamParserAdapter.h"
 #import "NSObject+JSON.h"
 
-#import "../vendor/asi-http-request/Classes/ASIHTTPRequestConfig.h"
-#import "../vendor/asi-http-request/Classes/ASIHTTPRequestDelegate.h"
-#import "../vendor/asi-http-request/Classes/ASIProgressDelegate.h"
-#import "../vendor/asi-http-request/Classes/ASICacheDelegate.h"
-#import "../vendor/asi-http-request/Classes/ASIHTTPRequest.h"
-#import "../vendor/asi-http-request/Classes/ASIDataCompressor.h"
-#import "../vendor/asi-http-request/Classes/ASIDataDecompressor.h"
-#import "../vendor/asi-http-request/Classes/ASIFormDataRequest.h"
-#import "../vendor/asi-http-request/Classes/ASIInputStream.h"
-#import "../vendor/asi-http-request/Classes/ASIFormDataRequest.h"
-#import "../vendor/asi-http-request/Classes/ASINetworkQueue.h"
-#import "../vendor/asi-http-request/Classes/ASIDownloadCache.h"
-#import "../vendor/asi-http-request/Classes/ASIAuthenticationDialog.h"
-#import "../vendor/asi-http-request/External/Reachability/Reachability.h"
+#import "ASIHTTPRequestConfig.h"
+#import "ASIHTTPRequestDelegate.h"
+#import "ASIProgressDelegate.h"
+#import "ASICacheDelegate.h"
+#import "ASIHTTPRequest.h"
+#import "ASIDataCompressor.h"
+#import "ASIDataDecompressor.h"
+#import "ASIFormDataRequest.h"
+#import "ASIInputStream.h"
+#import "ASIFormDataRequest.h"
+#import "ASINetworkQueue.h"
+#import "ASIDownloadCache.h"
+
+#if TARGET_OS_MAC && (TARGET_OS_IPHONE || TARGET_OS_EMBEDDED)
+
+#import "ASIAuthenticationDialog.h"
+#import "Reachability.h"
 
 #endif
 
