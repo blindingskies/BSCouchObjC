@@ -27,82 +27,6 @@
 		652141C312E32FC100AF1837 /* BSCouchDBChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 652141C112E32FC100AF1837 /* BSCouchDBChange.m */; };
 		652141C412E32FC100AF1837 /* BSCouchDBChange.h in Headers */ = {isa = PBXBuildFile; fileRef = 652141C012E32FC100AF1837 /* BSCouchDBChange.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		652141C512E32FC100AF1837 /* BSCouchDBChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 652141C112E32FC100AF1837 /* BSCouchDBChange.m */; };
-		652D60441337BE000071044A /* NSObject+JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D60321337BE000071044A /* NSObject+JSON.h */; };
-		652D60451337BE000071044A /* NSObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D60331337BE000071044A /* NSObject+JSON.m */; };
-		652D60461337BE000071044A /* SBJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D60341337BE000071044A /* SBJsonParser.h */; };
-		652D60471337BE000071044A /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D60351337BE000071044A /* SBJsonParser.m */; };
-		652D60481337BE000071044A /* SBJsonStreamParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D60361337BE000071044A /* SBJsonStreamParser.h */; };
-		652D60491337BE000071044A /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D60371337BE000071044A /* SBJsonStreamParser.m */; };
-		652D604A1337BE000071044A /* SBJsonStreamParserAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D60381337BE000071044A /* SBJsonStreamParserAdapter.h */; };
-		652D604B1337BE000071044A /* SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D60391337BE000071044A /* SBJsonStreamParserAdapter.m */; };
-		652D604C1337BE000071044A /* SBJsonStreamParserState.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D603A1337BE000071044A /* SBJsonStreamParserState.h */; };
-		652D604D1337BE000071044A /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D603B1337BE000071044A /* SBJsonStreamParserState.m */; };
-		652D604E1337BE000071044A /* SBJsonStreamWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D603C1337BE000071044A /* SBJsonStreamWriter.h */; };
-		652D604F1337BE000071044A /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D603D1337BE000071044A /* SBJsonStreamWriter.m */; };
-		652D60501337BE000071044A /* SBJsonStreamWriterState.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D603E1337BE000071044A /* SBJsonStreamWriterState.h */; };
-		652D60511337BE000071044A /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D603F1337BE000071044A /* SBJsonStreamWriterState.m */; };
-		652D60521337BE000071044A /* SBJsonTokeniser.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D60401337BE000071044A /* SBJsonTokeniser.h */; };
-		652D60531337BE000071044A /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D60411337BE000071044A /* SBJsonTokeniser.m */; };
-		652D60541337BE000071044A /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D60421337BE000071044A /* SBJsonWriter.h */; };
-		652D60551337BE000071044A /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D60431337BE000071044A /* SBJsonWriter.m */; };
-		652D60561337BE000071044A /* NSObject+JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D60321337BE000071044A /* NSObject+JSON.h */; };
-		652D60571337BE000071044A /* NSObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D60331337BE000071044A /* NSObject+JSON.m */; };
-		652D60581337BE000071044A /* SBJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D60341337BE000071044A /* SBJsonParser.h */; };
-		652D60591337BE000071044A /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D60351337BE000071044A /* SBJsonParser.m */; };
-		652D605A1337BE000071044A /* SBJsonStreamParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D60361337BE000071044A /* SBJsonStreamParser.h */; };
-		652D605B1337BE000071044A /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D60371337BE000071044A /* SBJsonStreamParser.m */; };
-		652D605C1337BE000071044A /* SBJsonStreamParserAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D60381337BE000071044A /* SBJsonStreamParserAdapter.h */; };
-		652D605D1337BE000071044A /* SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D60391337BE000071044A /* SBJsonStreamParserAdapter.m */; };
-		652D605E1337BE000071044A /* SBJsonStreamParserState.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D603A1337BE000071044A /* SBJsonStreamParserState.h */; };
-		652D605F1337BE000071044A /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D603B1337BE000071044A /* SBJsonStreamParserState.m */; };
-		652D60601337BE000071044A /* SBJsonStreamWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D603C1337BE000071044A /* SBJsonStreamWriter.h */; };
-		652D60611337BE000071044A /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D603D1337BE000071044A /* SBJsonStreamWriter.m */; };
-		652D60621337BE000071044A /* SBJsonStreamWriterState.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D603E1337BE000071044A /* SBJsonStreamWriterState.h */; };
-		652D60631337BE000071044A /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D603F1337BE000071044A /* SBJsonStreamWriterState.m */; };
-		652D60641337BE000071044A /* SBJsonTokeniser.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D60401337BE000071044A /* SBJsonTokeniser.h */; };
-		652D60651337BE000071044A /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D60411337BE000071044A /* SBJsonTokeniser.m */; };
-		652D60661337BE000071044A /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D60421337BE000071044A /* SBJsonWriter.h */; };
-		652D60671337BE000071044A /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D60431337BE000071044A /* SBJsonWriter.m */; };
-		652D607B1337BE7B0071044A /* ASICacheDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D60691337BE7B0071044A /* ASICacheDelegate.h */; };
-		652D607C1337BE7B0071044A /* ASIDataCompressor.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D606A1337BE7B0071044A /* ASIDataCompressor.h */; };
-		652D607D1337BE7B0071044A /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D606B1337BE7B0071044A /* ASIDataCompressor.m */; };
-		652D607E1337BE7B0071044A /* ASIDataDecompressor.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D606C1337BE7B0071044A /* ASIDataDecompressor.h */; };
-		652D607F1337BE7B0071044A /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D606D1337BE7B0071044A /* ASIDataDecompressor.m */; };
-		652D60801337BE7B0071044A /* ASIDownloadCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D606E1337BE7B0071044A /* ASIDownloadCache.h */; };
-		652D60811337BE7B0071044A /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D606F1337BE7B0071044A /* ASIDownloadCache.m */; };
-		652D60821337BE7B0071044A /* ASIFormDataRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D60701337BE7B0071044A /* ASIFormDataRequest.h */; };
-		652D60831337BE7B0071044A /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D60711337BE7B0071044A /* ASIFormDataRequest.m */; };
-		652D60841337BE7B0071044A /* ASIHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D60721337BE7B0071044A /* ASIHTTPRequest.h */; };
-		652D60851337BE7B0071044A /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D60731337BE7B0071044A /* ASIHTTPRequest.m */; };
-		652D60861337BE7B0071044A /* ASIHTTPRequestConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D60741337BE7B0071044A /* ASIHTTPRequestConfig.h */; };
-		652D60871337BE7B0071044A /* ASIHTTPRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D60751337BE7B0071044A /* ASIHTTPRequestDelegate.h */; };
-		652D60881337BE7B0071044A /* ASIInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D60761337BE7B0071044A /* ASIInputStream.h */; };
-		652D60891337BE7B0071044A /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D60771337BE7B0071044A /* ASIInputStream.m */; };
-		652D608A1337BE7B0071044A /* ASINetworkQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D60781337BE7B0071044A /* ASINetworkQueue.h */; };
-		652D608B1337BE7B0071044A /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D60791337BE7B0071044A /* ASINetworkQueue.m */; };
-		652D608C1337BE7B0071044A /* ASIProgressDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D607A1337BE7B0071044A /* ASIProgressDelegate.h */; };
-		652D608D1337BE7B0071044A /* ASICacheDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D60691337BE7B0071044A /* ASICacheDelegate.h */; };
-		652D608E1337BE7B0071044A /* ASIDataCompressor.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D606A1337BE7B0071044A /* ASIDataCompressor.h */; };
-		652D608F1337BE7B0071044A /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D606B1337BE7B0071044A /* ASIDataCompressor.m */; };
-		652D60901337BE7B0071044A /* ASIDataDecompressor.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D606C1337BE7B0071044A /* ASIDataDecompressor.h */; };
-		652D60911337BE7B0071044A /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D606D1337BE7B0071044A /* ASIDataDecompressor.m */; };
-		652D60921337BE7B0071044A /* ASIDownloadCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D606E1337BE7B0071044A /* ASIDownloadCache.h */; };
-		652D60931337BE7B0071044A /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D606F1337BE7B0071044A /* ASIDownloadCache.m */; };
-		652D60941337BE7B0071044A /* ASIFormDataRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D60701337BE7B0071044A /* ASIFormDataRequest.h */; };
-		652D60951337BE7B0071044A /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D60711337BE7B0071044A /* ASIFormDataRequest.m */; };
-		652D60961337BE7B0071044A /* ASIHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D60721337BE7B0071044A /* ASIHTTPRequest.h */; };
-		652D60971337BE7B0071044A /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D60731337BE7B0071044A /* ASIHTTPRequest.m */; };
-		652D60981337BE7B0071044A /* ASIHTTPRequestConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D60741337BE7B0071044A /* ASIHTTPRequestConfig.h */; };
-		652D60991337BE7B0071044A /* ASIHTTPRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D60751337BE7B0071044A /* ASIHTTPRequestDelegate.h */; };
-		652D609A1337BE7B0071044A /* ASIInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D60761337BE7B0071044A /* ASIInputStream.h */; };
-		652D609B1337BE7B0071044A /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D60771337BE7B0071044A /* ASIInputStream.m */; };
-		652D609C1337BE7B0071044A /* ASINetworkQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D60781337BE7B0071044A /* ASINetworkQueue.h */; };
-		652D609D1337BE7B0071044A /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D60791337BE7B0071044A /* ASINetworkQueue.m */; };
-		652D609E1337BE7B0071044A /* ASIProgressDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D607A1337BE7B0071044A /* ASIProgressDelegate.h */; };
-		652D60A31337BEA70071044A /* ASIAuthenticationDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D60A11337BEA70071044A /* ASIAuthenticationDialog.h */; };
-		652D60A41337BEA70071044A /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D60A21337BEA70071044A /* ASIAuthenticationDialog.m */; };
-		652D60A71337BEB70071044A /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D60A51337BEB70071044A /* Reachability.h */; };
-		652D60A81337BEB70071044A /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D60A61337BEB70071044A /* Reachability.m */; };
 		652D60BB1337C02D0071044A /* GHUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 652D60BA1337C02D0071044A /* GHUnit.framework */; };
 		6558467412DC8A2D005A81CA /* BSCouchDBDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 6558467212DC8A2D005A81CA /* BSCouchDBDocument.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6558467512DC8A2D005A81CA /* BSCouchDBDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 6558467312DC8A2D005A81CA /* BSCouchDBDocument.m */; };
@@ -551,26 +475,6 @@
 				651E94C912FB701400ABA100 /* BSCouchDBDesignDocument.h in Headers */,
 				651E952612FC165B00ABA100 /* BSCouchDBView.h in Headers */,
 				651E955E12FC1A9C00ABA100 /* BSCouchDBQueryOptions.h in Headers */,
-				652D60441337BE000071044A /* NSObject+JSON.h in Headers */,
-				652D60461337BE000071044A /* SBJsonParser.h in Headers */,
-				652D60481337BE000071044A /* SBJsonStreamParser.h in Headers */,
-				652D604A1337BE000071044A /* SBJsonStreamParserAdapter.h in Headers */,
-				652D604C1337BE000071044A /* SBJsonStreamParserState.h in Headers */,
-				652D604E1337BE000071044A /* SBJsonStreamWriter.h in Headers */,
-				652D60501337BE000071044A /* SBJsonStreamWriterState.h in Headers */,
-				652D60521337BE000071044A /* SBJsonTokeniser.h in Headers */,
-				652D60541337BE000071044A /* SBJsonWriter.h in Headers */,
-				652D607B1337BE7B0071044A /* ASICacheDelegate.h in Headers */,
-				652D607C1337BE7B0071044A /* ASIDataCompressor.h in Headers */,
-				652D607E1337BE7B0071044A /* ASIDataDecompressor.h in Headers */,
-				652D60801337BE7B0071044A /* ASIDownloadCache.h in Headers */,
-				652D60821337BE7B0071044A /* ASIFormDataRequest.h in Headers */,
-				652D60841337BE7B0071044A /* ASIHTTPRequest.h in Headers */,
-				652D60861337BE7B0071044A /* ASIHTTPRequestConfig.h in Headers */,
-				652D60871337BE7B0071044A /* ASIHTTPRequestDelegate.h in Headers */,
-				652D60881337BE7B0071044A /* ASIInputStream.h in Headers */,
-				652D608A1337BE7B0071044A /* ASINetworkQueue.h in Headers */,
-				652D608C1337BE7B0071044A /* ASIProgressDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -590,28 +494,6 @@
 				651E94C712FB701400ABA100 /* BSCouchDBDesignDocument.h in Headers */,
 				651E952412FC165B00ABA100 /* BSCouchDBView.h in Headers */,
 				651E955C12FC1A9C00ABA100 /* BSCouchDBQueryOptions.h in Headers */,
-				652D60561337BE000071044A /* NSObject+JSON.h in Headers */,
-				652D60581337BE000071044A /* SBJsonParser.h in Headers */,
-				652D605A1337BE000071044A /* SBJsonStreamParser.h in Headers */,
-				652D605C1337BE000071044A /* SBJsonStreamParserAdapter.h in Headers */,
-				652D605E1337BE000071044A /* SBJsonStreamParserState.h in Headers */,
-				652D60601337BE000071044A /* SBJsonStreamWriter.h in Headers */,
-				652D60621337BE000071044A /* SBJsonStreamWriterState.h in Headers */,
-				652D60641337BE000071044A /* SBJsonTokeniser.h in Headers */,
-				652D60661337BE000071044A /* SBJsonWriter.h in Headers */,
-				652D608D1337BE7B0071044A /* ASICacheDelegate.h in Headers */,
-				652D608E1337BE7B0071044A /* ASIDataCompressor.h in Headers */,
-				652D60901337BE7B0071044A /* ASIDataDecompressor.h in Headers */,
-				652D60921337BE7B0071044A /* ASIDownloadCache.h in Headers */,
-				652D60941337BE7B0071044A /* ASIFormDataRequest.h in Headers */,
-				652D60961337BE7B0071044A /* ASIHTTPRequest.h in Headers */,
-				652D60981337BE7B0071044A /* ASIHTTPRequestConfig.h in Headers */,
-				652D60991337BE7B0071044A /* ASIHTTPRequestDelegate.h in Headers */,
-				652D609A1337BE7B0071044A /* ASIInputStream.h in Headers */,
-				652D609C1337BE7B0071044A /* ASINetworkQueue.h in Headers */,
-				652D609E1337BE7B0071044A /* ASIProgressDelegate.h in Headers */,
-				652D60A31337BEA70071044A /* ASIAuthenticationDialog.h in Headers */,
-				652D60A71337BEB70071044A /* Reachability.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -774,22 +656,6 @@
 				651E94CA12FB701400ABA100 /* BSCouchDBDesignDocument.m in Sources */,
 				651E952712FC165B00ABA100 /* BSCouchDBView.m in Sources */,
 				651E955F12FC1A9C00ABA100 /* BSCouchDBQueryOptions.m in Sources */,
-				652D60451337BE000071044A /* NSObject+JSON.m in Sources */,
-				652D60471337BE000071044A /* SBJsonParser.m in Sources */,
-				652D60491337BE000071044A /* SBJsonStreamParser.m in Sources */,
-				652D604B1337BE000071044A /* SBJsonStreamParserAdapter.m in Sources */,
-				652D604D1337BE000071044A /* SBJsonStreamParserState.m in Sources */,
-				652D604F1337BE000071044A /* SBJsonStreamWriter.m in Sources */,
-				652D60511337BE000071044A /* SBJsonStreamWriterState.m in Sources */,
-				652D60531337BE000071044A /* SBJsonTokeniser.m in Sources */,
-				652D60551337BE000071044A /* SBJsonWriter.m in Sources */,
-				652D607D1337BE7B0071044A /* ASIDataCompressor.m in Sources */,
-				652D607F1337BE7B0071044A /* ASIDataDecompressor.m in Sources */,
-				652D60811337BE7B0071044A /* ASIDownloadCache.m in Sources */,
-				652D60831337BE7B0071044A /* ASIFormDataRequest.m in Sources */,
-				652D60851337BE7B0071044A /* ASIHTTPRequest.m in Sources */,
-				652D60891337BE7B0071044A /* ASIInputStream.m in Sources */,
-				652D608B1337BE7B0071044A /* ASINetworkQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -807,24 +673,6 @@
 				651E94C812FB701400ABA100 /* BSCouchDBDesignDocument.m in Sources */,
 				651E952512FC165B00ABA100 /* BSCouchDBView.m in Sources */,
 				651E955D12FC1A9C00ABA100 /* BSCouchDBQueryOptions.m in Sources */,
-				652D60571337BE000071044A /* NSObject+JSON.m in Sources */,
-				652D60591337BE000071044A /* SBJsonParser.m in Sources */,
-				652D605B1337BE000071044A /* SBJsonStreamParser.m in Sources */,
-				652D605D1337BE000071044A /* SBJsonStreamParserAdapter.m in Sources */,
-				652D605F1337BE000071044A /* SBJsonStreamParserState.m in Sources */,
-				652D60611337BE000071044A /* SBJsonStreamWriter.m in Sources */,
-				652D60631337BE000071044A /* SBJsonStreamWriterState.m in Sources */,
-				652D60651337BE000071044A /* SBJsonTokeniser.m in Sources */,
-				652D60671337BE000071044A /* SBJsonWriter.m in Sources */,
-				652D608F1337BE7B0071044A /* ASIDataCompressor.m in Sources */,
-				652D60911337BE7B0071044A /* ASIDataDecompressor.m in Sources */,
-				652D60931337BE7B0071044A /* ASIDownloadCache.m in Sources */,
-				652D60951337BE7B0071044A /* ASIFormDataRequest.m in Sources */,
-				652D60971337BE7B0071044A /* ASIHTTPRequest.m in Sources */,
-				652D609B1337BE7B0071044A /* ASIInputStream.m in Sources */,
-				652D609D1337BE7B0071044A /* ASINetworkQueue.m in Sources */,
-				652D60A41337BEA70071044A /* ASIAuthenticationDialog.m in Sources */,
-				652D60A81337BEB70071044A /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
