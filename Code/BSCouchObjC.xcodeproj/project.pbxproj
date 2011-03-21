@@ -46,8 +46,6 @@
 		65992EDD12EDADDD00D96EB1 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 65992D0612EC8FB800D96EB1 /* libz.dylib */; };
 		65992EE112EDAE3600D96EB1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65992EE012EDAE3600D96EB1 /* CoreGraphics.framework */; };
 		65AA2F9F13326AB80004DFEF /* ASIHTTPRequest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AA2F9E13326AB80004DFEF /* ASIHTTPRequest.framework */; };
-		65AA2FA213326ADF0004DFEF /* libASIHTTPRequest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AA2FA013326ADF0004DFEF /* libASIHTTPRequest.a */; };
-		65AA2FA313326ADF0004DFEF /* libjson.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AA2FA113326ADF0004DFEF /* libjson.a */; };
 		65AEB56712DDC61E0074F47A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AEB56612DDC61E0074F47A /* Foundation.framework */; };
 		65AEB56912DDC61E0074F47A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AEB56812DDC61E0074F47A /* UIKit.framework */; };
 		65AEB56C12DDC9360074F47A /* GHUnitIOSTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AEB56B12DDC9360074F47A /* GHUnitIOSTestMain.m */; };
@@ -56,7 +54,7 @@
 		65AEB58712DDCAA40074F47A /* ServerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D3809C12D7A77300496EE1 /* ServerTest.m */; };
 		65AEB58812DDCAA40074F47A /* DatabaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6508D70A12DCB2A80017FCE6 /* DatabaseTest.m */; };
 		65AEB5C512DDCC030074F47A /* libBSCouchObjC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D37FA612D7862F00496EE1 /* libBSCouchObjC.a */; };
-		65AEB5E212DDCECD0074F47A /* BSCouchObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D37EC512D7712300496EE1 /* BSCouchObjC.framework */; };
+		65AEB5E212DDCECD0074F47A /* BSCouchObjC in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D37EC512D7712300496EE1 /* BSCouchObjC */; };
 		65AEB61212DDCF960074F47A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AEB61112DDCF960074F47A /* SystemConfiguration.framework */; };
 		65AEB82612DDF19F0074F47A /* BSCouchDBServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D37EE712D771F800496EE1 /* BSCouchDBServer.h */; };
 		65AEB82712DDF19F0074F47A /* BSCouchDBDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D37EE512D771F800496EE1 /* BSCouchDBDatabase.h */; };
@@ -68,6 +66,10 @@
 		65AEB97112DE0B890074F47A /* BSCouchDBReplicationResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AEB96F12DE0B890074F47A /* BSCouchDBReplicationResponse.m */; };
 		65AEB97212DE0B890074F47A /* BSCouchDBReplicationResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 65AEB96E12DE0B890074F47A /* BSCouchDBReplicationResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65AEB97312DE0B890074F47A /* BSCouchDBReplicationResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AEB96F12DE0B890074F47A /* BSCouchDBReplicationResponse.m */; };
+		65BF5AF51337A5890060E4B6 /* JSON.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 657955A3133393FF00B74BA9 /* JSON.framework */; };
+		65BF5AF61337A5890060E4B6 /* ASIHTTPRequest.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 65AA2F9913326A490004DFEF /* ASIHTTPRequest.framework */; };
+		65BF5B221337A92B0060E4B6 /* libJSON.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 657955A5133393FF00B74BA9 /* libJSON.a */; };
+		65BF5B231337A92B0060E4B6 /* libASIHTTPRequest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AA2F9713326A490004DFEF /* libASIHTTPRequest.a */; };
 		65D37EE912D771F800496EE1 /* BSCouchDBDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D37EE512D771F800496EE1 /* BSCouchDBDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65D37EEA12D771F800496EE1 /* BSCouchDBDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D37EE612D771F800496EE1 /* BSCouchDBDatabase.m */; };
 		65D37EEB12D771F800496EE1 /* BSCouchDBServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D37EE712D771F800496EE1 /* BSCouchDBServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -78,7 +80,6 @@
 		65D37FB812D786BF00496EE1 /* BSCouchObjC_prefix.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D37FB712D786BF00496EE1 /* BSCouchObjC_prefix.h */; };
 		65D37FB912D786BF00496EE1 /* BSCouchObjC_prefix.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D37FB712D786BF00496EE1 /* BSCouchObjC_prefix.h */; };
 		65D3800312D791B100496EE1 /* GHUnitTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D3800212D791B100496EE1 /* GHUnitTestMain.m */; };
-		65D3808C12D7A0AE00496EE1 /* GHUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D3807712D79FC600496EE1 /* GHUnit.framework */; };
 		65D3809D12D7A77300496EE1 /* ServerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D3809C12D7A77300496EE1 /* ServerTest.m */; };
 		65D3809F12D7A7AF00496EE1 /* BSCouchObjC.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D3809E12D7A7AF00496EE1 /* BSCouchObjC.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65D380A012D7A7AF00496EE1 /* BSCouchObjC.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D3809E12D7A7AF00496EE1 /* BSCouchObjC.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -164,6 +165,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				65BF5AF51337A5890060E4B6 /* JSON.framework in CopyFiles */,
+				65BF5AF61337A5890060E4B6 /* ASIHTTPRequest.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,7 +221,7 @@
 		65AEB8EB12DE02210074F47A /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
 		65AEB96E12DE0B890074F47A /* BSCouchDBReplicationResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCouchDBReplicationResponse.h; sourceTree = "<group>"; };
 		65AEB96F12DE0B890074F47A /* BSCouchDBReplicationResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCouchDBReplicationResponse.m; sourceTree = "<group>"; };
-		65D37EC512D7712300496EE1 /* BSCouchObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BSCouchObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		65D37EC512D7712300496EE1 /* BSCouchObjC */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.framework; path = BSCouchObjC; sourceTree = BUILT_PRODUCTS_DIR; };
 		65D37EC712D7712300496EE1 /* BSCouchObjC-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BSCouchObjC-Info.plist"; sourceTree = "<group>"; };
 		65D37EE512D771F800496EE1 /* BSCouchDBDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCouchDBDatabase.h; sourceTree = "<group>"; };
 		65D37EE612D771F800496EE1 /* BSCouchDBDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCouchDBDatabase.m; sourceTree = "<group>"; };
@@ -240,8 +243,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65AA2FA213326ADF0004DFEF /* libASIHTTPRequest.a in Frameworks */,
-				65AA2FA313326ADF0004DFEF /* libjson.a in Frameworks */,
+				65BF5B221337A92B0060E4B6 /* libJSON.a in Frameworks */,
+				65BF5B231337A92B0060E4B6 /* libASIHTTPRequest.a in Frameworks */,
 				65AEB56712DDC61E0074F47A /* Foundation.framework in Frameworks */,
 				65AEB56912DDC61E0074F47A /* UIKit.framework in Frameworks */,
 				65AEB57B12DDC9E90074F47A /* GHUnit.framework in Frameworks */,
@@ -280,8 +283,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65D3808C12D7A0AE00496EE1 /* GHUnit.framework in Frameworks */,
-				65AEB5E212DDCECD0074F47A /* BSCouchObjC.framework in Frameworks */,
+				65AEB5E212DDCECD0074F47A /* BSCouchObjC in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,7 +351,7 @@
 		65D37EC612D7712300496EE1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				65D37EC512D7712300496EE1 /* BSCouchObjC.framework */,
+				65D37EC512D7712300496EE1 /* BSCouchObjC */,
 				65D37FA612D7862F00496EE1 /* libBSCouchObjC.a */,
 				65D37FE112D790A000496EE1 /* Mac OS X Tests.app */,
 				65AEB55E12DDC5870074F47A /* iOS Tests.app */,
@@ -504,11 +506,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 65D37ECA12D7712300496EE1 /* Build configuration list for PBXNativeTarget "BSCouchObjC" */;
 			buildPhases = (
+				65AEB3FE12DCFA2A0074F47A /* CopyFiles */,
 				65D37EC012D7712300496EE1 /* Headers */,
 				65D37EC112D7712300496EE1 /* Resources */,
 				65D37EC212D7712300496EE1 /* Sources */,
 				65D37EC312D7712300496EE1 /* Frameworks */,
-				65AEB3FE12DCFA2A0074F47A /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -518,7 +520,7 @@
 			);
 			name = BSCouchObjC;
 			productName = BSCouchObjC;
-			productReference = 65D37EC512D7712300496EE1 /* BSCouchObjC.framework */;
+			productReference = 65D37EC512D7712300496EE1 /* BSCouchObjC */;
 			productType = "com.apple.product-type.framework";
 		};
 		65D37FA512D7862F00496EE1 /* libBSCouchObjC */ = {
@@ -858,9 +860,8 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SRCROOT)/vendor/json-framework/build/$(BUILD_STYLE)\"",
-					"\"$(SRCROOT)/ASIHTTPRequest/build/$(BUILD_STYLE)\"",
-					"\"$(SRCROOT)/../../../../../../Library/Developer/Xcode/DerivedData/BSCouchObjC-etxuswbuucajwogkvcjljiwrehve/Build/Products/Debug\"",
+					"\"$(SRCROOT)/vendor/json-framework/JSON/build/$(BUILD_STYLE)\"",
+					"\"$(SRCROOT)/vendor/asi-http-request/build/$(BUILD_STYLE)\"",
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -870,7 +871,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "BSCouchObjC-Info.plist";
 				INSTALL_PATH = "@rpath";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -892,9 +893,8 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SRCROOT)/vendor/json-framework/build/$(BUILD_STYLE)\"",
-					"\"$(SRCROOT)/ASIHTTPRequest/build/$(BUILD_STYLE)\"",
-					"\"$(SRCROOT)/../../../../../../Library/Developer/Xcode/DerivedData/BSCouchObjC-etxuswbuucajwogkvcjljiwrehve/Build/Products/Debug\"",
+					"\"$(SRCROOT)/vendor/json-framework/JSON/build/$(BUILD_STYLE)\"",
+					"\"$(SRCROOT)/vendor/asi-http-request/build/$(BUILD_STYLE)\"",
 				);
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
@@ -902,7 +902,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "BSCouchObjC-Info.plist";
 				INSTALL_PATH = "@rpath";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -968,7 +968,11 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/vendor/json-framework/build/$(BUILD_STYLE)/Headers\"";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/vendor/asi-http-request/Classes/\"",
+					"\"$(SRCROOT)/vendor/asi-http-request/External/Reachability/\"",
+					"\"$(SRCROOT)/vendor/json-framework/Classes/\"",
+				);
 				INFOPLIST_FILE = "Mac OS X Tests-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @loader_path/../Frameworks";
@@ -998,7 +1002,11 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/vendor/json-framework/build/$(BUILD_STYLE)/Headers\"";
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/vendor/asi-http-request/Classes/\"",
+					"\"$(SRCROOT)/vendor/asi-http-request/External/Reachability/\"",
+					"\"$(SRCROOT)/vendor/json-framework/Classes/\"",
+				);
 				INFOPLIST_FILE = "Mac OS X Tests-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @loader_path/../Frameworks";

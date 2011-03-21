@@ -24,8 +24,8 @@
 #if TARGET_OS_MAC && !(TARGET_OS_IPHONE || TARGET_OS_EMBEDDED)
 
 // OS X only headers
-#import <JSON/JSON.h>
-#import <ASIHTTPRequest/ASIHTTPRequestFramework.h>
+#import "JSON.h"
+#import "ASIHTTPRequestFramework.h"
 
 #else
 
