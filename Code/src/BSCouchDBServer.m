@@ -140,7 +140,7 @@ NSString *percentEscape(NSString *str) {
 - (NSString *)sendSynchronousRequest:(ASIHTTPRequest *)request {
 	
 	// Set credentials
-	if (NO && self.cookies) {
+	if (self.cookies) {
 		[request setRequestCookies:self.cookies];
 	} else if (self.login && self.password) {
 		request.username = self.login;
@@ -150,7 +150,6 @@ NSString *percentEscape(NSString *str) {
 	[request startSynchronous];
 	NSError *error = [request error];
 	if (error) {
-		NSLog(@"url: %@",[request.url absoluteString]);		
 		NSLog(@"response string: %@",[request responseString]);		
 		NSLog(@"Error: %@", [error userInfo]); 
 		NSLog(@"There is totally an error here");
@@ -174,8 +173,9 @@ NSString *percentEscape(NSString *str) {
 
 {
 	// Set credentials
-	[request setValidatesSecureCertificate:NO];
-	if (self.login && self.password) {
+	if (self.cookies) {
+		[request setRequestCookies:self.cookies];
+	} else if (self.login && self.password) {
 		request.username = self.login;
 		request.password = self.password;
 	}
@@ -190,8 +190,9 @@ NSString *percentEscape(NSString *str) {
 
 {
 	// Set credentials
-	[request setValidatesSecureCertificate:NO];
-	if (self.login && self.password) {
+	if (self.cookies) {
+		[request setRequestCookies:self.cookies];
+	} else if (self.login && self.password) {
 		request.username = self.login;
 		request.password = self.password;
 	}
