@@ -9,11 +9,14 @@
 @class BSCouchDBServer;
 @class BSCouchDBDocument;
 @class BSCouchDBResponse;
+@class BSCouchDBDatabaseRequestDelegate;
+@protocol BSCouchDBDatabaseDelegate;
 
 @interface BSCouchDBDatabase : NSObject {
 @private
 	BSCouchDBServer *server;
 	NSString *name;
+	NSMutableSet *requestDelegates;
 }
 
 @property (nonatomic, readwrite, retain) BSCouchDBServer *server;
@@ -40,8 +43,11 @@
 
 #pragma mark GET Methods
 
-// General purpose get function.
+// General purpose synchronous get function.
 - (NSDictionary *)get:(NSString *)argument;
+
+// General purpose asynchronous get function
+- (void)get:(NSString *)argument delegate:(id <BSCouchDBDatabaseDelegate>)delegate;
 
 // Get a specific (named) document, with either all revision strings, or a specific revision (or the latest) or both.
 - (BSCouchDBDocument *)getDocument:(NSString *)documentId withRevisions:(BOOL)withRevs revision:(NSString *)revisionOrNil;
@@ -74,5 +80,13 @@
 // that pass the given filter, which is a string such as
 // "{design document name}/{filter name}[&{query key}={query value}]"
 - (NSArray *)changesSince:(NSUInteger)lastSequence filter:(NSString *)filter;
+
+
+#pragma mark Miscellancy
+
+// Manage the request delegate
+- (void)addRequestDelegate:(BSCouchDBDatabaseRequestDelegate *)obj;
+- (void)removeRequestDelegate:(BSCouchDBDatabaseRequestDelegate *)obj;
+
 
 @end

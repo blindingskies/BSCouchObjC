@@ -7,6 +7,7 @@
 //
 
 #import "BSCouchDBDatabase.h"
+#import "BSCouchDBDatabaseRequestDelegate.h"
 #import "BSCouchObjC.h"
 
 #pragma mark Functions
@@ -26,7 +27,6 @@
 
 @synthesize server;
 @synthesize name;
-
 @dynamic url;
 
 - (id)initWithServer:(BSCouchDBServer *)_server name:(NSString *)_name {
@@ -35,6 +35,7 @@
 	if (self) {
 		self.server = _server;
 		self.name = _name;
+		requestDelegates = [[NSMutableSet alloc] init];
 	}
 	return self;
 }
@@ -42,6 +43,7 @@
 - (void)dealloc {
 	self.server = nil; [server release];
 	self.name = nil; [name release];
+	[requestDelegates release];
 	[super dealloc];
 }
 
@@ -88,6 +90,7 @@
 	return [NSURL URLWithString:[percentEscape(self.name) stringByAppendingString:@"/"] relativeToURL:self.server.url];
 }
 
+#pragma mark -
 #pragma mark URLs and paths
 
 // Return an authenticated URL if the Server has the credentials
@@ -101,21 +104,13 @@
 
 
 #pragma mark -
-#pragma mark Private methods
-
-- (ASIHTTPRequest *)requestWithPath:(NSString *)aPath {
-    NSURL *aUrl = self.url;
-    if (aPath && ![aPath isEqualToString:@"/"])
-        aUrl = [NSURL URLWithString:aPath relativeToURL:self.url];
-    return [ASIHTTPRequest requestWithURL:aUrl];		
-}
-
-#pragma mark -
 #pragma mark GET Methods
 
 
 /**
- Use this method to query the database however you want
+ Use this method to query the database however you want, but don't call this on
+ the main thread, and ideally don't call it at all and use the async method 
+ below.
  */
 - (NSDictionary *)get:(NSString *)argument {
 	// Create a request
@@ -126,6 +121,31 @@
 		return [json JSONValue];
 	}
 	return nil;
+}
+
+// General purpose asynchronous get function
+- (void)get:(NSString *)argument delegate:(id <BSCouchDBDatabaseDelegate>)delegate {
+	
+	// Create a request
+	ASIHTTPRequest *aRequest = [self requestWithPath:percentEscape(argument)];
+	
+	// Create an ASIHTTPRequestDelegate instance
+	BSCouchDBDatabaseRequestDelegate *requestDelegate = [[BSCouchDBDatabaseRequestDelegate alloc] initWithDatabase:self delegate:delegate returnType:kBSCouchDBDatabaseRequestDictionaryType];
+		
+	// We need to establish an owning relationship to this tmp delegate object
+	// because if we exit as is, then we'll be leaking memory. However, if we
+	// auto/release the delegate, then it'll be deallocated because nothing is
+	// retaining it. Therefore, we hold a reference to it in the database, and
+	// when the ASIHTTPRequestDelegate methods fire, we will remove it, and 
+	// therefore release it.
+	
+	[self addRequestDelegate:requestDelegate];
+	
+	// Call it on the server asynchronously
+	[self.server sendAsynchronousRequest:aRequest usingDelegate:requestDelegate];
+	
+	// Release the delegate object
+	[requestDelegate release];
 }
 
 
@@ -266,6 +286,8 @@
 }
 
 
+
+
 #pragma mark -
 #pragma mark CouchDB _changes api
 
@@ -295,6 +317,25 @@
 		[results addObject:change];
 	}
 	return results;
+}
+
+
+#pragma mark -
+#pragma mark Private methods
+
+- (ASIHTTPRequest *)requestWithPath:(NSString *)aPath {
+    NSURL *aUrl = self.url;
+    if (aPath && ![aPath isEqualToString:@"/"])
+        aUrl = [NSURL URLWithString:aPath relativeToURL:self.url];
+    return [ASIHTTPRequest requestWithURL:aUrl];		
+}
+
+- (void)addRequestDelegate:(BSCouchDBDatabaseRequestDelegate *)obj {
+	[requestDelegates addObject:obj];
+}
+
+- (void)removeRequestDelegate:(BSCouchDBDatabaseRequestDelegate *)obj {
+	[requestDelegates removeObject:obj];	
 }
 
 
