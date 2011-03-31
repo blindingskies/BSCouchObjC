@@ -21,8 +21,6 @@
 #define COUCH_VIEW_SLOW            @"_slow_view"
 #define COUCH_VIEW_ALL             @"_all_docs"
 
-
-// iOS only headers
 #import "SBJsonParser.h"
 #import "SBJsonWriter.h"
 #import "SBJsonStreamWriter.h"
@@ -57,6 +55,7 @@
 #import "BSCouchDBDesignDocument.h"
 #import "BSCouchDBResponse.h"
 #import "BSCouchDBReplicationResponse.h"
+#import "BSCouchDBDatabaseDelegate.h"
 
 
 

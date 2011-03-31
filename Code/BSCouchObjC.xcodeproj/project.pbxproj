@@ -9,6 +9,32 @@
 /* Begin PBXBuildFile section */
 		6508D70B12DCB2A80017FCE6 /* DatabaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6508D70A12DCB2A80017FCE6 /* DatabaseTest.m */; };
 		6508D71012DCBCF10017FCE6 /* DocumentTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6508D70F12DCBCF10017FCE6 /* DocumentTest.m */; };
+		651DA4691344933E00DC2DF9 /* BSCouchDBRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 651DA4671344933E00DC2DF9 /* BSCouchDBRequestDelegate.h */; };
+		651DA46A1344933E00DC2DF9 /* BSCouchDBRequestDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 651DA4681344933E00DC2DF9 /* BSCouchDBRequestDelegate.m */; };
+		651DA46B1344933E00DC2DF9 /* BSCouchDBRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 651DA4671344933E00DC2DF9 /* BSCouchDBRequestDelegate.h */; };
+		651DA46C1344933E00DC2DF9 /* BSCouchDBRequestDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 651DA4681344933E00DC2DF9 /* BSCouchDBRequestDelegate.m */; };
+		651DA4711344947100DC2DF9 /* BSCouchDBDatabaseRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 651DA46F1344947100DC2DF9 /* BSCouchDBDatabaseRequestDelegate.h */; };
+		651DA4721344947100DC2DF9 /* BSCouchDBDatabaseRequestDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 651DA4701344947100DC2DF9 /* BSCouchDBDatabaseRequestDelegate.m */; };
+		651DA4731344947100DC2DF9 /* BSCouchDBDatabaseRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 651DA46F1344947100DC2DF9 /* BSCouchDBDatabaseRequestDelegate.h */; };
+		651DA4741344947100DC2DF9 /* BSCouchDBDatabaseRequestDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 651DA4701344947100DC2DF9 /* BSCouchDBDatabaseRequestDelegate.m */; };
+		651DA476134494A100DC2DF9 /* BSCouchDBDatabaseDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 651DA475134494A100DC2DF9 /* BSCouchDBDatabaseDelegate.h */; };
+		651DA477134494A100DC2DF9 /* BSCouchDBDatabaseDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 651DA475134494A100DC2DF9 /* BSCouchDBDatabaseDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		651DA5251344A4F700DC2DF9 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D606B1337BE7B0071044A /* ASIDataCompressor.m */; };
+		651DA5261344A4F700DC2DF9 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D606D1337BE7B0071044A /* ASIDataDecompressor.m */; };
+		651DA5271344A4F700DC2DF9 /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D606F1337BE7B0071044A /* ASIDownloadCache.m */; };
+		651DA5281344A4F700DC2DF9 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D60711337BE7B0071044A /* ASIFormDataRequest.m */; };
+		651DA5291344A4F700DC2DF9 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D60731337BE7B0071044A /* ASIHTTPRequest.m */; };
+		651DA52A1344A4F700DC2DF9 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D60771337BE7B0071044A /* ASIInputStream.m */; };
+		651DA52B1344A4F700DC2DF9 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D60791337BE7B0071044A /* ASINetworkQueue.m */; };
+		651DA5381344A53200DC2DF9 /* NSObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D60331337BE000071044A /* NSObject+JSON.m */; };
+		651DA5391344A53200DC2DF9 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D60351337BE000071044A /* SBJsonParser.m */; };
+		651DA53A1344A53200DC2DF9 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D60371337BE000071044A /* SBJsonStreamParser.m */; };
+		651DA53B1344A53200DC2DF9 /* SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D60391337BE000071044A /* SBJsonStreamParserAdapter.m */; };
+		651DA53C1344A53200DC2DF9 /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D603B1337BE000071044A /* SBJsonStreamParserState.m */; };
+		651DA53D1344A53200DC2DF9 /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D603D1337BE000071044A /* SBJsonStreamWriter.m */; };
+		651DA53E1344A53200DC2DF9 /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D603F1337BE000071044A /* SBJsonStreamWriterState.m */; };
+		651DA53F1344A53200DC2DF9 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D60411337BE000071044A /* SBJsonTokeniser.m */; };
+		651DA5401344A53200DC2DF9 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D60431337BE000071044A /* SBJsonWriter.m */; };
 		651E94C712FB701400ABA100 /* BSCouchDBDesignDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 651E94C512FB701400ABA100 /* BSCouchDBDesignDocument.h */; };
 		651E94C812FB701400ABA100 /* BSCouchDBDesignDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 651E94C612FB701400ABA100 /* BSCouchDBDesignDocument.m */; };
 		651E94C912FB701400ABA100 /* BSCouchDBDesignDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 651E94C512FB701400ABA100 /* BSCouchDBDesignDocument.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -53,7 +79,7 @@
 		65AEB58712DDCAA40074F47A /* ServerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D3809C12D7A77300496EE1 /* ServerTest.m */; };
 		65AEB58812DDCAA40074F47A /* DatabaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6508D70A12DCB2A80017FCE6 /* DatabaseTest.m */; };
 		65AEB5C512DDCC030074F47A /* libBSCouchObjC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D37FA612D7862F00496EE1 /* libBSCouchObjC.a */; };
-		65AEB5E212DDCECD0074F47A /* BSCouchObjC in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D37EC512D7712300496EE1 /* BSCouchObjC */; };
+		65AEB5E212DDCECD0074F47A /* BSCouchObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D37EC512D7712300496EE1 /* BSCouchObjC.framework */; };
 		65AEB61212DDCF960074F47A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AEB61112DDCF960074F47A /* SystemConfiguration.framework */; };
 		65AEB82612DDF19F0074F47A /* BSCouchDBServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D37EE712D771F800496EE1 /* BSCouchDBServer.h */; };
 		65AEB82712DDF19F0074F47A /* BSCouchDBDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D37EE512D771F800496EE1 /* BSCouchDBDatabase.h */; };
@@ -121,6 +147,11 @@
 /* Begin PBXFileReference section */
 		6508D70A12DCB2A80017FCE6 /* DatabaseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DatabaseTest.m; path = "Unit Tests/DatabaseTest.m"; sourceTree = "<group>"; };
 		6508D70F12DCBCF10017FCE6 /* DocumentTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DocumentTest.m; path = "Unit Tests/DocumentTest.m"; sourceTree = "<group>"; };
+		651DA4671344933E00DC2DF9 /* BSCouchDBRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCouchDBRequestDelegate.h; sourceTree = "<group>"; };
+		651DA4681344933E00DC2DF9 /* BSCouchDBRequestDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCouchDBRequestDelegate.m; sourceTree = "<group>"; };
+		651DA46F1344947100DC2DF9 /* BSCouchDBDatabaseRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCouchDBDatabaseRequestDelegate.h; sourceTree = "<group>"; };
+		651DA4701344947100DC2DF9 /* BSCouchDBDatabaseRequestDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCouchDBDatabaseRequestDelegate.m; sourceTree = "<group>"; };
+		651DA475134494A100DC2DF9 /* BSCouchDBDatabaseDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCouchDBDatabaseDelegate.h; sourceTree = "<group>"; };
 		651E94C512FB701400ABA100 /* BSCouchDBDesignDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCouchDBDesignDocument.h; sourceTree = "<group>"; };
 		651E94C612FB701400ABA100 /* BSCouchDBDesignDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCouchDBDesignDocument.m; sourceTree = "<group>"; };
 		651E952212FC165B00ABA100 /* BSCouchDBView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCouchDBView.h; sourceTree = "<group>"; };
@@ -192,7 +223,7 @@
 		65AEB8EB12DE02210074F47A /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
 		65AEB96E12DE0B890074F47A /* BSCouchDBReplicationResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCouchDBReplicationResponse.h; sourceTree = "<group>"; };
 		65AEB96F12DE0B890074F47A /* BSCouchDBReplicationResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCouchDBReplicationResponse.m; sourceTree = "<group>"; };
-		65D37EC512D7712300496EE1 /* BSCouchObjC */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.framework; path = BSCouchObjC; sourceTree = BUILT_PRODUCTS_DIR; };
+		65D37EC512D7712300496EE1 /* BSCouchObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BSCouchObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65D37EC712D7712300496EE1 /* BSCouchObjC-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BSCouchObjC-Info.plist"; sourceTree = "<group>"; };
 		65D37EE512D771F800496EE1 /* BSCouchDBDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSCouchDBDatabase.h; sourceTree = "<group>"; };
 		65D37EE612D771F800496EE1 /* BSCouchDBDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSCouchDBDatabase.m; sourceTree = "<group>"; };
@@ -250,7 +281,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65AEB5E212DDCECD0074F47A /* BSCouchObjC in Frameworks */,
+				65AEB5E212DDCECD0074F47A /* BSCouchObjC.framework in Frameworks */,
 				652D60BB1337C02D0071044A /* GHUnit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -371,7 +402,7 @@
 		65D37EC612D7712300496EE1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				65D37EC512D7712300496EE1 /* BSCouchObjC */,
+				65D37EC512D7712300496EE1 /* BSCouchObjC.framework */,
 				65D37FA612D7862F00496EE1 /* libBSCouchObjC.a */,
 				65D37FE112D790A000496EE1 /* Mac OS X Tests.app */,
 				65AEB55E12DDC5870074F47A /* iOS Tests.app */,
@@ -412,6 +443,11 @@
 				651E952312FC165B00ABA100 /* BSCouchDBView.m */,
 				651E955A12FC1A9C00ABA100 /* BSCouchDBQueryOptions.h */,
 				651E955B12FC1A9C00ABA100 /* BSCouchDBQueryOptions.m */,
+				651DA4671344933E00DC2DF9 /* BSCouchDBRequestDelegate.h */,
+				651DA4681344933E00DC2DF9 /* BSCouchDBRequestDelegate.m */,
+				651DA46F1344947100DC2DF9 /* BSCouchDBDatabaseRequestDelegate.h */,
+				651DA4701344947100DC2DF9 /* BSCouchDBDatabaseRequestDelegate.m */,
+				651DA475134494A100DC2DF9 /* BSCouchDBDatabaseDelegate.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -475,6 +511,9 @@
 				651E94C912FB701400ABA100 /* BSCouchDBDesignDocument.h in Headers */,
 				651E952612FC165B00ABA100 /* BSCouchDBView.h in Headers */,
 				651E955E12FC1A9C00ABA100 /* BSCouchDBQueryOptions.h in Headers */,
+				651DA46B1344933E00DC2DF9 /* BSCouchDBRequestDelegate.h in Headers */,
+				651DA4711344947100DC2DF9 /* BSCouchDBDatabaseRequestDelegate.h in Headers */,
+				651DA476134494A100DC2DF9 /* BSCouchDBDatabaseDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,6 +533,9 @@
 				651E94C712FB701400ABA100 /* BSCouchDBDesignDocument.h in Headers */,
 				651E952412FC165B00ABA100 /* BSCouchDBView.h in Headers */,
 				651E955C12FC1A9C00ABA100 /* BSCouchDBQueryOptions.h in Headers */,
+				651DA4691344933E00DC2DF9 /* BSCouchDBRequestDelegate.h in Headers */,
+				651DA4731344947100DC2DF9 /* BSCouchDBDatabaseRequestDelegate.h in Headers */,
+				651DA477134494A100DC2DF9 /* BSCouchDBDatabaseDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,7 +576,7 @@
 			);
 			name = BSCouchObjC;
 			productName = BSCouchObjC;
-			productReference = 65D37EC512D7712300496EE1 /* BSCouchObjC */;
+			productReference = 65D37EC512D7712300496EE1 /* BSCouchObjC.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		65D37FA512D7862F00496EE1 /* libBSCouchObjC */ = {
@@ -656,6 +698,24 @@
 				651E94CA12FB701400ABA100 /* BSCouchDBDesignDocument.m in Sources */,
 				651E952712FC165B00ABA100 /* BSCouchDBView.m in Sources */,
 				651E955F12FC1A9C00ABA100 /* BSCouchDBQueryOptions.m in Sources */,
+				651DA46C1344933E00DC2DF9 /* BSCouchDBRequestDelegate.m in Sources */,
+				651DA4721344947100DC2DF9 /* BSCouchDBDatabaseRequestDelegate.m in Sources */,
+				651DA5251344A4F700DC2DF9 /* ASIDataCompressor.m in Sources */,
+				651DA5261344A4F700DC2DF9 /* ASIDataDecompressor.m in Sources */,
+				651DA5271344A4F700DC2DF9 /* ASIDownloadCache.m in Sources */,
+				651DA5281344A4F700DC2DF9 /* ASIFormDataRequest.m in Sources */,
+				651DA5291344A4F700DC2DF9 /* ASIHTTPRequest.m in Sources */,
+				651DA52A1344A4F700DC2DF9 /* ASIInputStream.m in Sources */,
+				651DA52B1344A4F700DC2DF9 /* ASINetworkQueue.m in Sources */,
+				651DA5381344A53200DC2DF9 /* NSObject+JSON.m in Sources */,
+				651DA5391344A53200DC2DF9 /* SBJsonParser.m in Sources */,
+				651DA53A1344A53200DC2DF9 /* SBJsonStreamParser.m in Sources */,
+				651DA53B1344A53200DC2DF9 /* SBJsonStreamParserAdapter.m in Sources */,
+				651DA53C1344A53200DC2DF9 /* SBJsonStreamParserState.m in Sources */,
+				651DA53D1344A53200DC2DF9 /* SBJsonStreamWriter.m in Sources */,
+				651DA53E1344A53200DC2DF9 /* SBJsonStreamWriterState.m in Sources */,
+				651DA53F1344A53200DC2DF9 /* SBJsonTokeniser.m in Sources */,
+				651DA5401344A53200DC2DF9 /* SBJsonWriter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -673,6 +733,8 @@
 				651E94C812FB701400ABA100 /* BSCouchDBDesignDocument.m in Sources */,
 				651E952512FC165B00ABA100 /* BSCouchDBView.m in Sources */,
 				651E955D12FC1A9C00ABA100 /* BSCouchDBQueryOptions.m in Sources */,
+				651DA46A1344933E00DC2DF9 /* BSCouchDBRequestDelegate.m in Sources */,
+				651DA4741344947100DC2DF9 /* BSCouchDBDatabaseRequestDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

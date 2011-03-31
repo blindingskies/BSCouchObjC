@@ -9,49 +9,9 @@
 #import "BSCouchDBServer.h"
 #import "BSCouchObjC.h"
 #import "NSStringAdditions.h"
+#import "BSCouchDBRequestDelegate.h"
 
 #pragma mark Functions
-
-@interface RequestDelegate : NSObject <ASIHTTPRequestDelegate> {
-@private
-	void (^sBlock)(ASIHTTPRequest *);
-	void (^fBlock)(ASIHTTPRequest *);
-}
-
-
-- (id)initWithSuccessBlock:(void (^)(ASIHTTPRequest *))successBlock 
-			  failureBlock:(void (^)(ASIHTTPRequest *))failureBlock;
-- (void)requestFinished:(ASIHTTPRequest *)request;
-- (void)requestFailed:(ASIHTTPRequest *)request;
-
-@end
-
-@implementation RequestDelegate
-
-- (id)initWithSuccessBlock:(void (^)(ASIHTTPRequest *))successBlock 
-			  failureBlock:(void (^)(ASIHTTPRequest *))failureBlock
-{
-	self = [super init];
-	if (self) {
-		sBlock = successBlock;
-		fBlock = failureBlock;
-	}
-	return self;
-}
-
-- (void)requestFinished:(ASIHTTPRequest *)request
-{
-	sBlock(request);
-}
-
-- (void)requestFailed:(ASIHTTPRequest *)request
-{
-	fBlock(request);
-}
-
-@end
-
-
 
 NSString *percentEscape(NSString *str) {
 	if (![str hasPrefix:@"org.couchdb.user%3A"]) {
@@ -197,7 +157,7 @@ NSString *percentEscape(NSString *str) {
 		request.password = self.password;
 	}
 	
-	request.delegate = [[[RequestDelegate alloc] initWithSuccessBlock:successBlock failureBlock:failureBlock] autorelease];
+	request.delegate = [[[BSCouchDBRequestDelegate alloc] initWithSuccessBlock:successBlock failureBlock:failureBlock] autorelease];
 	[request startAsynchronous];
 }
 
