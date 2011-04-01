@@ -142,12 +142,16 @@
 
 // General purpose asynchronous get function with blocks not delegates
 - (void)get:(NSString *)argument onCompletion:(BSCouchDBDictionaryBlock)onCompletion onFailure:(BSCouchDBErrorBlock)onFailure {
+	[[self request:argument onCompletion:onCompletion onFailure:onFailure] startAsynchronous];
+}
 
+// General purpose asynchronous get function with blocks, that returns the request without starting it.
+- (ASIHTTPRequest *)request:(NSString *)argument onCompletion:(BSCouchDBDictionaryBlock)onCompletion onFailure:(BSCouchDBErrorBlock)onFailure {
+	
 	// Create a request
-	ASIHTTPRequest *aRequest = [self requestWithPath:percentEscape(argument)];
-
-	// Call it on the server asynchronously
-	[self.server sendAsynchronousRequest:aRequest usingSuccessBlock:^ {
+	__block ASIHTTPRequest *aRequest = [self requestWithPath:percentEscape(argument)];
+	
+	aRequest = [self.server asynchronousRequest:aRequest usingSuccessBlock:^{
 		
 		// Get the data
 		NSData *data = [aRequest responseData];
@@ -158,10 +162,12 @@
 		// Call our completion block
 		onCompletion([json JSONValue]);
 		
-	} usingFailureBlock:^ {
+	} usingFailureBlock:^{
 		// Call our failure block
 		onFailure([aRequest error]);
-	}];
+	}];	
+	
+	return aRequest;
 }
 
 

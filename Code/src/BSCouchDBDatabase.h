@@ -66,6 +66,9 @@ typedef void (^BSCouchDBResponseBlock)(BSCouchDBResponse *);
 // General purpose asynchronous get function with blocks not delegates
 - (void)get:(NSString *)argument onCompletion:(BSCouchDBDictionaryBlock)onCompletion onFailure:(BSCouchDBErrorBlock)onFailure;
 
+// General purpose asynchronous get function with blocks, that returns the request without starting it.
+- (ASIHTTPRequest *)request:(NSString *)argument onCompletion:(BSCouchDBDictionaryBlock)onCompletion onFailure:(BSCouchDBErrorBlock)onFailure;
+
 // Get a specific (named) document, with either all revision strings, or a specific revision (or the latest) or both.
 - (BSCouchDBDocument *)getDocument:(NSString *)documentId withRevisions:(BOOL)withRevs revision:(NSString *)revisionOrNil;
 
