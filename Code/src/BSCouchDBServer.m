@@ -126,12 +126,9 @@ NSString *percentEscape(NSString *str) {
 
 
 /**
- This does starts the request going asynchronously
+ This starts the request going asynchronously
  */
-- (void)sendAsynchronousRequest:(ASIHTTPRequest *)request 
-				  usingDelegate:(id<ASIHTTPRequestDelegate>)delegate
-
-{
+- (void)sendAsynchronousRequest:(ASIHTTPRequest *)request usingDelegate:(id<ASIHTTPRequestDelegate>)delegate {
 	// Set credentials
 	if (self.cookies) {
 		[request setRequestCookies:self.cookies];
@@ -145,8 +142,8 @@ NSString *percentEscape(NSString *str) {
 }
 
 - (void)sendAsynchronousRequest:(ASIHTTPRequest *)request 
-			  usingSuccessBlock:(void (^)(ASIHTTPRequest *))successBlock
-			  usingFailureBlock:(void (^)(ASIHTTPRequest *))failureBlock
+			  usingSuccessBlock:(ASIBasicBlock)successBlock
+			  usingFailureBlock:(ASIBasicBlock)failureBlock
 
 {
 	// Set credentials
@@ -155,10 +152,29 @@ NSString *percentEscape(NSString *str) {
 	} else if (self.login && self.password) {
 		request.username = self.login;
 		request.password = self.password;
-	}
+	}	
 	
-	request.delegate = [[[BSCouchDBRequestDelegate alloc] initWithSuccessBlock:successBlock failureBlock:failureBlock] autorelease];
+	[request setCompletionBlock:successBlock];
+	[request setFailedBlock:failureBlock];
+	
 	[request startAsynchronous];
+}
+
+
+// Returns a request so it can be added to an external queue
+- (ASIHTTPRequest *)asynchronousRequest:(ASIHTTPRequest *)request usingSuccessBlock:(ASIBasicBlock)successBlock usingFailureBlock:(ASIBasicBlock)failureBlock {
+	// Set credentials
+	if (self.cookies) {
+		[request setRequestCookies:self.cookies];
+	} else if (self.login && self.password) {
+		request.username = self.login;
+		request.password = self.password;
+	}	
+	
+	[request setCompletionBlock:successBlock];
+	[request setFailedBlock:failureBlock];
+
+	return request;
 }
 
 

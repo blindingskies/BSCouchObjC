@@ -9,12 +9,6 @@
 #import "BSCouchDBRequestDelegate.h"
 #import "BSCouchDBDatabaseDelegate.h"
 
-typedef enum {
-	kBSCouchDBDatabaseRequestDictionaryType,
-	kBSCouchDBDatabaseRequestDocumentType,
-	kBSCouchDBDatabaseRequestResponseType
-} BSCouchDBDatabaseRequestType;
-
 @interface BSCouchDBDatabaseRequestDelegate : BSCouchDBRequestDelegate {
 @private
 	BSCouchDBDatabase *_db;

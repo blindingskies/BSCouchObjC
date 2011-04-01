@@ -83,9 +83,12 @@ NSString *percentEscape(NSString *str);
 - (void)sendAsynchronousRequest:(ASIHTTPRequest *)request 
 				  usingDelegate:(id<ASIHTTPRequestDelegate>)delegate;
 
-- (void)sendAsynchronousRequest:(ASIHTTPRequest *)request 
-			  usingSuccessBlock:(void (^)(ASIHTTPRequest *))successBlock
-			  usingFailureBlock:(void (^)(ASIHTTPRequest *))failureBlock;
+// Starts an asynchronous request going
+- (void)sendAsynchronousRequest:(ASIHTTPRequest *)request usingSuccessBlock:(ASIBasicBlock)successBlock usingFailureBlock:(ASIBasicBlock)failureBlock;
+
+// Returns a request so it can be added to an external queue
+- (ASIHTTPRequest *)asynchronousRequest:(ASIHTTPRequest *)request usingSuccessBlock:(ASIBasicBlock)successBlock usingFailureBlock:(ASIBasicBlock)failureBlock;
+
 
 #pragma mark Databases
 

@@ -26,6 +26,7 @@
 @implementation BSCouchDBDatabase
 
 @synthesize server;
+@synthesize delegate=_delegate;;
 @synthesize name;
 @dynamic url;
 
@@ -35,7 +36,6 @@
 	if (self) {
 		self.server = _server;
 		self.name = _name;
-		requestDelegates = [[NSMutableSet alloc] init];
 	}
 	return self;
 }
@@ -43,7 +43,6 @@
 - (void)dealloc {
 	self.server = nil; [server release];
 	self.name = nil; [name release];
-	[requestDelegates release];
 	[super dealloc];
 }
 
@@ -123,29 +122,46 @@
 	return nil;
 }
 
-// General purpose asynchronous get function
-- (void)get:(NSString *)argument delegate:(id <BSCouchDBDatabaseDelegate>)delegate {
+// General purpose asynchronous get function. It's very important that the 
+// database is retained, before calling this method.
+- (void)get:(NSString *)argument delegate:(id <BSCouchDBDatabaseDelegate>)obj {
+	
+	// Set our own delegate
+	self.delegate = obj;
 	
 	// Create a request
 	ASIHTTPRequest *aRequest = [self requestWithPath:percentEscape(argument)];
-	
-	// Create an ASIHTTPRequestDelegate instance
-	BSCouchDBDatabaseRequestDelegate *requestDelegate = [[BSCouchDBDatabaseRequestDelegate alloc] initWithDatabase:self delegate:delegate returnType:kBSCouchDBDatabaseRequestDictionaryType];
-		
-	// We need to establish an owning relationship to this tmp delegate object
-	// because if we exit as is, then we'll be leaking memory. However, if we
-	// auto/release the delegate, then it'll be deallocated because nothing is
-	// retaining it. Therefore, we hold a reference to it in the database, and
-	// when the ASIHTTPRequestDelegate methods fire, we will remove it, and 
-	// therefore release it.
-	
-	[self addRequestDelegate:requestDelegate];
-	
+
+	// Set a user info dictionary
+	NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:kBSCouchDBDatabaseRequestDictionaryType], @"type", nil];
+	[aRequest setUserInfo:dic];
+
 	// Call it on the server asynchronously
-	[self.server sendAsynchronousRequest:aRequest usingDelegate:requestDelegate];
-	
-	// Release the delegate object
-	[requestDelegate release];
+	[self.server sendAsynchronousRequest:aRequest usingDelegate:self];
+}
+
+// General purpose asynchronous get function with blocks not delegates
+- (void)get:(NSString *)argument onCompletion:(BSCouchDBDictionaryBlock)onCompletion onFailure:(BSCouchDBErrorBlock)onFailure {
+
+	// Create a request
+	ASIHTTPRequest *aRequest = [self requestWithPath:percentEscape(argument)];
+
+	// Call it on the server asynchronously
+	[self.server sendAsynchronousRequest:aRequest usingSuccessBlock:^ {
+		
+		// Get the data
+		NSData *data = [aRequest responseData];
+		
+		// As a UTF8 string
+		NSString *json = data ? [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease] : nil;
+		
+		// Call our completion block
+		onCompletion([json JSONValue]);
+		
+	} usingFailureBlock:^ {
+		// Call our failure block
+		onFailure([aRequest error]);
+	}];
 }
 
 
@@ -167,6 +183,79 @@
 	}
 	NSDictionary *dic = [self get:arg];
 	return !dic ? nil : [BSCouchDBDocument documentWithDictionary:dic database:self];
+}
+
+
+// Asynchronous version of the above
+- (void)getDocument:(NSString *)documentId withRevisions:(BOOL)withRevs revision:(NSString *)revisionOrNil delegate:(id <BSCouchDBDatabaseDelegate>)obj {
+	NSParameterAssert(documentId);
+
+	// Construct the URL argument depending on the options 
+	NSString *arg = percentEscape(documentId);
+	
+	if(withRevs) {
+		arg = [arg stringByAppendingString:@"?revs=true&revs_info=true"];
+	}
+	
+	if(revisionOrNil != nil) {
+		arg = [arg stringByAppendingFormat:@"&rev=%@", revisionOrNil];
+	}
+	
+	// Set our own delegate
+	self.delegate = obj;
+	
+	// Create a request
+	ASIHTTPRequest *aRequest = [self requestWithPath:arg];
+	
+	// Set a user info dictionary
+	NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:kBSCouchDBDatabaseRequestDocumentType], @"type", nil];
+	[aRequest setUserInfo:dic];
+	
+	// Call it on the server asynchronously
+	[self.server sendAsynchronousRequest:aRequest usingDelegate:self];	
+}
+
+// Asynchronous version but using blocks
+- (void)getDocument:(NSString *)documentId withRevisions:(BOOL)withRevs revision:(NSString *)revisionOrNil onCompletion:(BSCouchDBDocumentBlock)onCompletion onFailure:(BSCouchDBErrorBlock)onFailure {
+	[[self requestDocument:documentId withRevisions:withRevs revision:revisionOrNil onCompletion:onCompletion onFailure:onFailure] startAsynchronous];
+}
+
+// Returns a Request which can then be added to an external queue
+- (ASIHTTPRequest *)requestDocument:(NSString *)documentId withRevisions:(BOOL)withRevs revision:(NSString *)revisionOrNil onCompletion:(BSCouchDBDocumentBlock)onCompletion onFailure:(BSCouchDBErrorBlock)onFailure {
+
+	NSParameterAssert(documentId);
+	
+	// Construct the URL argument depending on the options 
+	NSString *arg = percentEscape(documentId);
+	
+	if(withRevs) {
+		arg = [arg stringByAppendingString:@"?revs=true&revs_info=true"];
+	}
+	
+	if(revisionOrNil != nil) {
+		arg = [arg stringByAppendingFormat:@"&rev=%@", revisionOrNil];
+	}
+	
+	// Create a request
+	__block ASIHTTPRequest *aRequest = [self requestWithPath:arg];
+	
+	aRequest = [self.server asynchronousRequest:aRequest usingSuccessBlock:^{
+		
+		// Get the data
+		NSData *data = [aRequest responseData];
+		
+		// As a UTF8 string
+		NSString *json = data ? [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease] : nil;
+		
+		// Call our completion block
+		onCompletion([BSCouchDBDocument documentWithDictionary:[json JSONValue] database:self]);
+		
+	} usingFailureBlock:^{
+		// Call our failure block
+		onFailure([aRequest error]);
+	}];	
+	
+	return aRequest;
 }
 
 
@@ -330,12 +419,69 @@
     return [ASIHTTPRequest requestWithURL:aUrl];		
 }
 
-- (void)addRequestDelegate:(BSCouchDBDatabaseRequestDelegate *)obj {
-	[requestDelegates addObject:obj];
+#pragma mark ASIHTTPRequestMethods
+
+// We implement the ASIHTTPRequestDelegate methods here, so that we can then
+// dispatch the appropriate delegate method (our delegate that is)
+
+- (void)requestFinished:(ASIHTTPRequest *)request {
+	
+	// Get the request's user info dictionary
+	NSDictionary *dic = [request userInfo];
+	
+	BSCouchDBDatabaseRequestType type = [[dic objectForKey:@"type"] integerValue];
+	
+	if (!self.delegate) {
+		return;
+	}
+	
+	// The request completed successfully. We can now process the result
+	
+	// Get the data
+	NSData *data = [request responseData];
+	
+	// As a UTF8 string
+	NSString *json = data ? [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease] : nil;
+	
+	switch (type) {
+			
+		case kBSCouchDBDatabaseRequestDictionaryType:
+			if ([self.delegate respondsToSelector:@selector(database:returnedDictionary:)]) {				
+				[self.delegate database:self returnedDictionary:[json JSONValue]]; 
+				break;
+			}
+			
+		case kBSCouchDBDatabaseRequestDocumentType:
+			if ([self.delegate respondsToSelector:@selector(database:returnedDocument:)]) {
+				[self.delegate database:self returnedDocument:[BSCouchDBDocument documentWithDictionary:[json JSONValue] database:self]];
+				break;
+			}
+			
+		case kBSCouchDBDatabaseRequestResponseType:
+			if ([self.delegate respondsToSelector:@selector(database:returnedResponse:)]) {
+				[self.delegate database:self returnedResponse:[BSCouchDBResponse responseWithJSON:json]];
+			}
+			break;
+			
+		default:
+			break;
+	}	
+	
 }
 
-- (void)removeRequestDelegate:(BSCouchDBDatabaseRequestDelegate *)obj {
-	[requestDelegates removeObject:obj];	
+- (void)requestFailed:(ASIHTTPRequest *)request {
+	// Get the request's user info dictionary
+	NSDictionary *dic = [request userInfo];
+	
+	id <BSCouchDBDatabaseDelegate> delegate = [dic objectForKey:@"delegate"];
+	
+	if (!delegate) {
+		return;
+	}
+	
+	if ([delegate respondsToSelector:@selector(database:returnedError:)]) {
+		[delegate database:self returnedError:[request error]];
+	}	
 }
 
 

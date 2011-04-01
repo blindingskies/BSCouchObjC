@@ -5,6 +5,13 @@
 //  Created by Daniel Thorpe on 07/01/2011.
 //  Copyright 2011 Blinding Skies Limited. All rights reserved.
 //
+#import "BSCouchObjC.h"
+
+typedef enum {
+	kBSCouchDBDatabaseRequestDictionaryType,
+	kBSCouchDBDatabaseRequestDocumentType,
+	kBSCouchDBDatabaseRequestResponseType
+} BSCouchDBDatabaseRequestType;
 
 @class BSCouchDBServer;
 @class BSCouchDBDocument;
@@ -12,16 +19,23 @@
 @class BSCouchDBDatabaseRequestDelegate;
 @protocol BSCouchDBDatabaseDelegate;
 
-@interface BSCouchDBDatabase : NSObject {
+// Define some block type
+typedef void (^BSCouchDBErrorBlock)(NSError *);
+typedef void (^BSCouchDBDictionaryBlock)(NSDictionary *);
+typedef void (^BSCouchDBDocumentBlock)(BSCouchDBDocument *);
+typedef void (^BSCouchDBResponseBlock)(BSCouchDBResponse *);
+
+@interface BSCouchDBDatabase : NSObject <ASIHTTPRequestDelegate> {
 @private
 	BSCouchDBServer *server;
 	NSString *name;
-	NSMutableSet *requestDelegates;
+	id <BSCouchDBDatabaseDelegate> _delegate;
 }
 
 @property (nonatomic, readwrite, retain) BSCouchDBServer *server;
 @property (nonatomic, readwrite, retain) NSString *name;
 @property (nonatomic, readonly, assign) NSURL *url;
+@property (nonatomic, readwrite, assign) id <BSCouchDBDatabaseDelegate> delegate;
 
 - (id)initWithServer:(BSCouchDBServer *)_server name:(NSString *)_name;
 
@@ -47,10 +61,22 @@
 - (NSDictionary *)get:(NSString *)argument;
 
 // General purpose asynchronous get function
-- (void)get:(NSString *)argument delegate:(id <BSCouchDBDatabaseDelegate>)delegate;
+- (void)get:(NSString *)argument delegate:(id <BSCouchDBDatabaseDelegate>)obj;
+
+// General purpose asynchronous get function with blocks not delegates
+- (void)get:(NSString *)argument onCompletion:(BSCouchDBDictionaryBlock)onCompletion onFailure:(BSCouchDBErrorBlock)onFailure;
 
 // Get a specific (named) document, with either all revision strings, or a specific revision (or the latest) or both.
 - (BSCouchDBDocument *)getDocument:(NSString *)documentId withRevisions:(BOOL)withRevs revision:(NSString *)revisionOrNil;
+
+// Asynchronous version of the above
+- (void)getDocument:(NSString *)documentId withRevisions:(BOOL)withRevs revision:(NSString *)revisionOrNil delegate:(id <BSCouchDBDatabaseDelegate>)obj;
+
+// Asynchronous version but using blocks
+- (void)getDocument:(NSString *)documentId withRevisions:(BOOL)withRevs revision:(NSString *)revisionOrNil onCompletion:(BSCouchDBDocumentBlock)onCompletion onFailure:(BSCouchDBErrorBlock)onFailure;
+
+// Returns a Request which can then be added to an external queue
+- (ASIHTTPRequest *)requestDocument:(NSString *)documentId withRevisions:(BOOL)withRevs revision:(NSString *)revisionOrNil onCompletion:(BSCouchDBDocumentBlock)onCompletion onFailure:(BSCouchDBErrorBlock)onFailure;
 
 #pragma mark PUT & POST Methods
 
@@ -83,10 +109,6 @@
 
 
 #pragma mark Miscellancy
-
-// Manage the request delegate
-- (void)addRequestDelegate:(BSCouchDBDatabaseRequestDelegate *)obj;
-- (void)removeRequestDelegate:(BSCouchDBDatabaseRequestDelegate *)obj;
 
 
 @end
