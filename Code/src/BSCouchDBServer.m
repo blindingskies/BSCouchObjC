@@ -90,6 +90,8 @@ NSString *percentEscape(NSString *str) {
 #pragma mark -
 #pragma mark HTTP Requests
 
+// Processes requests
+
 /**
  This starts the request going synchronously.
  We perform all requests synchronously so that the function returns
@@ -161,29 +163,20 @@ NSString *percentEscape(NSString *str) {
 }
 
 
-// Returns a request so it can be added to an external queue
-- (ASIHTTPRequest *)asynchronousRequest:(ASIHTTPRequest *)request usingSuccessBlock:(ASIBasicBlock)successBlock usingFailureBlock:(ASIBasicBlock)failureBlock {
-	// Set credentials
-	if (self.cookies) {
-		[request setRequestCookies:self.cookies];
-	} else if (self.login && self.password) {
-		request.username = self.login;
-		request.password = self.password;
-	}	
-	
-	[request setCompletionBlock:successBlock];
-	[request setFailedBlock:failureBlock];
-
-	return request;
-}
-
-
 
 - (ASIHTTPRequest *)requestWithPath:(NSString *)aPath {
     NSURL *aUrl = self.url;
     if (aPath && ![aPath isEqualToString:@"/"])
         aUrl = [NSURL URLWithString:aPath relativeToURL:self.url];
-    return [ASIHTTPRequest requestWithURL:aUrl];
+    ASIHTTPRequest *aRequest = [ASIHTTPRequest requestWithURL:aUrl];
+	
+	if (self.cookies) {
+		[aRequest setRequestCookies:self.cookies];
+	} else if (self.login && self.password) {
+		[aRequest setUsername:self.login];
+		[aRequest setPassword:self.password];
+	}	
+	return aRequest;
 }
 
 

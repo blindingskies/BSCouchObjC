@@ -151,7 +151,7 @@
 	// Create a request
 	__block ASIHTTPRequest *aRequest = [self requestWithPath:percentEscape(argument)];
 	
-	aRequest = [self.server asynchronousRequest:aRequest usingSuccessBlock:^{
+	[aRequest setCompletionBlock:^{
 		
 		// Get the data
 		NSData *data = [aRequest responseData];
@@ -161,12 +161,13 @@
 		
 		// Call our completion block
 		onCompletion([json JSONValue]);
-		
-	} usingFailureBlock:^{
+	}];
+	
+	[aRequest setFailedBlock:^{
 		// Call our failure block
 		onFailure([aRequest error]);
-	}];	
-	
+	}];
+		
 	return aRequest;
 }
 
@@ -245,7 +246,7 @@
 	// Create a request
 	__block ASIHTTPRequest *aRequest = [self requestWithPath:arg];
 	
-	aRequest = [self.server asynchronousRequest:aRequest usingSuccessBlock:^{
+	[aRequest setCompletionBlock:^{
 		
 		// Get the data
 		NSData *data = [aRequest responseData];
@@ -254,15 +255,37 @@
 		NSString *json = data ? [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease] : nil;
 		
 		// Call our completion block
-		onCompletion([BSCouchDBDocument documentWithDictionary:[json JSONValue] database:self]);
-		
-	} usingFailureBlock:^{
+		onCompletion([BSCouchDBDocument documentWithDictionary:[json JSONValue] database:self]);		
+	}];
+	
+	[aRequest setFailedBlock:^{
 		// Call our failure block
 		onFailure([aRequest error]);
-	}];	
-	
+	}];
+		
 	return aRequest;
 }
+
+// Returns a request, which can then be added to an external queue, for use with delegate pattern
+- (ASIHTTPRequest *)requestDocument:(NSString *)documentId withRevisions:(BOOL)withRevs revision:(NSString *)revisionOrNil {
+	NSParameterAssert(documentId);	
+	
+	// Construct the URL argument depending on the options 
+	NSString *arg = percentEscape(documentId);
+	
+	if(withRevs) {
+		arg = [arg stringByAppendingString:@"?revs=true&revs_info=true"];
+	}
+	
+	if(revisionOrNil != nil) {
+		arg = [arg stringByAppendingFormat:@"&rev=%@", revisionOrNil];
+	}
+
+	// return the request
+	return [self requestWithPath:arg];	
+}
+
+
 
 
 #pragma mark -

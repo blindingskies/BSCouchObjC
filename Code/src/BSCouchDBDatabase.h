@@ -78,8 +78,11 @@ typedef void (^BSCouchDBResponseBlock)(BSCouchDBResponse *);
 // Asynchronous version but using blocks
 - (void)getDocument:(NSString *)documentId withRevisions:(BOOL)withRevs revision:(NSString *)revisionOrNil onCompletion:(BSCouchDBDocumentBlock)onCompletion onFailure:(BSCouchDBErrorBlock)onFailure;
 
-// Returns a Request which can then be added to an external queue
+// Returns a Request which can then be added to an external queue, using blocks
 - (ASIHTTPRequest *)requestDocument:(NSString *)documentId withRevisions:(BOOL)withRevs revision:(NSString *)revisionOrNil onCompletion:(BSCouchDBDocumentBlock)onCompletion onFailure:(BSCouchDBErrorBlock)onFailure;
+
+// Returns a request, which can then be added to an external queue, for use with delegate pattern
+- (ASIHTTPRequest *)requestDocument:(NSString *)documentId withRevisions:(BOOL)withRevs revision:(NSString *)revisionOrNil;
 
 #pragma mark PUT & POST Methods
 
