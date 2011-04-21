@@ -48,14 +48,23 @@
 
 #endif
 
-#import "BSCouchDBServer.h"
-#import "BSCouchDBDatabase.h"
 #import "BSCouchDBChange.h"
 #import "BSCouchDBDocument.h"
 #import "BSCouchDBDesignDocument.h"
 #import "BSCouchDBResponse.h"
 #import "BSCouchDBReplicationResponse.h"
 #import "BSCouchDBDatabaseDelegate.h"
+
+// Define some block type
+typedef void (^BSCouchDBErrorBlock)(NSError *);
+typedef void (^BSCouchDBDictionaryBlock)(NSDictionary *);
+typedef void (^BSCouchDBDocumentBlock)(BSCouchDBDocument *);
+typedef void (^BSCouchDBResponseBlock)(BSCouchDBResponse *);
+typedef void (^BSCouchDBReplicationResponseBlock)(BSCouchDBReplicationResponse *);
+
+#import "BSCouchDBServer.h"
+#import "BSCouchDBDatabase.h"
+
 
 
 
