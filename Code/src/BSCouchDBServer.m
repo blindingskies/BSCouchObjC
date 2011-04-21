@@ -24,7 +24,7 @@ NSString *percentEscape(NSString *str) {
 
 @interface BSCouchDBServer ()
 
-- (ASIHTTPRequest *)requestWithPath:(NSString *)aPath;
+
 
 @end
 
@@ -288,6 +288,15 @@ NSString *percentEscape(NSString *str) {
 	return response.ok;
 }
 
+- (ASIHTTPRequest *)requestToCreateDatabase:(NSString *)databaseName {
+	// Just call PUT databasename
+    ASIHTTPRequest *request = [self requestWithPath:percentEscape(databaseName)];
+    request.requestMethod = @"PUT";
+	request.postBody = [NSData dataWithBytes:@"" length:0];
+	request.contentLength = 0;
+	return request;
+}
+
 // Deletes a database
 - (BOOL)deleteDatabase:(NSString *)databaseName {
 	// Just call DELETE databaseName
@@ -364,6 +373,53 @@ NSString *percentEscape(NSString *str) {
 	return response;	
 }
 
+// Return the request which will create a user
+- (ASIHTTPRequest *)requestToCreateUser:(NSString *)_name password:(NSString *)_password {
+	NSParameterAssert(_name);
+	NSParameterAssert(_password);	
+	NSAssert(self.login != nil, @"The server need's an administrator login name");
+	NSAssert(self.password != nil, @"The server need's an administrator login password");
+	
+	// Create a salt
+	NSString *salt = [[NSString stringWithFormat:@"%lf", [[NSDate date] timeIntervalSince1970]] sha1];
+	
+	// Hash the password and salt
+	NSString *digest = [[NSString stringWithFormat:@"%@%@", _password, salt] sha1];
+	
+	// Create the document id
+	NSString *docid = [NSString stringWithFormat:@"org.couchdb.user%%3A%@", _name];
+	
+	// Create a dictionary
+	NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithCapacity:6];
+	
+	// Create an empty roles array
+	NSArray *roles = [[NSArray alloc] init];	
+	
+	// Set the properties of the dictionary
+	[dic setObject:salt forKey:@"salt"];
+	[dic setObject:digest forKey:@"password_sha"];
+	[dic setObject:_name forKey:@"name"];
+	[dic setObject:@"user" forKey:@"type"];
+	[dic setObject:roles forKey:@"roles"];
+	[dic setObject:docid forKey:@"_id"];
+	
+	// Release memory
+	[roles release];
+	
+	// Now we push the dictionary to the authentication db
+	NSString *authenticationDB = @"_users";
+	
+	// Create a BSCouchDBDatabase instance
+	BSCouchDBDatabase *db = [self database:authenticationDB];
+	
+	ASIHTTPRequest *request = [db requestToPut:dic named:docid];
+	
+	// Release memory
+	[dic release];
+	
+	return request;
+}
+
 // Login using a name / password
 - (BOOL)loginUsingName:(NSString *)_username andPassword:(NSString *)_password {
 	
@@ -387,6 +443,24 @@ NSString *percentEscape(NSString *str) {
 		self.cookies = [NSMutableArray arrayWithArray:[NSHTTPCookie cookiesWithResponseHeaderFields:[request responseHeaders] forURL:[NSURL URLWithString:[self serverURLAsString]]]];
     }
 	return response.ok;
+}
+
+- (ASIHTTPRequest *)requestToLoginUsingName:(NSString *)_username andPassword:(NSString *)_password {
+	
+	// We're going to login using the credentials
+	NSString *post = [NSString stringWithFormat:@"name=%@&password=%@", _username, _password];
+	NSMutableData *postData = [NSMutableData dataWithData:[post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES]];
+	
+	// Create a request
+	NSURL *baseURL = [NSURL URLWithString:[self serverURLAsString]];
+	NSURL *sessionURL = [NSURL URLWithString:@"_session" relativeToURL:baseURL];
+	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:sessionURL];
+	[request setRequestMethod:@"POST"];
+	[request addRequestHeader:@"Content-Type" value:@"application/x-www-form-urlencoded; charset=UTF-8"];
+	[request setPostBody:postData];
+	
+	// We don't actually store the cookies here, the application layer will be responsible for saving those
+	return request;
 }
 
 // Logout of the server
@@ -417,7 +491,11 @@ NSString *percentEscape(NSString *str) {
 #pragma mark -
 #pragma mark Replication
 
-- (BSCouchDBReplicationResponse *)replicateFrom:(BSCouchDBDatabase *)source to:(BSCouchDBDatabase *)target docs:(NSArray *)doc_ids filter:(NSString *)filter params:(NSDictionary *)queryParams {
+- (BSCouchDBReplicationResponse *)replicateFrom:(BSCouchDBDatabase *)source 
+											 to:(BSCouchDBDatabase *)target 
+										   docs:(NSArray *)doc_ids 
+										 filter:(NSString *)filter 
+										 params:(NSDictionary *)queryParams {
 	
 	NSParameterAssert(source);
 	NSParameterAssert(target);	
@@ -456,6 +534,46 @@ NSString *percentEscape(NSString *str) {
         return [BSCouchDBReplicationResponse responseWithJSON:json];
     }
     return nil;
+}
+
+- (ASIHTTPRequest *)requestToReplicateFrom:(BSCouchDBDatabase *)source 
+										to:(BSCouchDBDatabase *)target 
+									  docs:(NSArray *)doc_ids 
+									filter:(NSString *)filter 
+									params:(NSDictionary *)queryParams {
+	
+	NSParameterAssert(source);
+	NSParameterAssert(target);	
+	NSAssert([self isEqual:target.server], @"We make the call from the target");
+	NSAssert(target.server.login, @"We require admin privileges to the target database");	
+	NSAssert(target.server.password, @"We require admin privileges to the target database");
+	
+	// Work out the payload
+	NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:3];
+	[dic setValue:[[source authenticatedURL] absoluteString] forKey:@"source"];
+	[dic setValue:[[target authenticatedURL] absoluteString] forKey:@"target"];
+	
+	if(doc_ids) {
+		[dic setValue:doc_ids forKey:@"doc_ids"];
+	}
+	if(filter) {
+		[dic setValue:filter forKey:@"filter"];
+	}
+	if(queryParams) {
+		[dic setValue:queryParams forKey:@"query_params"];
+	}
+	
+	// Get the JSON representation of this (this is the post data)
+	NSString *json = [dic JSONRepresentation];
+	
+	// Create a request
+	ASIHTTPRequest *request = [self requestWithPath:@"_replicate"];
+	NSMutableData *body = [NSMutableData dataWithData:[json dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO]];
+	[request setRequestMethod:@"POST"];
+	[request addRequestHeader:@"Content-Type" value:@"application/json; charset=UTF-8"];
+	[request setPostBody:body];
+		
+	return request;	
 }
 
 @end

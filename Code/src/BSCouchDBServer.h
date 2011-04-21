@@ -71,6 +71,8 @@ NSString *percentEscape(NSString *str);
 
 #pragma mark HTTP Requests
 
+- (ASIHTTPRequest *)requestWithPath:(NSString *)aPath;
+
 /**
  This does starts the request going synchronously.
  We perform all requests synchronously so that the function returns
@@ -98,6 +100,7 @@ NSString *percentEscape(NSString *str);
 
 // Creates a database
 - (BOOL)createDatabase:(NSString *)databaseName;
+- (ASIHTTPRequest *)requestToCreateDatabase:(NSString *)databaseName;
 
 // Deletes a database
 - (BOOL)deleteDatabase:(NSString *)databaseName;
@@ -110,9 +113,11 @@ NSString *percentEscape(NSString *str);
 
 // Create a database reader (non admin user)
 - (BSCouchDBResponse *)createUser:(NSString *)_name password:(NSString *)_password;
+- (ASIHTTPRequest *)requestToCreateUser:(NSString *)_name password:(NSString *)_password;
 
 // Login to the server
 - (BOOL)loginUsingName:(NSString *)_username andPassword:(NSString *)_password;
+- (ASIHTTPRequest *)requestToLoginUsingName:(NSString *)_username andPassword:(NSString *)_password;
 
 // Logout of the server
 - (BOOL)logoutUsingName:(NSString *)_username andPassword:(NSString *)_password;
@@ -121,6 +126,7 @@ NSString *percentEscape(NSString *str);
 
 // Replicate databases on potentially different servers
 - (BSCouchDBReplicationResponse *)replicateFrom:(BSCouchDBDatabase *)source to:(BSCouchDBDatabase *)target docs:(NSArray *)doc_ids filter:(NSString *)filter params:(NSDictionary *)queryParams;
+- (ASIHTTPRequest *)requestToReplicateFrom:(BSCouchDBDatabase *)source to:(BSCouchDBDatabase *)target docs:(NSArray *)doc_ids filter:(NSString *)filter params:(NSDictionary *)queryParams;
 
 
 @end
