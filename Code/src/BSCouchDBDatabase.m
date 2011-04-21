@@ -291,12 +291,24 @@
 #pragma mark -
 #pragma mark PUT & POST Methods
 
+/**
+ Post a new document from a dictionary
+ */
+- (BSCouchDBResponse *)postDictionary:(NSDictionary *)aDictionary {
+	
+	// Encode the dictionary
+	NSData *data = [[aDictionary JSONRepresentation] dataUsingEncoding:NSUTF8StringEncoding];
+	
+	// Post it
+	return [self post:nil data:data];
+}
+
 
 /**
  General purpose post function.
  */
 - (BSCouchDBResponse *)post:(NSString *)argument data:(NSData *)data {
-	
+	NSParameterAssert(argument);	
 	// Create a request
 	ASIHTTPRequest *aRequest = [self requestWithPath:percentEscape(argument)];
 	[aRequest setRequestMethod:@"POST"];
@@ -312,11 +324,75 @@
 	return nil;
 }
 
+// General purpose asynchronous post functions
+- (void)post:(NSString *)argument data:(NSData *)data delegate:(id <BSCouchDBDatabaseDelegate>)obj {
+	NSParameterAssert(argument);
+	
+	// Set our own delegate
+	self.delegate = obj;
+
+	// Create a request
+	ASIHTTPRequest *aRequest = [self requestWithPath:percentEscape(argument)];
+	[aRequest setRequestMethod:@"POST"];
+	[aRequest addRequestHeader:@"Content-Type" value:@"application/json; charset=UTF-8"];
+	[aRequest setPostBody:[NSMutableData dataWithData:data]];
+	
+	// Set a user info dictionary
+	NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:kBSCouchDBDatabaseRequestDictionaryType], @"type", nil];
+	[aRequest setUserInfo:dic];
+	
+	// Call it on the server asynchronously
+	[self.server sendAsynchronousRequest:aRequest usingDelegate:self];
+}
+
+- (ASIHTTPRequest *)requestToPost:(NSString *)argument data:(NSData *)data onCompletion:(BSCouchDBDictionaryBlock)onCompletion onFailure:(BSCouchDBErrorBlock)onFailure {
+	NSParameterAssert(argument);
+	// Create a request
+	__block ASIHTTPRequest *aRequest = [self requestWithPath:percentEscape(argument)];
+	[aRequest setRequestMethod:@"POST"];
+	[aRequest addRequestHeader:@"Content-Type" value:@"application/json; charset=UTF-8"];
+	[aRequest setPostBody:[NSMutableData dataWithData:data]];	
+	
+	// Set the blocks
+	[aRequest setCompletionBlock:^{
+		// Get the data
+		NSData *data = [aRequest responseData];
+		
+		// As a UTF8 string
+		NSString *json = data ? [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease] : nil;
+		
+		// Call our completion block
+		onCompletion([json JSONValue]);
+	}];
+	
+	[aRequest setFailedBlock:^{
+		// Call our failure block
+		onFailure([aRequest error]);
+	}];
+	
+	return aRequest;
+}
+
+- (ASIHTTPRequest *)requestToPost:(NSString *)argument data:(NSData *)data {
+	NSParameterAssert(argument);
+	
+	// Create a request
+	ASIHTTPRequest *aRequest = [self requestWithPath:percentEscape(argument)];
+	[aRequest setRequestMethod:@"POST"];
+	[aRequest addRequestHeader:@"Content-Type" value:@"application/json; charset=UTF-8"];
+	[aRequest setPostBody:[NSMutableData dataWithData:data]];	
+	
+	// Just return the request, leaving delegates, callbacks, scheduling up to the calling code
+	return aRequest;
+}
+
+
 
 /**
  General purpose put function
  */
 - (BSCouchDBResponse *)put:(NSString *)argument data:(NSData *)data {
+	NSParameterAssert(argument);
     
 	// Create a request
 	ASIHTTPRequest *aRequest = [self requestWithPath:percentEscape(argument)];
@@ -333,19 +409,22 @@
 	return nil;
 }
 
-
 /**
- Post a new document from a dictionary
+ Put a document using it's own identifier.
  */
-- (BSCouchDBResponse *)postDictionary:(NSDictionary *)aDictionary {
+- (BSCouchDBResponse *)putDocument:(BSCouchDBDocument *)aDocument {
 	
-	// Encode the dictionary
-	NSData *data = [[aDictionary JSONRepresentation] dataUsingEncoding:NSUTF8StringEncoding];
+	// Call the general method
+	BSCouchDBResponse *response = [self putDocument:aDocument.dictionary named:aDocument._id];
 	
-	// Post it
-	return [self post:nil data:data];
+	// Check to see if we've got a proper response
+	if (response && response.ok) {
+		// Update the revision
+		[aDocument setRevision:response._rev];
+	}
+	
+	return response;
 }
-
 
 /**
  Put a document (dictionary) with a particular identifier
@@ -360,24 +439,78 @@
     
 }
 
-
-/**
- Put a document using it's own identifier.
- */
-- (BSCouchDBResponse *)putDocument:(BSCouchDBDocument *)aDocument {
-
-	// Call the general method
-	BSCouchDBResponse *response = [self putDocument:aDocument.dictionary named:aDocument._id];
+// General purpose asynchronous post functions
+- (void)put:(NSString *)argument data:(NSData *)data delegate:(id <BSCouchDBDatabaseDelegate>)obj {
+	NSParameterAssert(argument);
 	
-	// Check to see if we've got a proper response
-	if (response && response.ok) {
-		// Update the revision
-		[aDocument setRevision:response._rev];
-	}
+	// Set our own delegate
+	self.delegate = obj;
 	
-	return response;
+	// Create a request
+	ASIHTTPRequest *aRequest = [self requestWithPath:percentEscape(argument)];
+	[aRequest setRequestMethod:@"PUT"];
+	[aRequest addRequestHeader:@"Content-Type" value:@"application/json; charset=UTF-8"];
+	[aRequest setPostBody:[NSMutableData dataWithData:data]];
+	
+	// Set a user info dictionary
+	NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:kBSCouchDBDatabaseRequestDictionaryType], @"type", nil];
+	[aRequest setUserInfo:dic];
+	
+	// Call it on the server asynchronously
+	[self.server sendAsynchronousRequest:aRequest usingDelegate:self];	
 }
 
+- (ASIHTTPRequest *)requestToPut:(NSString *)argument data:(NSData *)data onCompletion:(BSCouchDBDictionaryBlock)onCompletion onFailure:(BSCouchDBErrorBlock)onFailure {
+	NSParameterAssert(argument);
+	// Create a request
+	__block ASIHTTPRequest *aRequest = [self requestWithPath:percentEscape(argument)];
+	[aRequest setRequestMethod:@"PUT"];
+	[aRequest addRequestHeader:@"Content-Type" value:@"application/json; charset=UTF-8"];
+	[aRequest setPostBody:[NSMutableData dataWithData:data]];
+		
+	// Set the blocks
+	[aRequest setCompletionBlock:^{
+		// Get the data
+		NSData *data = [aRequest responseData];
+		
+		// As a UTF8 string
+		NSString *json = data ? [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease] : nil;
+		
+		// Call our completion block
+		onCompletion([json JSONValue]);
+	}];
+	
+	[aRequest setFailedBlock:^{
+		// Call our failure block
+		onFailure([aRequest error]);
+	}];
+	
+	return aRequest;
+	
+}
+
+- (ASIHTTPRequest *)requestToPut:(NSString *)argument data:(NSData *)data {
+	NSParameterAssert(argument);
+    
+	// Create a request
+	ASIHTTPRequest *aRequest = [self requestWithPath:percentEscape(argument)];
+	[aRequest setRequestMethod:@"PUT"];
+	[aRequest addRequestHeader:@"Content-Type" value:@"application/json; charset=UTF-8"];
+	[aRequest setPostBody:[NSMutableData dataWithData:data]];
+
+	// Just return the request, leaving delegates, callbacks, scheduling up to the calling code
+	return aRequest;	
+}
+
+- (ASIHTTPRequest *)requestToPut:(NSDictionary *)aDictionary named:(NSString *)aName {
+	
+	// Encode the dictionary
+	NSData *data = [[aDictionary JSONRepresentation] dataUsingEncoding:NSUTF8StringEncoding];
+	
+	// Put it
+	return [self requestToPut:aName data:data];
+	
+}
 
 #pragma mark DELETE Methods
 

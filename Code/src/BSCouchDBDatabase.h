@@ -19,12 +19,6 @@ typedef enum {
 @class BSCouchDBDatabaseRequestDelegate;
 @protocol BSCouchDBDatabaseDelegate;
 
-// Define some block type
-typedef void (^BSCouchDBErrorBlock)(NSError *);
-typedef void (^BSCouchDBDictionaryBlock)(NSDictionary *);
-typedef void (^BSCouchDBDocumentBlock)(BSCouchDBDocument *);
-typedef void (^BSCouchDBResponseBlock)(BSCouchDBResponse *);
-
 @interface BSCouchDBDatabase : NSObject <ASIHTTPRequestDelegate> {
 @private
 	BSCouchDBServer *server;
@@ -86,20 +80,31 @@ typedef void (^BSCouchDBResponseBlock)(BSCouchDBResponse *);
 
 #pragma mark PUT & POST Methods
 
-// General purpose post function
-- (BSCouchDBResponse *)post:(NSString *)argument data:(NSData *)data;
-
-// General purpose put function
-- (BSCouchDBResponse *)put:(NSString *)argument data:(NSData *)data;
-
-// Post a new document from a dictionary
+// Post a new document from a dictionary [synchronous]
 - (BSCouchDBResponse *)postDictionary:(NSDictionary *)aDictionary;
 
-// Put a document (dictionary) with a particular identifier
+// General purpose synchronous post function
+- (BSCouchDBResponse *)post:(NSString *)argument data:(NSData *)data;
+
+// General purpose asynchronous post functions
+- (void)post:(NSString *)argument data:(NSData *)data delegate:(id <BSCouchDBDatabaseDelegate>)obj;
+- (ASIHTTPRequest *)requestToPost:(NSString *)argument data:(NSData *)data onCompletion:(BSCouchDBDictionaryBlock)onCompletion onFailure:(BSCouchDBErrorBlock)onFailure;
+- (ASIHTTPRequest *)requestToPost:(NSString *)argument data:(NSData *)data;
+
+// General purpose synchronous put function
+- (BSCouchDBResponse *)put:(NSString *)argument data:(NSData *)data;
+
+// Put a document (dictionary) using it's own identifier [synchronous]
+- (BSCouchDBResponse *)putDocument:(BSCouchDBDocument *)aDocument;
+
+// Put a document (dictionary) with a particular identifier [synchronous]
 - (BSCouchDBResponse *)putDocument:(NSDictionary *)aDictionary named:(NSString *)aName;
 
-// Put a document (dictionary) using the same
-- (BSCouchDBResponse *)putDocument:(BSCouchDBDocument *)aDocument;
+// General purpose asynchronous post functions
+- (void)put:(NSString *)argument data:(NSData *)data delegate:(id <BSCouchDBDatabaseDelegate>)obj;
+- (ASIHTTPRequest *)requestToPut:(NSString *)argument data:(NSData *)data onCompletion:(BSCouchDBDictionaryBlock)onCompletion onFailure:(BSCouchDBErrorBlock)onFailure;
+- (ASIHTTPRequest *)requestToPut:(NSString *)argument data:(NSData *)data;
+- (ASIHTTPRequest *)requestToPut:(NSDictionary *)aDictionary named:(NSString *)aName;
 
 #pragma mark DELETE Methods
 
