@@ -122,6 +122,11 @@
 	return nil;
 }
 
+// General purpose asynchronous get function.
+- (ASIHTTPRequest *)request:(NSString *)argument {
+	return [self requestWithPath:percentEscape(argument)];
+}
+
 // General purpose asynchronous get function. It's very important that the 
 // database is retained, before calling this method.
 - (void)get:(NSString *)argument delegate:(id <BSCouchDBDatabaseDelegate>)obj {
